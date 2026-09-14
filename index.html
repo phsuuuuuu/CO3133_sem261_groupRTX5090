@@ -3,41 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CO3133 — Group RTX5090</title>
+  <title>Home — CO3133 Group RTX5090</title>
   <style>
-    body { max-width: 800px; margin: 40px auto; padding: 0 20px; font-family: Arial, sans-serif; line-height: 1.6; color: #222; }
-    h1 { line-height: 1.3; }
-    h2 { margin-top: 32px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
-    a { color: #0969da; }
+    * { box-sizing: border-box; }
+    body { max-width: 900px; margin: 28px auto; padding: 0 20px; font-family: Arial, sans-serif; line-height: 1.6; color: #222; }
+    h1 { line-height: 1.3; font-size: 30px; }
+    h2 { margin-top: 32px; border-bottom: 1px solid #ddd; padding-bottom: 6px; font-size: 22px; }
+    a { color: #0969da; overflow-wrap: anywhere; }
+    a:focus-visible { outline: 2px solid #0969da; outline-offset: 3px; }
+    nav { display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 12px 0; border-bottom: 1px solid #ddd; }
+    nav a { text-decoration: none; }
+    nav a[aria-current="page"] { font-weight: bold; text-decoration: underline; }
     table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 8px; border: 1px solid #ddd; text-align: left; }
+    th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+    th { background: #f5f5f5; }
+    .table-wrap { overflow-x: auto; }
+    .placeholder { padding: 14px; border: 1px dashed #ccc; color: #666; background: #fafafa; }
+    .muted { color: #666; }
+    li { margin: 8px 0; }
+    footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #ddd; font-size: 14px; color: #666; }
+    @media (max-width: 600px) { body { margin: 16px auto; padding: 0 16px; } h1 { font-size: 25px; } th, td { padding: 8px; } }
   </style>
 </head>
 <body>
-  <h1>CO3133 — Deep Learning and Its Applications</h1>
-  <p>Ho Chi Minh City University of Technology — VNU-HCM<br>
-  Faculty of Computer Science and Engineering</p>
-  <p><strong>Semester:</strong> Semester-261<br>
-  <strong>Instructor:</strong> Dr. Le Thanh Sach<br>
-  <strong>Group:</strong> XX</p>
+  <header>
+    <strong>CO3133 · Group RTX5090</strong>
+    <nav aria-label="Main navigation">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="assignment1.html">Assignment 1</a>
+      <a href="assignment2.html">Assignment 2</a>
+      <a href="assignment3.html">Assignment 3</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Deep Learning and Its Applications</h1>
+    <p>Ho Chi Minh City University of Technology — VNU-HCM<br>
+    Faculty of Computer Science and Engineering</p>
 
-  <h2>Members</h2>
-  <table>
-    <thead><tr><th scope="col">Full name</th><th scope="col">Student ID</th></tr></thead>
-    <tbody>
-      <tr><td><a href="https://github.com/phsuuuuuu">Dang Thanh Phu</a></td><td>2452967</td></tr>
-      <tr><td><a href="https://github.com/thanhmcpe123">Cao Duc Thanh</a></td><td>2453164</td></tr>
-    </tbody>
-  </table>
+    <section id="course">
+      <h2>Course information</h2>
+      <p><strong>Course code:</strong> CO3133<br>
+      <strong>Semester:</strong> Semester-261<br>
+      <strong>Instructor:</strong> Dr. Le Thanh Sach<br>
+      <strong>Group:</strong> RTX5090</p>
+    </section>
 
-  <h2>Assignments</h2>
-  <ol>
-    <li><a href="https://github.com/phsuuuuuu/CO3133_sem261_groupXX/tree/main/assignment1">Foundations of Deep Learning Pipelines and Architectures</a></li>
-    <li><a href="https://github.com/phsuuuuuu/CO3133_sem261_groupXX/tree/main/assignment2">Deep Learning on Large-Scale Data and Specialized Tasks</a></li>
-    <li><a href="https://github.com/phsuuuuuu/CO3133_sem261_groupXX/tree/main/assignment3">Multimodal Deep Learning</a></li>
-  </ol>
+    <section id="group">
+      <h2>Group members</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Full name</th><th scope="col">Student ID</th><th scope="col">GitHub</th></tr></thead>
+          <tbody>
+            <tr><td>Dang Thanh Phu</td><td>2452967</td><td><a href="https://github.com/phsuuuuuu">phsuuuuuu</a></td></tr>
+            <tr><td>Cao Duc Thanh</td><td>2453164</td><td><a href="https://github.com/thanhmcpe123">thanhmcpe123</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-  <h2>Repository</h2>
-  <p><a href="https://github.com/phsuuuuuu/CO3133_sem261_groupXX">View source code on GitHub</a></p>
+    <section id="assignments">
+      <h2>Assignments</h2>
+      <p>Open an assignment page to view its report.</p>
+      <ol>
+      <li><a href="assignment1.html"><strong>Assignment 1:</strong> Foundations of Deep Learning Pipelines and Architectures</a></li>
+      <li><a href="assignment2.html"><strong>Assignment 2:</strong> Deep Learning on Large-Scale Data and Specialized Tasks</a></li>
+      <li><a href="assignment3.html"><strong>Assignment 3:</strong> Multimodal Deep Learning</a></li>
+      </ol>
+    </section>
+
+    <section id="repository">
+      <h2>Repository</h2>
+      <p><a href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090">View source code on GitHub</a></p>
+    </section>
+
+    <section id="ai-usage">
+      <h2>AI usage</h2>
+      <p>ChatGPT assisted with the HTML and styling of these four pages. Assignment-specific disclosures can be added to each report.</p>
+      <p><a href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/blob/main/AI_USAGE.md">AI usage log</a></p>
+    </section>
+  </main>
+  <footer>Group RTX5090 · CO3133 · Semester-261 · HCMUT — VNU-HCM</footer>
 </body>
 </html>
