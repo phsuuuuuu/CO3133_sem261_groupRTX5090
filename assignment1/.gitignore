@@ -1,0 +1,11 @@
+command.md
+data/
+.venv/
+__pycache__/
+*.pyc
+
+data/
+checkpoints/
+
+.vscode/
+.DS_Store
