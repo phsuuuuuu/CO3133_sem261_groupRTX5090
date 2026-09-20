@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader, Subset  #  to use  batches
 from torchvision import transforms #prprocessing  data
 from torchvision.datasets import FashionMNIST #import  dataset as req
 
-CLASS_NAMES = [
+"""CLASS_NAMES = [
     "T-shirt/top",
     "Trouser",
     "Pullover",
@@ -17,7 +17,7 @@ CLASS_NAMES = [
     "Sneaker",
     "Bag",
     "Ankle boot",
-]
+]"""
 
 """my workflow Fashion-MNIST 70000  = 54000 train + 6000 validation + 10000 test
      ↓
