@@ -72,8 +72,8 @@ def plot_samples(num_per_class=5,
                 axes[row,label].set_title(CLASS_NAMES[label], fontsize=10)
     plt.suptitle(f"{num_per_class} Representative Images per Class", fontsize=10)
     plt.tight_layout()
-    plt.show()
     plt.savefig(figure_path / "representative_images.png")          
+    plt.show()
     plt.close()            
 
 def plot_processed_batch():

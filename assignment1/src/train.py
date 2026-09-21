@@ -106,6 +106,108 @@ def create_model(model_name):
         "Model must be 'linear' or 'mlp'"
     )
 
+# def train_model(
+#     model_name,
+#     epochs=5,
+#     learning_rate=0.001,
+#     batch_size=200,
+#     random_seed=666,
+#     max_batches=None,
+#     checkpoint_dir=Path("checkpoints"),
+#     results_dir = Path("results")
+
+# ):
+#     torch.manual_seed(random_seed)
+#     if torch.cuda.is_available():
+#         torch.cuda.manual_seed_all(random_seed)
+#     print("Device:", device)
+#     # Data
+#     train_loader, val_loader, _ = build_loaders(
+#         batch_size=batch_size,
+#         random_seed=random_seed
+#     )
+
+#     model = create_model(model_name)
+#     model = model.to(device)
+
+#     # Loss
+#     loss_fn = nn.CrossEntropyLoss()
+
+#     # Optimizer
+#     optimizer = torch.optim.Adam(
+#         model.parameters(),
+#         lr=learning_rate
+#     )
+
+#     # Checkpoint folder
+#     checkpoint_dir.mkdir(exist_ok=True)
+#     checkpoint_path = (
+#         checkpoint_dir / f"{model_name}_best.pt"
+#     )
+#     best_val_loss = float("inf")
+
+#     history = []
+    
+#     #MULTI epoch training loop
+#     for epoch in range(1, epochs + 1):
+#         train_loss, train_metrics = run_batches(
+#             model=model,
+#             loader=train_loader,
+#             loss_fn=loss_fn,
+#             optimizer=optimizer,
+#             max_batches=max_batches
+#         )
+
+#         val_loss, val_metrics = run_batches(
+#             model=model,
+#             loader=val_loader,
+#             loss_fn=loss_fn,
+#             max_batches=max_batches
+#         )
+#         print(f"\nEpoch {epoch}/{epochs}")
+
+#         print(
+#             f"Train | "
+#             f"Loss: {train_loss:.4f} | "
+#             f"Accuracy: {train_metrics['accuracy']:.4f} | "
+#             f"F1: {train_metrics['macro_f1']:.4f}"
+#         )
+
+#         print(
+#             f"Val   | "
+#             f"Loss: {val_loss:.4f} | "
+#             f"Accuracy: {val_metrics['accuracy']:.4f} | "
+#             f"F1: {val_metrics['macro_f1']:.4f}"
+#         )
+
+#         history.append({
+#             "epoch": epoch,
+#             "train_loss": train_loss,
+#             "train_accuracy": train_metrics["accuracy"],
+#             "train_macro_f1": train_metrics["macro_f1"],
+#             "val_loss": val_loss,
+#             "val_accuracy": val_metrics["accuracy"],
+#             "val_macro_f1": val_metrics["macro_f1"]
+#         })
+
+#          # Save best checkpoint
+#         if val_loss < best_val_loss:
+
+#             best_val_loss = val_loss
+
+#             torch.save(
+#                 {
+#                     "epoch": epoch,
+#                     "model_state_dict": model.state_dict(),
+#                     "val_loss": val_loss,
+#                     "val_accuracy": val_metrics["accuracy"],
+#                     "val_macro_f1": val_metrics["macro_f1"]
+#                 },
+#                 checkpoint_path
+#             )
+
+#             print("Saved:", checkpoint_path)
+
 def train_model(
     model_name,
     epochs=5,
@@ -122,7 +224,7 @@ def train_model(
         torch.cuda.manual_seed_all(random_seed)
     print("Device:", device)
     # Data
-    train_loader, val_loader, _ = build_loaders(
+    train_loader, val_loader, test_loader = build_loaders(
         batch_size=batch_size,
         random_seed=random_seed
     )
@@ -144,7 +246,7 @@ def train_model(
     checkpoint_path = (
         checkpoint_dir / f"{model_name}_best.pt"
     )
-    best_val_loss = float("inf")
+    best_val_macro_f1 = 0.0
 
     history = []
     
@@ -191,9 +293,10 @@ def train_model(
         })
 
          # Save best checkpoint
-        if val_loss < best_val_loss:
+        val_macro_f1 = val_metrics["macro_f1"]
+        if val_macro_f1 > best_val_macro_f1:
 
-            best_val_loss = val_loss
+            best_val_macro_f1 = val_macro_f1 
 
             torch.save(
                 {
@@ -229,6 +332,32 @@ def train_model(
 
     print("\nTraining finished.")
     print("History saved:", history_path)
+
+
+    # Evaluate in Test
+    print(f"\nLoading best checkpoint: {checkpoint_path}")
+    checkpoint = torch.load(checkpoint_path, map_location=device)
+    model.load_state_dict(checkpoint["model_state_dict"])
+
+    model.eval()
+    with torch.no_grad():
+        test_loss, test_metrics = run_batches(
+            model=model,
+            loader=test_loader,
+            loss_fn=loss_fn,
+            optimizer=None,
+            max_batches=max_batches
+        )
+
+    test_accuracy = test_metrics["accuracy"]
+    test_macro_f1 = test_metrics["macro_f1"]
+
+    print(
+        f"Test  |"
+        f"Loss: {test_loss:.4f} |   "
+        f"Accuracy: {test_accuracy:.4f} | "
+        f"F1: {test_macro_f1:.4f}"
+    )
 
 if __name__ == "__main__":
 
