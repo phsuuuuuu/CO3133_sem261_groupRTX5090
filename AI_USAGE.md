@@ -1,4 +1,4 @@
-**AI Usage Disclosure — Group RTX5090**
+##1/ AI Usage Disclosure — Group RTX5090**
 
 * **Tool:** ChatGPT.
 * **Used by:** Dang Thanh Phu.
@@ -11,6 +11,47 @@
 * **Responsible for final verification:** Dang Thanh Phu.
 
 This assistance covered website scaffolding and publishing support; it did not produce assignment experiments or results.
+
+
+##2/ AI Usage Disclosure
+
+**Tool:** ChatGPT (OpenAI, GPT-5.6 Sol)
+
+**Used by:** Dang Thanh Phu
+
+**Development stage:** Assignment 1 M1 — Data preparation, EDA, and training pipeline.
+
+** AI contribution**
+
+**purpose**:
+-used to ask what functions should be implemented, mainly about function prototype.
+-used to ask about library needed and syntax within needed library.
+-used to ask about how to use some function
+-used to write parser in train.py - for input+runcode and how to save training epoch into file.
+
+**affected file**
+directly: src/train.py
+indirectly: src/data.py
+indirectly: src/eda.py
+
+**representative prompts:**
+- "What function should I create for the DataLoader?"
+- "How do I use `argparse` in `train.py`?"
+- "How do I save training results from each epoch into a CSV file?"
+- "What does this PyTorch function do?"
+- "Can you explain/fix the syntax of this function?"
+- "How do I save the training and validation results from each epoch, such as loss, accuracy, and macro-F1, into a CSV file?"
+- "guide me  an example aboout how to plot something"
+- ...
+
+**Student verification:**
+I read and understood the explanations and syntax examples before using them. I then wrote or adapted the code myself and tested it locally. I checked the dataset sizes, preprocessing output, EDA figures, training execution, command-line inputs, checkpoints, and saved training-history files to make sure the implementation worked as expected.
+
+
+
+
+
+
 
 
 
