@@ -1,4 +1,3 @@
-from pandas.io.common import file_exists
 from pathlib import Path
 import csv
 import argparse
