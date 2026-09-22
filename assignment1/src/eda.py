@@ -120,8 +120,7 @@ def plot_processed_batch():
     plt.show()
     plt.close()
 
-def plt_distribution_after_spilit():
-    print(Path.cwd())
+def plt_training_distribution_after_spilit():
     dataset = FashionMNIST(root = "data", train = True, download = False)
     indexing = Path("results/split.npz")
     if indexing.exists():
@@ -153,4 +152,4 @@ if __name__ == "__main__":
 
     plot_processed_batch()
 
-    plt_distribution_after_spilit()
+    plt_training_distribution_after_spilit()
