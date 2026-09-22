@@ -39,6 +39,7 @@ def plot_distribution():
     plt.xticks(rotation=45)
     plt.tight_layout()
     plt.savefig(figure_path / "class_distribution.png")
+    plt.show()
     plt.close()
 
     for name, count in zip(CLASS_NAMES, counts):
@@ -119,6 +120,28 @@ def plot_processed_batch():
     plt.show()
     plt.close()
 
+def plt_training_distribution_after_spilit():
+    dataset = FashionMNIST(root = "data", train = True, download = False)
+    indexing = Path("results/split.npz")
+    if indexing.exists():
+        print(f"loading indexing from {indexing}")
+        split = np.load(indexing)
+        train_indices = split["train_indices"]
+        label = [dataset[idx][1] for idx in train_indices]
+        train_counts = np.bincount(label, minlength=9)        
+        bars = plt.bar(CLASS_NAMES, train_counts)
+        plt.bar_label(bars, padding=3)
+        plt.xlabel("Class")
+        plt.ylabel("Number of samples")
+        plt.title("FashionMNIST Training Split Distribution")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.show()
+        plt.savefig(figure_path / "after_indexing_plot_distribution.png")
+        plt.close()
+    
+    
+    
 if __name__ == "__main__":
 
     plot_distribution()
@@ -128,3 +151,5 @@ if __name__ == "__main__":
     )
 
     plot_processed_batch()
+
+    plt_training_distribution_after_spilit()
