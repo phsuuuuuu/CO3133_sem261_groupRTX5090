@@ -24,3 +24,9 @@ python -m src.train --model linear --epochs 1 --max-batches 1
 
 python -m src.train --model mlp --epochs 1 --max-batches 1
 
+python -m src.train --model linear --epochs 10
+
+python -m src.train --model mlp --epochs 10
+
+python -m src.plot_curves
+

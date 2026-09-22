@@ -1,3 +1,4 @@
+from pandas.io.common import file_exists
 from pathlib import Path
 import csv
 import argparse
@@ -10,6 +11,7 @@ from src.data import build_loaders
 from src.metrics import calculate_metrics
 from src.models.linear import LinearClassifier
 from src.models.mlp import MLP
+from src.metrics import count_parameters, measure_time
 
 device = torch.device(
     "cuda" if torch.cuda.is_available() else "cpu"
@@ -352,12 +354,37 @@ def train_model(
     test_accuracy = test_metrics["accuracy"]
     test_macro_f1 = test_metrics["macro_f1"]
 
+    num_params = count_parameters(model)
+    inference_time = measure_time(model, test_loader, device)
+
     print(
         f"Test  |"
         f"Loss: {test_loss:.4f} |   "
         f"Accuracy: {test_accuracy:.4f} | "
         f"F1: {test_macro_f1:.4f}"
     )
+
+    summary_path = results_dir / "summary.csv"
+    file_exists = summary_path.exists()
+
+    summary_data = {
+        "model": model_name,
+        "num_params": num_params,
+        "best_val_f1": best_val_macro_f1,
+        "test_accuracy": test_accuracy,
+        "test_f1": test_macro_f1,
+        "inference_time": inference_time,
+    }
+
+    with summary_path.open("a", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=summary_data.keys())
+
+        if not file_exists:
+            writer.writeheader()
+
+        writer.writerow(summary_data)
+
+    print(f"Summary appended to: {summary_path}")
 
 if __name__ == "__main__":
 
