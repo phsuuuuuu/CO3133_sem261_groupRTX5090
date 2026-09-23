@@ -121,7 +121,7 @@ def plot_processed_batch():
     plt.close()
 
 def plt_training_distribution_after_spilit():
-    dataset = FashionMNIST(root = "data", train = True, download = False)
+    dataset = FashionMNIST(root="data", train=True, download=False)
     indexing = Path("results/split.npz")
     if indexing.exists():
         print(f"loading indexing from {indexing}")
@@ -136,8 +136,8 @@ def plt_training_distribution_after_spilit():
         plt.title("FashionMNIST Training Split Distribution")
         plt.xticks(rotation=45)
         plt.tight_layout()
-        plt.show()
         plt.savefig(figure_path / "after_indexing_plot_distribution.png")
+        plt.show()
         plt.close()
     
     

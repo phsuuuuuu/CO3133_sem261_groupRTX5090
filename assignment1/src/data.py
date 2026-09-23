@@ -86,7 +86,8 @@ def build_loaders(
     train_indices, val_indices = create_split( 
         dataset_size=len(raw_train),
         validation_size=validation_size,
-        random_seed=random_seed
+        random_seed=random_seed,
+        split_path=split_path
         )
 
 
