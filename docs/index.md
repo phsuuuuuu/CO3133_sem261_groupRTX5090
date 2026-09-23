@@ -16,7 +16,7 @@
 
 ## Group Information
 
-**Group Name / ID:** Group XX
+**Group Name / ID:** Group RTX5090
 
 ### Members
 
@@ -24,15 +24,13 @@
 | -------------  | ---------- | ------------------------ | ---------------------------- |
 |Dang  Thanh Phu | 2452967    |                          | https://github.com/phsuuuuuu |
 |Cao Duc Thanh  | 2453164   |                          | https://github.com/thanhmcpe123 |
-| Member 3 Name  | 22XXXXXX   |                          | https://github.com/username3 |
-| Member 4 Name  | 22XXXXXX   |                          | https://github.com/username4 |
 
 
 ---
 
 ## Source Code Repository
 
-[GitHub Repository](https://github.com/phsuuuuuu/CO3133_sem261_groupXX)
+[GitHub Repository](https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090)
 
 ---
 

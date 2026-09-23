@@ -3,7 +3,10 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-from data import build_loaders
+try:
+    from src.data import build_loaders
+except ImportError:
+    from data import build_loaders
 from torchvision.datasets import FashionMNIST
 
 CLASS_NAMES = [
@@ -127,8 +130,9 @@ def plt_training_distribution_after_spilit():
         print(f"loading indexing from {indexing}")
         split = np.load(indexing)
         train_indices = split["train_indices"]
-        label = [dataset[idx][1] for idx in train_indices]
-        train_counts = np.bincount(label, minlength=9)        
+        targets = np.array(dataset.targets)[train_indices]
+        train_counts = np.bincount(targets, minlength=10)
+        plt.figure(figsize=(10, 6))
         bars = plt.bar(CLASS_NAMES, train_counts)
         plt.bar_label(bars, padding=3)
         plt.xlabel("Class")

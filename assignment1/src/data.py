@@ -57,6 +57,7 @@ def create_split(
     )
 
     return train_indices, val_indices
+
 def calculate_mean_std(images, train_indices):
     """
     Calculate normalization values using training images only.
@@ -74,20 +75,24 @@ def build_loaders(
         split_path = Path("results/split.npz"),
         data_dir = Path("data")
 ):
-    """Create train, validation, and test DataLoaders."""
-    #load
     raw_train = FashionMNIST(
         root=data_dir,
         train=True,
         download=True
     )
 
-    #making  indexing train + vaalidation
-    train_indices, val_indices = create_split( 
-        dataset_size=len(raw_train),
-        validation_size=validation_size,
-        random_seed=random_seed,
-        split_path=split_path
+    split_path = Path(split_path)
+    if split_path.exists():
+        data = np.load(split_path)
+        train_indices = data["train_indices"]
+        val_indices = data["val_indices"]
+    else:
+        #making  indexing train + vaalidation
+        train_indices, val_indices = create_split( 
+            dataset_size=len(raw_train),
+            validation_size=validation_size,
+            random_seed=random_seed,
+            split_path=split_path
         )
 
 

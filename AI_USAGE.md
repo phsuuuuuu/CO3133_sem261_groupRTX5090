@@ -53,31 +53,32 @@ I read and understood the explanations and syntax examples before using them. I 
 
 
 
-
-
-
-
-
-
-
-
-
-
-# AI Usage Log - Group [ID] - CO3133, Semester-261
+# AI Usage Log - Group RTX5090 - CO3133, Semester-261
 ## Assignment 1
 
 ### Entry A1-1
 
-- **Tool name / version:**
-- **Member who used it:**
-- **Time / development stage:**
-- **Purpose:**
-- **Affected assignment section(s):**
-- **Representative prompt / prompt-log link:**
-- **How AI output was edited and verified:**
-- **Sources used for verification:**
-- **Member responsible for final verification:**
+- **Tool name / version:** Gemini 3.8 Flash
+- **Member who used it:** Cao Duc Thanh
+- **Time / development stage:** Assignment 1 M1 — Plot the result from csv
+- **Purpose:** Our team needs to plot a graph from linear_history.csv and mlp_history.csv to compare the loss, f1 score, and accuracy between MLP and Linear Model. I don't know how to use mathplotlib and its syntaxes so I need gemini teach me how to use the library.
+- **Affected assignment section(s):** plot_curves.py
+- **Representative prompt / prompt-log link:** https://share.gemini.google/bx1k8Hgs9Epo
+- **How AI output was edited and verified:** I coded and tried to understand the function and update some parameters and paths to match with out assignments. I then ran the file and see that the graph is like what I need.
+- **Sources used for verification:** training_curves.png
+- **Member responsible for final verification:** Cao Duc Thanh
 
+### Entry A1-2
+
+- **Tool name / version:** Gemini 3.8 Flash
+- **Member who used it:** Cao Duc Thanh
+- **Time / development stage:** Assignment 1 M1 — Edit the assignment1.html
+- **Purpose:** I want to edit and add some details about the draft M1 of assignment 1. I haven't coded HTML before so I need gemini teach me how to edit it.
+- **Affected assignment section(s):** assignment1.html
+- **Representative prompt / prompt-log link:** https://share.gemini.google/TgX9DyJ9Nqcz
+- **How AI output was edited and verified:** I edited that file to match with our assignments. I go to github.io to check.
+- **Sources used for verification:** https://phsuuuuuu.github.io/CO3133_sem261_groupRTX5090/assignment1.html I 
+- **Member responsible for final verification:** Cao Duc Thanh
 
 ---
 

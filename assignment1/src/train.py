@@ -1,6 +1,7 @@
 from pathlib import Path
 import csv
 import argparse
+import time
 
 
 import torch
@@ -251,6 +252,7 @@ def train_model(
 
     history = []
     
+    start_train = time.time()
     #MULTI epoch training loop
     for epoch in range(1, epochs + 1):
         train_loss, train_metrics = run_batches(
@@ -331,6 +333,8 @@ def train_model(
         writer.writeheader()
         writer.writerows(history)
 
+    training_time = time.time() - start_train
+
     print("\nTraining finished.")
     print("History saved:", history_path)
 
@@ -372,6 +376,7 @@ def train_model(
         "best_val_f1": best_val_macro_f1,
         "test_accuracy": test_accuracy,
         "test_f1": test_macro_f1,
+        "training_time": training_time,
         "inference_time": inference_time,
     }
 
