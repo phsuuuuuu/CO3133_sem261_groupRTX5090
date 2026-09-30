@@ -86,15 +86,22 @@ I read and understood the explanations and syntax examples before using them. I 
 
 ### Entry A2-1
 
-- **Tool name / version:**
-- **Member who used it:**
-- **Time / development stage:**
-- **Purpose:**
-- **Affected assignment section(s):**
-- **Representative prompt / prompt-log link:**
-- **How AI output was edited and verified:**
+- **Tool name / version:** Gemini 3.8 Flash
+- **Member who used it:** Cao Duc Thanh
+- **Time / development stage:** Assignment 2 M1 — Understand the requirement and find the dataset
+- **Purpose:** I need to understand the specs of assignment 2, and find a dataset to implement the assignment 2.
+- **Affected assignment section(s):** dataset of assignment
+- **Representative prompt / prompt-log link:** https://gemini.google.com/app/6c45defefd0a4e2a
+- **How AI output was edited and verified:** I search it in the internet to see each dataset.
 - **Sources used for verification:**
-- **Member responsible for final verification:**
+  + https://www.kaggle.com/datasets/bardiaardakanian/voc0712
+  + https://www.kaggle.com/datasets/sovitrath/voc-2012-segmentation-data
+  + https://www.cityscapes-dataset.com/
+  + https://www.kaggle.com/datasets/tanlikesmath/the-oxfordiiit-pet-dataset
+  + https://www.kaggle.com/datasets/pengcw1/market-1501
+  + https://www.kaggle.com/datasets/whurobin/dukemtmcreid
+  + https://www.kaggle.com/datasets/abhyudaya12/veri-vehicle-re-identification-dataset
+- **Member responsible for final verification:** Cao Duc Thanh
 
 ---
 
