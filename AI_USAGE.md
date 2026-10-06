@@ -89,10 +89,10 @@ I read and understood the explanations and syntax examples before using them. I 
 - **Tool name / version:** Gemini 3.8 Flash
 - **Member who used it:** Cao Duc Thanh
 - **Time / development stage:** Assignment 2 M1 — Understand the requirement and find the dataset
-- **Purpose:** I need to understand the specs of assignment 2, and find a dataset to implement the assignment 2.
+- **Purpose:** I need to understand the specs of assignment 2, and find a dataset to implement the assignment 2
 - **Affected assignment section(s):** dataset of assignment
 - **Representative prompt / prompt-log link:** https://gemini.google.com/app/6c45defefd0a4e2a
-- **How AI output was edited and verified:** I search it in the internet to see each dataset.
+- **How AI output was edited and verified:** I search it in the internet to see each dataset
 - **Sources used for verification:**
   + https://www.kaggle.com/datasets/bardiaardakanian/voc0712
   + https://www.kaggle.com/datasets/sovitrath/voc-2012-segmentation-data
@@ -101,6 +101,21 @@ I read and understood the explanations and syntax examples before using them. I 
   + https://www.kaggle.com/datasets/pengcw1/market-1501
   + https://www.kaggle.com/datasets/whurobin/dukemtmcreid
   + https://www.kaggle.com/datasets/abhyudaya12/veri-vehicle-re-identification-dataset
+- **Member responsible for final verification:** Cao Duc Thanh
+
+- **Tool name / version:** Gemini 3.8 Flash
+- **Member who used it:** Cao Duc Thanh
+- **Time / development stage:** Assignment 2 M1 — Do research and write proposal for assignment 2
+- **Purpose:** I need to do some researches about the datasets, the models (pretrained and scratch model), the training process, learn how to write a proposal, and check if my proposal meets requirements of the specs
+- **Affected assignment section(s):** proposal of assignment 2
+- **Representative prompt / prompt-log link:** https://share.gemini.google/DGWCyHXayaPi
+- **How AI output was edited and verified:** I search it in the internet to see each dataset
+- **Sources used for verification:**
+  + https://arxiv.org/pdf/2105.15203
+  + https://www.cityscapes-dataset.com/
+  + https://pyimagesearch.com/2016/11/07/intersection-over-union-iou-for-object-detection/
+  + https://www.geeksforgeeks.org/machine-learning/u-net-architecture-explained/
+  + https://wiki.cloudfactory.com/docs/mp-wiki/model-architectures/deeplabv3
 - **Member responsible for final verification:** Cao Duc Thanh
 
 ---
