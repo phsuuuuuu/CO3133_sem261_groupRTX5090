@@ -103,6 +103,8 @@ I read and understood the explanations and syntax examples before using them. I 
   + https://www.kaggle.com/datasets/abhyudaya12/veri-vehicle-re-identification-dataset
 - **Member responsible for final verification:** Cao Duc Thanh
 
+### Entry A2-2
+
 - **Tool name / version:** Gemini 3.8 Flash
 - **Member who used it:** Cao Duc Thanh
 - **Time / development stage:** Assignment 2 M1 — Do research and write proposal for assignment 2
