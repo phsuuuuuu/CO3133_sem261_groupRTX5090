@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Assignment 2 — M1 Proposal — Group RTX5090
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: #525659;
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* ===================================== */
+        /* HEADER */
+        /* ===================================== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            min-height: 58px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 10px 24px;
+
+            background: white;
+
+            border-bottom: 1px solid #ddd;
+
+            box-shadow:
+                0 1px 5px rgba(0, 0, 0, 0.15);
+        }
+
+
+        .back-link {
+            color: #0969da;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+
+        .title {
+            color: #333;
+            font-weight: bold;
+        }
+
+
+        /* ===================================== */
+        /* PDF */
+        /* ===================================== */
+
+        #pdf-container {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 24px 15px 50px;
+        }
+
+
+        canvas {
+            display: block;
+
+            max-width: 100%;
+            height: auto;
+
+            background: white;
+
+            box-shadow:
+                0 3px 12px rgba(0, 0, 0, 0.45);
+        }
+
+
+        #loading {
+            color: white;
+
+            text-align: center;
+
+            font-size: 18px;
+
+            padding: 60px 20px;
+        }
+
+
+        #error {
+            color: white;
+
+            text-align: center;
+
+            font-size: 18px;
+
+            padding: 60px 20px;
+
+            display: none;
+        }
+
+
+        @media (max-width: 650px) {
+
+            header {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .title {
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <a
+        class="back-link"
+        href="../assignment2.html">
+
+        ← Back to Assignment 2
+
+    </a>
+
+
+    <span class="title">
+
+        M1 — Dataset & Project Proposal
+
+    </span>
+
+</header>
+
+
+
+<div id="loading">
+
+    Loading M1 Proposal...
+
+</div>
+
+
+<div id="error">
+
+    Unable to load the M1 Proposal PDF.
+
+</div>
+
+
+<div id="pdf-container"></div>
+
+
+
+<script type="module">
+
+    import * as pdfjsLib from
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+
+    /*
+        PDF location:
+
+        docs/
+        ├── reports/
+        │   └── Assignment2_M1_RTX5090.pdf
+        │
+        └── assignment2/
+            └── m1.html
+
+        Since m1.html is inside assignment2/,
+        "../reports/" goes back to docs/ and then reports/.
+    */
+
+    const pdfUrl =
+        "../reports/Assignment2_M1_RTX5090.pdf";
+
+
+    const container =
+        document.getElementById("pdf-container");
+
+
+    const loading =
+        document.getElementById("loading");
+
+
+    const errorMessage =
+        document.getElementById("error");
+
+
+
+    async function renderPDF() {
+
+        try {
+
+            const loadingTask =
+                pdfjsLib.getDocument(pdfUrl);
+
+
+            const pdf =
+                await loadingTask.promise;
+
+
+            loading.style.display =
+                "none";
+
+
+            for (
+                let pageNumber = 1;
+                pageNumber <= pdf.numPages;
+                pageNumber++
+            ) {
+
+                const page =
+                    await pdf.getPage(pageNumber);
+
+
+                /*
+                    Get original page size
+                */
+
+                const originalViewport =
+                    page.getViewport({
+                        scale: 1
+                    });
+
+
+                /*
+                    Maximum displayed width.
+
+                    Desktop:
+                    maximum 1000px.
+
+                    Mobile:
+                    browser width - 30px.
+                */
+
+                const availableWidth =
+                    Math.min(
+                        window.innerWidth - 30,
+                        1000
+                    );
+
+
+                /*
+                    Calculate scale while keeping
+                    original PDF aspect ratio.
+                */
+
+                const scale =
+                    availableWidth /
+                    originalViewport.width;
+
+
+                const viewport =
+                    page.getViewport({
+                        scale: scale
+                    });
+
+
+                /*
+                    Create one canvas for each
+                    page of the PDF.
+                */
+
+                const canvas =
+                    document.createElement("canvas");
+
+
+                canvas.setAttribute(
+                    "aria-label",
+                    "Page " + pageNumber
+                );
+
+
+                const context =
+                    canvas.getContext("2d");
+
+
+                /*
+                    Improve PDF rendering quality
+                    on high-DPI screens.
+                */
+
+                const outputScale =
+                    window.devicePixelRatio || 1;
+
+
+                canvas.width =
+                    Math.floor(
+                        viewport.width *
+                        outputScale
+                    );
+
+
+                canvas.height =
+                    Math.floor(
+                        viewport.height *
+                        outputScale
+                    );
+
+
+                canvas.style.width =
+                    viewport.width + "px";
+
+
+                canvas.style.height =
+                    viewport.height + "px";
+
+
+                container.appendChild(
+                    canvas
+                );
+
+
+                const transform =
+
+                    outputScale !== 1
+
+                        ? [
+                            outputScale,
+                            0,
+                            0,
+                            outputScale,
+                            0,
+                            0
+                        ]
+
+                        : null;
+
+
+                await page.render({
+
+                    canvasContext:
+                        context,
+
+                    viewport:
+                        viewport,
+
+                    transform:
+                        transform
+
+                }).promise;
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "PDF loading error:",
+                error
+            );
+
+
+            loading.style.display =
+                "none";
+
+
+            errorMessage.style.display =
+                "block";
+
+        }
+
+    }
+
+
+    renderPDF();
+
+</script>
+
+
+</body>
+
+</html>
