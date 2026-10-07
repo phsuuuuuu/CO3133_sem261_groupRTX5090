@@ -13,7 +13,7 @@
 This assistance covered website scaffolding and publishing support; it did not produce assignment experiments or results.
 
 
-##2/ AI Usage Disclosure
+## 2/ AI Usage Disclosure
 
 **Tool:** ChatGPT (OpenAI, GPT-5.6 Sol)
 
@@ -21,13 +21,16 @@ This assistance covered website scaffolding and publishing support; it did not p
 
 **Development stage:** Assignment 1 M1 — Data preparation, EDA, and training pipeline.
 
-** AI contribution**
+**AI contribution**
 
 **purpose**:
--used to ask what functions should be implemented, mainly about function prototype.
--used to ask about library needed and syntax within needed library.
+-used to ask what functions should be implemented, mainly about function prototype
+
+-used to ask about library needed and syntax within needed library
+
 -used to ask about how to use some function
--used to write parser in train.py - for input+runcode and how to save training epoch into file.
+
+-used to write parser in train.py - for input+runcode and how to save training epoch into file
 
 **affected file**
 directly: src/train.py
