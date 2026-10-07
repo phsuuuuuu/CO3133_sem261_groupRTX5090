@@ -5,190 +5,262 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Assignment 2 - M1 Proposal</title>
+    <title>Assignment 2 — CO3133 Group RTX5090</title>
 
     <style>
         * {
             box-sizing: border-box;
         }
 
-        html,
         body {
-            margin: 0;
-            padding: 0;
-            background: #525659;
-        }
-
-        #pdf-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            padding: 20px 0;
-        }
-
-        canvas {
-            display: block;
-            max-width: 100%;
-            height: auto;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-        }
-
-        #loading {
-            color: white;
+            max-width: 900px;
+            margin: 28px auto;
+            padding: 0 20px;
             font-family: Arial, sans-serif;
-            font-size: 18px;
-            text-align: center;
-            padding: 40px;
+            line-height: 1.6;
+            color: #222;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 12px 0;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 30px;
+        }
+
+        nav a {
+            color: #0969da;
+            text-decoration: none;
+        }
+
+        nav a[aria-current="page"] {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 36px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
+
+        .milestone {
+            border: 1px solid #d0d7de;
+            border-radius: 8px;
+            padding: 22px;
+            margin: 20px 0;
+            background: #f6f8fa;
+        }
+
+        .milestone h3 {
+            margin-top: 0;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 16px;
+            background: #0969da;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #0757b5;
+        }
+
+        .disabled {
+            background: #888;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding-top: 16px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 14px;
         }
     </style>
 </head>
 
 <body>
 
-    <div id="loading">
-        Loading Assignment 2 M1 Proposal...
-    </div>
+<header>
 
-    <div id="pdf-container"></div>
+    <strong>CO3133 · Group RTX5090</strong>
 
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="assignment1.html">Assignment 1</a>
+        <a href="assignment2.html" aria-current="page">Assignment 2</a>
+        <a href="assignment3.html">Assignment 3</a>
+    </nav>
 
-    <script type="module">
-
-        import * as pdfjsLib from
-        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
-
-        pdfjsLib.GlobalWorkerOptions.workerSrc =
-        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+</header>
 
 
-        const pdfUrl =
-            "reports/Assignment2_M1_RTX5090.pdf";
+<main>
+
+    <h1>
+        Assignment 2 — Deep Learning on Large-Scale Data and Specialized Tasks
+    </h1>
+
+    <p>
+        <strong>Instructor:</strong> Dr. Le Thanh Sach
+        <br>
+
+        <strong>Group:</strong> RTX5090
+        <br>
+
+        <strong>Members:</strong>
+        Dang Thanh Phu · Cao Duc Thanh
+    </p>
 
 
-        const container =
-            document.getElementById("pdf-container");
-
-        const loading =
-            document.getElementById("loading");
+    <h2>Milestones</h2>
 
 
-        async function renderPDF() {
+    <!-- ======================================= -->
+    <!-- M1 -->
+    <!-- ======================================= -->
 
-            try {
+    <section class="milestone">
 
-                const pdf =
-                    await pdfjsLib.getDocument(pdfUrl).promise;
+        <h3>
+            M1 — Dataset & Project Proposal
+        </h3>
 
+        <p>
+            <strong>Project:</strong>
+            Semantic Segmentation on Cityscapes
+        </p>
 
-                loading.style.display = "none";
+        <p>
+            Dataset proposal for approval including task definition,
+            dataset information, preliminary EDA, data split,
+            evaluation metrics, baseline model, pretrained model
+            and compute estimate.
+        </p>
 
+        <p>
+            <strong>Status:</strong>
+            Awaiting approval
+        </p>
 
-                for (
-                    let pageNumber = 1;
-                    pageNumber <= pdf.numPages;
-                    pageNumber++
-                ) {
+        <a
+            class="button"
+            href="assignment2/m1.html">
+            View M1 Proposal
+        </a>
 
-                    const page =
-                        await pdf.getPage(pageNumber);
-
-
-                    const originalViewport =
-                        page.getViewport({ scale: 1 });
-
-
-                    const maxWidth =
-                        Math.min(window.innerWidth - 30, 1000);
-
-
-                    const scale =
-                        maxWidth / originalViewport.width;
-
-
-                    const viewport =
-                        page.getViewport({ scale: scale });
-
-
-                    const canvas =
-                        document.createElement("canvas");
+    </section>
 
 
-                    const context =
-                        canvas.getContext("2d");
+    <!-- ======================================= -->
+    <!-- M2 -->
+    <!-- ======================================= -->
+
+    <section class="milestone">
+
+        <h3>
+            M2 — Draft
+        </h3>
+
+        <p>
+            Baseline model, pretrained model in progress,
+            EDA and preliminary metrics.
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            Not yet available
+        </p>
+
+        <span class="button disabled">
+            Coming Soon
+        </span>
+
+    </section>
 
 
-                    const outputScale =
-                        window.devicePixelRatio || 1;
+    <!-- ======================================= -->
+    <!-- M3 -->
+    <!-- ======================================= -->
+
+    <section class="milestone">
+
+        <h3>
+            M3 — Final
+        </h3>
+
+        <p>
+            Controlled experiments, error analysis,
+            final report, slides, video, assignment page
+            and checkpoints.
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            Not yet available
+        </p>
+
+        <span class="button disabled">
+            Coming Soon
+        </span>
+
+    </section>
 
 
-                    canvas.width =
-                        Math.floor(
-                            viewport.width * outputScale
-                        );
+    <h2>Project Resources</h2>
+
+    <ul>
+
+        <li>
+            <a
+                href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090"
+                target="_blank"
+                rel="noopener">
+                Group Repository
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/tree/main/assignment2"
+                target="_blank"
+                rel="noopener">
+                Assignment 2 Source Code
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/blob/main/AI_USAGE.md"
+                target="_blank"
+                rel="noopener">
+                AI Usage Disclosure
+            </a>
+        </li>
+
+    </ul>
+
+</main>
 
 
-                    canvas.height =
-                        Math.floor(
-                            viewport.height * outputScale
-                        );
-
-
-                    canvas.style.width =
-                        `${viewport.width}px`;
-
-
-                    canvas.style.height =
-                        `${viewport.height}px`;
-
-
-                    container.appendChild(canvas);
-
-
-                    const renderContext = {
-
-                        canvasContext: context,
-
-                        viewport: viewport,
-
-                        transform:
-                            outputScale !== 1
-                            ? [
-                                outputScale,
-                                0,
-                                0,
-                                outputScale,
-                                0,
-                                0
-                              ]
-                            : null
-                    };
-
-
-                    await page.render(
-                        renderContext
-                    ).promise;
-                }
-
-            }
-
-            catch (error) {
-
-                console.error(error);
-
-                loading.innerHTML =
-                    "Unable to load the proposal PDF.";
-
-            }
-
-        }
-
-
-        renderPDF();
-
-    </script>
+<footer>
+    Group RTX5090 · CO3133 · Semester 261 · HCMUT — VNU-HCM
+</footer>
 
 </body>
 
