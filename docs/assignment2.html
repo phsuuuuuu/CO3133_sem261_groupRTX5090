@@ -3,1014 +3,192 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Assignment 2 — CO3133 Group RTX5090</title>
+    <title>Assignment 2 - M1 Proposal</title>
 
     <style>
         * {
             box-sizing: border-box;
         }
 
+        html,
         body {
-            max-width: 900px;
-            margin: 28px auto;
-            padding: 0 20px;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #222;
+            margin: 0;
+            padding: 0;
+            background: #525659;
         }
 
-        h1 {
-            line-height: 1.3;
-            font-size: 30px;
-        }
-
-        h2 {
-            margin-top: 32px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 6px;
-            font-size: 22px;
-        }
-
-        h3 {
-            margin-top: 24px;
-            font-size: 18px;
-        }
-
-        a {
-            color: #0969da;
-            overflow-wrap: anywhere;
-        }
-
-        a:focus-visible {
-            outline: 2px solid #0969da;
-            outline-offset: 3px;
-        }
-
-        nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px 20px;
-            padding: 12px 0;
-            border-bottom: 1px solid #ddd;
-        }
-
-        nav a {
-            text-decoration: none;
-        }
-
-        nav a[aria-current="page"] {
-            font-weight: bold;
-            text-decoration: underline;
-        }
-
-        table {
+        #pdf-container {
             width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 0;
         }
 
-        th,
-        td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-            vertical-align: top;
+        canvas {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
         }
 
-        th {
-            background: #f5f5f5;
-        }
-
-        .table-wrap {
-            overflow-x: auto;
-        }
-
-        .status-box {
-            padding: 16px;
-            margin: 22px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            background: #f8f9fa;
-        }
-
-        .proposal-box {
-            padding: 18px;
-            margin: 22px 0;
-            border: 1px solid #d0d7de;
-            border-radius: 8px;
-            background: #f6f8fa;
-        }
-
-        .proposal-button {
-            display: inline-block;
-            margin-top: 8px;
-            padding: 10px 16px;
-            background: #0969da;
+        #loading {
             color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-
-        .proposal-button:hover {
-            background: #0757b5;
-        }
-
-        .placeholder {
-            padding: 14px;
-            border: 1px dashed #ccc;
-            color: #666;
-            background: #fafafa;
-        }
-
-        .muted {
-            color: #666;
-        }
-
-        .metric {
-            font-family: "Courier New", monospace;
-        }
-
-        li {
-            margin: 8px 0;
-        }
-
-        footer {
-            margin-top: 40px;
-            padding-top: 16px;
-            border-top: 1px solid #ddd;
-            font-size: 14px;
-            color: #666;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                margin: 16px auto;
-                padding: 0 16px;
-            }
-
-            h1 {
-                font-size: 25px;
-            }
-
-            th,
-            td {
-                padding: 8px;
-            }
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            text-align: center;
+            padding: 40px;
         }
     </style>
 </head>
 
 <body>
 
-<header>
+    <div id="loading">
+        Loading Assignment 2 M1 Proposal...
+    </div>
 
-    <strong>CO3133 · Group RTX5090</strong>
+    <div id="pdf-container"></div>
 
-    <nav aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="assignment1.html">Assignment 1</a>
-        <a href="assignment2.html" aria-current="page">Assignment 2</a>
-        <a href="assignment3.html">Assignment 3</a>
-    </nav>
 
-</header>
+    <script type="module">
 
-<main>
+        import * as pdfjsLib from
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
 
-    <p>
-        <a href="index.html">← Back to group home</a>
-    </p>
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
 
-    <p class="muted">
-        Assignment 2 · Group RTX5090
-    </p>
 
-    <h1>
-        Deep Learning on Large-Scale Data and Specialized Tasks
-    </h1>
+        const pdfUrl =
+            "reports/Assignment2_M1_RTX5090.pdf";
 
-    <p>
-        <strong>Instructor:</strong> Dr. Le Thanh Sach
-        <br>
-        <strong>Members:</strong>
-        Dang Thanh Phu · Cao Duc Thanh
-    </p>
 
+        const container =
+            document.getElementById("pdf-container");
 
-    <!-- ====================================================== -->
-    <!-- M1 PROPOSAL -->
-    <!-- ====================================================== -->
+        const loading =
+            document.getElementById("loading");
 
-    <section id="m1-proposal">
 
-        <div class="proposal-box">
+        async function renderPDF() {
 
-            <h2 style="margin-top: 0;">
-                M1 — Dataset & Project Proposal
-            </h2>
+            try {
 
-            <p>
-                <strong>Project title:</strong>
-                Semantic Segmentation on Cityscapes
-            </p>
+                const pdf =
+                    await pdfjsLib.getDocument(pdfUrl).promise;
 
-            <p>
-                <strong>Task:</strong>
-                Urban street-scene semantic segmentation
-            </p>
 
-            <p>
-                <strong>Dataset:</strong>
-                Cityscapes
-            </p>
+                loading.style.display = "none";
 
-            <p>
-                <strong>Milestone:</strong>
-                Assignment 2 — M1 Proposal
-            </p>
 
-            <p>
-                <strong>Status:</strong>
-                Awaiting approval
-            </p>
+                for (
+                    let pageNumber = 1;
+                    pageNumber <= pdf.numPages;
+                    pageNumber++
+                ) {
 
-            <p>
-                This proposal defines the dataset, task formulation,
-                exploratory data analysis, data split, evaluation metrics,
-                baseline model, pretrained model, and estimated compute
-                requirements for Assignment 2.
-            </p>
+                    const page =
+                        await pdf.getPage(pageNumber);
 
-            <!--
-                Upload the PDF to:
-                docs/reports/Assignment2_M1_RTX5090.pdf
-            -->
 
-            <a
-                class="proposal-button"
-                href="reports/Assignment2_M1_RTX5090.pdf"
-                target="_blank"
-                rel="noopener">
-                View M1 Proposal PDF
-            </a>
+                    const originalViewport =
+                        page.getViewport({ scale: 1 });
 
-        </div>
 
-    </section>
+                    const maxWidth =
+                        Math.min(window.innerWidth - 30, 1000);
 
 
-    <!-- ====================================================== -->
-    <!-- CONTENTS -->
-    <!-- ====================================================== -->
+                    const scale =
+                        maxWidth / originalViewport.width;
 
-    <section aria-labelledby="contents-heading">
 
-        <h2 id="contents-heading">Contents</h2>
+                    const viewport =
+                        page.getViewport({ scale: scale });
 
-        <ul>
-            <li>
-                <a href="#m1-proposal">M1 Dataset Proposal</a>
-            </li>
 
-            <li>
-                <a href="#problem">1. Problem and Task</a>
-            </li>
+                    const canvas =
+                        document.createElement("canvas");
 
-            <li>
-                <a href="#dataset">2. Dataset Information</a>
-            </li>
 
-            <li>
-                <a href="#eda">3. Preliminary EDA</a>
-            </li>
+                    const context =
+                        canvas.getContext("2d");
 
-            <li>
-                <a href="#split">4. Data Split and Leakage Prevention</a>
-            </li>
 
-            <li>
-                <a href="#metrics">5. Evaluation Metrics</a>
-            </li>
+                    const outputScale =
+                        window.devicePixelRatio || 1;
 
-            <li>
-                <a href="#method">6. Planned Methods</a>
-            </li>
 
-            <li>
-                <a href="#compute">7. Compute Resources</a>
-            </li>
+                    canvas.width =
+                        Math.floor(
+                            viewport.width * outputScale
+                        );
 
-            <li>
-                <a href="#future">Later Milestones</a>
-            </li>
 
-            <li>
-                <a href="#references">References</a>
-            </li>
+                    canvas.height =
+                        Math.floor(
+                            viewport.height * outputScale
+                        );
 
-            <li>
-                <a href="#ai-usage">AI Usage Disclosure</a>
-            </li>
 
-            <li>
-                <a href="#links">Links</a>
-            </li>
-        </ul>
+                    canvas.style.width =
+                        `${viewport.width}px`;
 
-    </section>
 
+                    canvas.style.height =
+                        `${viewport.height}px`;
 
-    <!-- ====================================================== -->
-    <!-- 1. PROBLEM -->
-    <!-- ====================================================== -->
 
-    <section id="problem">
+                    container.appendChild(canvas);
 
-        <h2>1. Problem and Task</h2>
 
-        <p>
-            The objective of this project is to perform
-            <strong>semantic segmentation of urban street scenes</strong>.
-            The model assigns one semantic class to every valid pixel in an
-            input street image.
-        </p>
+                    const renderContext = {
 
-        <p>
-            <strong>Input:</strong>
-            an RGB image with original Cityscapes resolution
-            2048 × 1024 pixels.
-        </p>
-
-        <p>
-            <strong>Output:</strong>
-            a pixel-wise segmentation mask containing one of
-            19 target semantic classes for each valid pixel.
-        </p>
+                        canvasContext: context,
 
-        <p>
-            The 19 evaluation classes are:
-        </p>
+                        viewport: viewport,
 
-        <p>
-            road, sidewalk, building, wall, fence, pole,
-            traffic light, traffic sign, vegetation, terrain,
-            sky, person, rider, car, truck, bus, train,
-            motorcycle, and bicycle.
-        </p>
+                        transform:
+                            outputScale !== 1
+                            ? [
+                                outputScale,
+                                0,
+                                0,
+                                outputScale,
+                                0,
+                                0
+                              ]
+                            : null
+                    };
 
-        <p>
-            Pixels outside the 19 evaluation classes use the ignore value
-            <strong>255</strong> and are excluded from training loss and
-            evaluation.
-        </p>
 
-    </section>
+                    await page.render(
+                        renderContext
+                    ).promise;
+                }
 
+            }
 
-    <!-- ====================================================== -->
-    <!-- 2. DATASET -->
-    <!-- ====================================================== -->
+            catch (error) {
 
-    <section id="dataset">
+                console.error(error);
 
-        <h2>2. Dataset Information</h2>
+                loading.innerHTML =
+                    "Unable to load the proposal PDF.";
 
-        <p>
-            This project uses the
-            <strong>Cityscapes Dataset</strong>,
-            which contains high-resolution urban street-scene images
-            together with dense pixel-level annotations.
-        </p>
+            }
 
-        <div class="table-wrap">
+        }
 
-            <table>
 
-                <thead>
-                    <tr>
-                        <th>Package</th>
-                        <th>Purpose</th>
-                        <th>Approx. Size</th>
-                    </tr>
-                </thead>
+        renderPDF();
 
-                <tbody>
-
-                    <tr>
-                        <td>leftImg8bit_trainvaltest.zip</td>
-                        <td>RGB street-scene images</td>
-                        <td>11 GB</td>
-                    </tr>
-
-                    <tr>
-                        <td>gtFine_trainvaltest.zip</td>
-                        <td>Fine semantic segmentation annotations</td>
-                        <td>241 MB</td>
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-        <p>
-            The complete Cityscapes fine dataset contains
-            <strong>5,000 images</strong>:
-        </p>
-
-        <ul>
-            <li>2,975 official training images</li>
-            <li>500 official validation images</li>
-            <li>1,525 official test images</li>
-        </ul>
-
-        <p>
-            Ground-truth labels for the official 1,525 test images are
-            withheld by Cityscapes. Therefore, they will not be used for
-            quantitative local evaluation.
-        </p>
-
-        <p>
-            Official dataset:
-            <a
-                href="https://www.cityscapes-dataset.com/"
-                target="_blank"
-                rel="noopener">
-                Cityscapes Dataset
-            </a>
-        </p>
-
-    </section>
-
-
-    <!-- ====================================================== -->
-    <!-- 3. EDA -->
-    <!-- ====================================================== -->
-
-    <section id="eda">
-
-        <h2>3. Preliminary Exploratory Data Analysis</h2>
-
-        <p>
-            Pixel-level exploratory analysis was performed on the
-            2,975 images in the official Cityscapes training partition.
-        </p>
-
-        <ul>
-            <li>
-                Total pixels:
-                <strong>6,239,027,200</strong>
-            </li>
-
-            <li>
-                Valid pixels belonging to the 19 target classes:
-                <strong>5,523,279,889</strong>
-            </li>
-
-            <li>
-                Ignored pixels:
-                <strong>715,747,311</strong>
-                (approximately 11.47%)
-            </li>
-        </ul>
-
-        <p>
-            The dataset is highly imbalanced.
-            Road, building, and vegetation together account for
-            approximately <strong>75.62%</strong> of all valid pixels.
-        </p>
-
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>Class</th>
-                        <th>Percentage of Valid Pixels</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>Road</td>
-                        <td>36.87%</td>
-                    </tr>
-
-                    <tr>
-                        <td>Building</td>
-                        <td>22.82%</td>
-                    </tr>
-
-                    <tr>
-                        <td>Vegetation</td>
-                        <td>15.93%</td>
-                    </tr>
-
-                    <tr>
-                        <td>Car</td>
-                        <td>6.99%</td>
-                    </tr>
-
-                    <tr>
-                        <td>Sidewalk</td>
-                        <td>6.08%</td>
-                    </tr>
-
-                    <tr>
-                        <td>Motorcycle</td>
-                        <td>0.10%</td>
-                    </tr>
-                </tbody>
-
-            </table>
-
-        </div>
-
-        <p>
-            Minority classes such as motorcycle, rider, train, bus,
-            and truck are expected to be more difficult to segment.
-            Boundary accuracy between adjacent objects is another
-            important challenge.
-        </p>
-
-    </section>
-
-
-    <!-- ====================================================== -->
-    <!-- 4. DATA SPLIT -->
-    <!-- ====================================================== -->
-
-    <section id="split">
-
-        <h2>4. Data Split and Leakage Prevention</h2>
-
-        <p>
-            Since the labels of the official Cityscapes test set are
-            unavailable, the labeled partitions will be reorganized
-            for local model development and evaluation.
-        </p>
-
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>Partition</th>
-                        <th>Images</th>
-                        <th>Purpose</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    <tr>
-                        <td>Train</td>
-                        <td>2,475</td>
-                        <td>Model optimization</td>
-                    </tr>
-
-                    <tr>
-                        <td>Validation</td>
-                        <td>500</td>
-                        <td>
-                            Hyperparameter tuning and checkpoint selection
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Local Test</td>
-                        <td>500</td>
-                        <td>
-                            Final quantitative evaluation using the official
-                            labeled validation partition
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Official Unlabeled Test</td>
-                        <td>1,525</td>
-                        <td>Qualitative inference only</td>
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-        <h3>Leakage Prevention</h3>
-
-        <ul>
-            <li>
-                Training, validation, and local test samples will not overlap.
-            </li>
-
-            <li>
-                Cityscapes city and sequence partitioning will be respected.
-            </li>
-
-            <li>
-                Each RGB image remains paired with its corresponding mask.
-            </li>
-
-            <li>
-                Data augmentation will only be applied to training images.
-            </li>
-
-            <li>
-                A fixed random seed of <strong>42</strong> will be used
-                for reproducibility.
-            </li>
-        </ul>
-
-        <p>
-            Images will be resized to approximately
-            <strong>1024 × 512</strong> pixels or randomly cropped into
-            patches such as <strong>512 × 512</strong> during training
-            to reduce computational cost.
-        </p>
-
-    </section>
-
-
-    <!-- ====================================================== -->
-    <!-- 5. METRICS -->
-    <!-- ====================================================== -->
-
-    <section id="metrics">
-
-        <h2>5. Evaluation Metrics</h2>
-
-        <h3>Primary Metric — Mean Intersection over Union (mIoU)</h3>
-
-        <p>
-            Mean Intersection over Union measures the average overlap
-            between predicted segmentation regions and ground-truth
-            regions across the 19 target classes.
-        </p>
-
-        <p class="metric">
-            IoU = TP / (TP + FP + FN)
-        </p>
-
-        <p>
-            The IoU is computed for each class and then averaged to obtain
-            <strong>mIoU</strong>.
-        </p>
-
-        <h3>Secondary Metrics</h3>
-
-        <ul>
-            <li>
-                Mean Dice score
-            </li>
-
-            <li>
-                Per-class IoU
-            </li>
-
-            <li>
-                Per-class Dice score
-            </li>
-
-            <li>
-                Overall pixel accuracy
-            </li>
-        </ul>
-
-        <p>
-            Per-class metrics are particularly important because the
-            Cityscapes class distribution is strongly imbalanced.
-        </p>
-
-    </section>
-
-
-    <!-- ====================================================== -->
-    <!-- 6. METHODS -->
-    <!-- ====================================================== -->
-
-    <section id="method">
-
-        <h2>6. Planned Methods and Architectures</h2>
-
-        <h3>6.1 Baseline — U-Net</h3>
-
-        <p>
-            The baseline model will be a
-            <strong>U-Net trained from scratch</strong>.
-        </p>
-
-        <p>
-            U-Net contains an encoder that extracts increasingly abstract
-            image features and a decoder that restores spatial resolution.
-            Skip connections transfer feature information from encoder
-            stages to corresponding decoder stages, helping preserve
-            spatial details and object boundaries.
-        </p>
-
-        <p>
-            All U-Net parameters will be randomly initialized.
-        </p>
-
-
-        <h3>6.2 Pretrained Model — DeepLabV3</h3>
-
-        <p>
-            The pretrained model will be
-            <strong>DeepLabV3 with a ResNet-50 backbone pretrained on ImageNet</strong>.
-        </p>
-
-        <p>
-            DeepLabV3 uses atrous convolution and
-            Atrous Spatial Pyramid Pooling (ASPP) to capture contextual
-            information at multiple spatial scales.
-        </p>
-
-        <p>
-            The segmentation head will be configured to predict the
-            19 Cityscapes evaluation classes.
-        </p>
-
-
-        <h3>6.3 Fine-tuning Strategy</h3>
-
-        <p>
-            The pretrained ResNet-50 backbone will initially be frozen
-            while the segmentation head is trained.
-        </p>
-
-        <p>
-            The backbone will then be unfrozen and the full model
-            fine-tuned using a lower learning rate for the pretrained
-            parameters.
-        </p>
-
-
-        <h3>6.4 Planned Controlled Experiments</h3>
-
-        <p>
-            At least one controlled experiment will be conducted.
-            Planned experiments include:
-        </p>
-
-        <ol>
-            <li>
-                <strong>Fine-tuning strategy:</strong>
-                frozen encoder versus full-network fine-tuning.
-            </li>
-
-            <li>
-                <strong>Loss function:</strong>
-                Cross-Entropy loss versus Cross-Entropy + Dice loss.
-            </li>
-        </ol>
-
-        <p>
-            For a fair comparison, the dataset split, input resolution,
-            evaluation metrics, and random seed will remain fixed while
-            only the selected experimental factor is changed.
-        </p>
-
-    </section>
-
-
-    <!-- ====================================================== -->
-    <!-- 7. COMPUTE -->
-    <!-- ====================================================== -->
-
-    <section id="compute">
-
-        <h2>7. Compute Resources and Feasibility</h2>
-
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Planned Configuration</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    <tr>
-                        <td>Hardware</td>
-                        <td>
-                            Local GPU or Google Colab;
-                            NVIDIA T4 16 GB VRAM or equivalent preferred
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Dataset</td>
-                        <td>
-                            5,000 Cityscapes RGB images
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Storage</td>
-                        <td>
-                            Approximately 25–40 GB
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Input Resolution</td>
-                        <td>
-                            1024 × 512, with optional 512 × 512 crops
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Batch Size</td>
-                        <td>
-                            Approximately 2–4
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Training Schedule</td>
-                        <td>
-                            Approximately 30–50 epochs
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Precision</td>
-                        <td>
-                            Mixed-precision training where available
-                        </td>
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-        <p>
-            The training configuration may be adjusted according to
-            available GPU memory. Actual training time and GPU memory
-            consumption will be measured during implementation.
-        </p>
-
-    </section>
-
-
-    <!-- ====================================================== -->
-    <!-- LATER MILESTONES -->
-    <!-- ====================================================== -->
-
-    <section id="future">
-
-        <h2>Later Milestones</h2>
-
-        <p class="placeholder">
-            Experimental results, model comparison, error analysis,
-            qualitative predictions, training curves, and conclusions
-            will be added during M2 Draft and M3 Final.
-        </p>
-
-    </section>
-
-
-    <!-- ====================================================== -->
-    <!-- REFERENCES -->
-    <!-- ====================================================== -->
-
-    <section id="references">
-
-        <h2>References</h2>
-
-        <ul>
-
-            <li>
-                Cityscapes Dataset —
-                <a
-                    href="https://www.cityscapes-dataset.com/"
-                    target="_blank"
-                    rel="noopener">
-                    https://www.cityscapes-dataset.com/
-                </a>
-            </li>
-
-            <li>
-                Fine annotations —
-                <a
-                    href="https://www.cityscapes-dataset.com/file-handling/?packageID=1"
-                    target="_blank"
-                    rel="noopener">
-                    gtFine_trainvaltest
-                </a>
-            </li>
-
-            <li>
-                RGB images —
-                <a
-                    href="https://www.cityscapes-dataset.com/file-handling/?packageID=3"
-                    target="_blank"
-                    rel="noopener">
-                    leftImg8bit_trainvaltest
-                </a>
-            </li>
-
-        </ul>
-
-    </section>
-
-
-    <!-- ====================================================== -->
-    <!-- AI USAGE -->
-    <!-- ====================================================== -->
-
-    <section id="ai-usage">
-
-        <h2>AI Usage Disclosure</h2>
-
-        <p>
-            Detailed AI usage information for this project is maintained
-            in the repository's AI usage log.
-        </p>
-
-        <p>
-            <a
-                href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/blob/main/AI_USAGE.md"
-                target="_blank"
-                rel="noopener">
-                Open AI_USAGE.md
-            </a>
-        </p>
-
-    </section>
-
-
-    <!-- ====================================================== -->
-    <!-- LINKS -->
-    <!-- ====================================================== -->
-
-    <section id="links">
-
-        <h2>Links</h2>
-
-        <ul>
-
-            <li>
-                <a
-                    href="reports/Assignment2_M1_RTX5090.pdf"
-                    target="_blank">
-                    M1 Dataset Proposal PDF
-                </a>
-            </li>
-
-            <li>
-                <a
-                    href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/tree/main/assignment2"
-                    target="_blank">
-                    Assignment 2 Source Code
-                </a>
-            </li>
-
-            <li>
-                <a
-                    href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/blob/main/assignment2/requirements.txt"
-                    target="_blank">
-                    Python Requirements
-                </a>
-            </li>
-
-            <li>
-                <a
-                    href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090"
-                    target="_blank">
-                    Group Repository
-                </a>
-            </li>
-
-        </ul>
-
-    </section>
-
-
-    <p>
-        <a href="index.html">← Back to group home</a>
-    </p>
-
-</main>
-
-
-<footer>
-    Group RTX5090 · CO3133 · Semester-261 · HCMUT — VNU-HCM
-</footer>
+    </script>
 
 </body>
 
