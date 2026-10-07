@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -9,7 +10,7 @@
         content="width=device-width, initial-scale=1.0">
 
     <title>
-        Assignment 2 — M1 Proposal — Group RTX5090
+        Assignment 2 — M1 Proposal — RTX5090
     </title>
 
 
@@ -19,29 +20,41 @@
             box-sizing: border-box;
         }
 
+
         html,
         body {
             margin: 0;
             padding: 0;
-            background: #525659;
+
+            width: 100%;
+            min-height: 100%;
+
             font-family: Arial, sans-serif;
+
+            background: #525659;
         }
 
 
-        /* ===================================== */
+        /* ================================================= */
         /* HEADER */
-        /* ===================================== */
+        /* ================================================= */
 
         header {
             position: sticky;
+
             top: 0;
+            left: 0;
+
             z-index: 100;
 
-            min-height: 58px;
+            width: 100%;
+            min-height: 60px;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
+
+            gap: 20px;
 
             padding: 10px 24px;
 
@@ -50,14 +63,18 @@
             border-bottom: 1px solid #ddd;
 
             box-shadow:
-                0 1px 5px rgba(0, 0, 0, 0.15);
+                0 2px 7px rgba(0, 0, 0, 0.18);
         }
 
 
         .back-link {
             color: #0969da;
+
             text-decoration: none;
+
             font-weight: bold;
+
+            white-space: nowrap;
         }
 
 
@@ -67,75 +84,113 @@
 
 
         .title {
-            color: #333;
+            color: #222;
+
             font-weight: bold;
+
+            text-align: right;
         }
 
 
-        /* ===================================== */
-        /* PDF */
-        /* ===================================== */
+        /* ================================================= */
+        /* PDF VIEW */
+        /* ================================================= */
 
         #pdf-container {
             width: 100%;
 
             display: flex;
             flex-direction: column;
+
             align-items: center;
 
             gap: 20px;
 
-            padding: 24px 15px 50px;
+            padding:
+                25px
+                15px
+                60px
+                15px;
         }
 
 
-        canvas {
+        .pdf-page {
             display: block;
 
             max-width: 100%;
+
             height: auto;
 
             background: white;
 
             box-shadow:
-                0 3px 12px rgba(0, 0, 0, 0.45);
+                0 3px 14px
+                rgba(0, 0, 0, 0.45);
         }
 
+
+        /* ================================================= */
+        /* LOADING */
+        /* ================================================= */
 
         #loading {
+            padding: 70px 20px;
+
             color: white;
 
             text-align: center;
 
             font-size: 18px;
-
-            padding: 60px 20px;
         }
 
+
+        /* ================================================= */
+        /* ERROR */
+        /* ================================================= */
 
         #error {
+            display: none;
+
+            padding: 70px 20px;
+
             color: white;
 
             text-align: center;
 
             font-size: 18px;
-
-            padding: 60px 20px;
-
-            display: none;
         }
 
+
+        #error a {
+            color: white;
+        }
+
+
+        /* ================================================= */
+        /* MOBILE */
+        /* ================================================= */
 
         @media (max-width: 650px) {
 
             header {
-                align-items: flex-start;
                 flex-direction: column;
-                gap: 5px;
+                align-items: flex-start;
+
+                gap: 4px;
+
+                padding: 10px 15px;
             }
 
+
             .title {
+                text-align: left;
                 font-size: 14px;
+            }
+
+
+            #pdf-container {
+                padding-left: 8px;
+                padding-right: 8px;
             }
 
         }
@@ -152,18 +207,18 @@
 
     <a
         class="back-link"
-        href="../assignment2.html">
+        href="assignment2.html">
 
         ← Back to Assignment 2
 
     </a>
 
 
-    <span class="title">
+    <div class="title">
 
         M1 — Dataset & Project Proposal
 
-    </span>
+    </div>
 
 </header>
 
@@ -176,11 +231,23 @@
 </div>
 
 
+
 <div id="error">
 
-    Unable to load the M1 Proposal PDF.
+    Unable to display the M1 Proposal.
+
+    <br><br>
+
+    <a
+        href="../reports/Assignment2_M1_RTX5090.pdf"
+        target="_blank">
+
+        Open the PDF directly
+
+    </a>
 
 </div>
+
 
 
 <div id="pdf-container"></div>
@@ -189,37 +256,64 @@
 
 <script type="module">
 
+
+    /*
+        PDF.js
+
+        Used only to DISPLAY the original PDF.
+
+        The content of the PDF is not rewritten,
+        shortened, summarized or modified.
+    */
+
     import * as pdfjsLib from
-    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
 
 
     pdfjsLib.GlobalWorkerOptions.workerSrc =
         "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
 
 
+
     /*
-        PDF location:
+        Folder structure:
 
         docs/
-        ├── reports/
-        │   └── Assignment2_M1_RTX5090.pdf
-        │
-        └── assignment2/
-            └── m1.html
 
-        Since m1.html is inside assignment2/,
-        "../reports/" goes back to docs/ and then reports/.
+        ├── assignment2/
+        │   ├── assignment2.html
+        │   └── m1.html
+        │
+        └── reports/
+            └── Assignment2_M1_RTX5090.pdf
+
+
+        m1.html is one folder below docs/.
+
+        Therefore:
+
+        ../reports/
+
+        means:
+
+        assignment2/
+            ↓ go up
+        docs/
+            ↓
+        reports/
     */
+
 
     const pdfUrl =
         "../reports/Assignment2_M1_RTX5090.pdf";
 
 
-    const container =
+
+    const pdfContainer =
         document.getElementById("pdf-container");
 
 
-    const loading =
+    const loadingMessage =
         document.getElementById("loading");
 
 
@@ -230,7 +324,13 @@
 
     async function renderPDF() {
 
+
         try {
+
+
+            /*
+                Load original PDF
+            */
 
             const loadingTask =
                 pdfjsLib.getDocument(pdfUrl);
@@ -240,55 +340,81 @@
                 await loadingTask.promise;
 
 
-            loading.style.display =
+
+            /*
+                Hide loading message
+            */
+
+            loadingMessage.style.display =
                 "none";
 
 
+
+            /*
+                Render every single page.
+
+                Nothing is skipped.
+            */
+
             for (
+
                 let pageNumber = 1;
+
                 pageNumber <= pdf.numPages;
+
                 pageNumber++
+
             ) {
 
+
                 const page =
-                    await pdf.getPage(pageNumber);
+                    await pdf.getPage(
+                        pageNumber
+                    );
+
 
 
                 /*
-                    Get original page size
+                    Get original page dimensions.
                 */
 
-                const originalViewport =
+                const baseViewport =
                     page.getViewport({
                         scale: 1
                     });
 
 
+
                 /*
-                    Maximum displayed width.
+                    Display width.
 
                     Desktop:
-                    maximum 1000px.
+                    up to 1000 px.
 
-                    Mobile:
-                    browser width - 30px.
+                    Small screens:
+                    width of browser minus margins.
                 */
 
                 const availableWidth =
                     Math.min(
+
                         window.innerWidth - 30,
+
                         1000
+
                     );
 
 
+
                 /*
-                    Calculate scale while keeping
-                    original PDF aspect ratio.
+                    Maintain the exact PDF
+                    aspect ratio.
                 */
 
                 const scale =
                     availableWidth /
-                    originalViewport.width;
+                    baseViewport.width;
+
 
 
                 const viewport =
@@ -297,76 +423,119 @@
                     });
 
 
+
                 /*
-                    Create one canvas for each
-                    page of the PDF.
+                    Create canvas for this PDF page.
                 */
 
                 const canvas =
-                    document.createElement("canvas");
+                    document.createElement(
+                        "canvas"
+                    );
+
+
+                canvas.className =
+                    "pdf-page";
 
 
                 canvas.setAttribute(
                     "aria-label",
-                    "Page " + pageNumber
+                    "PDF page " + pageNumber
                 );
 
 
+
                 const context =
-                    canvas.getContext("2d");
+                    canvas.getContext(
+                        "2d"
+                    );
+
 
 
                 /*
-                    Improve PDF rendering quality
-                    on high-DPI screens.
+                    High DPI support.
+
+                    This makes text and diagrams
+                    much sharper on high-resolution
+                    monitors.
                 */
 
                 const outputScale =
                     window.devicePixelRatio || 1;
 
 
+
                 canvas.width =
                     Math.floor(
+
                         viewport.width *
                         outputScale
+
                     );
+
 
 
                 canvas.height =
                     Math.floor(
+
                         viewport.height *
                         outputScale
+
                     );
+
 
 
                 canvas.style.width =
                     viewport.width + "px";
 
 
+
                 canvas.style.height =
                     viewport.height + "px";
 
 
-                container.appendChild(
+
+                /*
+                    Add page to website.
+                */
+
+                pdfContainer.appendChild(
                     canvas
                 );
 
+
+
+                /*
+                    High DPI transform.
+                */
 
                 const transform =
 
                     outputScale !== 1
 
                         ? [
+
                             outputScale,
+
                             0,
+
                             0,
+
                             outputScale,
+
                             0,
+
                             0
+
                         ]
 
                         : null;
 
+
+
+                /*
+                    Render actual PDF page.
+                */
 
                 await page.render({
 
@@ -381,31 +550,43 @@
 
                 }).promise;
 
+
             }
+
 
         }
 
+
         catch (error) {
 
+
             console.error(
-                "PDF loading error:",
+                "Error loading PDF:",
                 error
             );
 
 
-            loading.style.display =
+            loadingMessage.style.display =
                 "none";
 
 
             errorMessage.style.display =
                 "block";
 
+
         }
+
 
     }
 
 
+
+    /*
+        Start rendering.
+    */
+
     renderPDF();
+
 
 </script>
 
