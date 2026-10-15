@@ -11,11 +11,14 @@ from src.data import build_loaders
 from src.metrics import calculate_metrics
 from src.models.linear import LinearClassifier
 from src.models.mlp import MLP
+from src.models.cnn import CNN
 from src.metrics import count_parameters, measure_time
 
 device = torch.device(
     "cuda" if torch.cuda.is_available() else "cpu"
 )
+
+models = ['linear', 'mlp', 'cnn']
 
 def run_batches(
     model,
@@ -103,112 +106,12 @@ def create_model(model_name):
 
     if model_name == "mlp":
         return MLP()
-
+    if model_name == "cnn":
+        return CNN()
     raise ValueError(
-        "Model must be 'linear' or 'mlp'"
+        "Model must be 'linear', 'mlp', or 'cnn'"
     )
 
-# def train_model(
-#     model_name,
-#     epochs=5,
-#     learning_rate=0.001,
-#     batch_size=200,
-#     random_seed=666,
-#     max_batches=None,
-#     checkpoint_dir=Path("checkpoints"),
-#     results_dir = Path("results")
-
-# ):
-#     torch.manual_seed(random_seed)
-#     if torch.cuda.is_available():
-#         torch.cuda.manual_seed_all(random_seed)
-#     print("Device:", device)
-#     # Data
-#     train_loader, val_loader, _ = build_loaders(
-#         batch_size=batch_size,
-#         random_seed=random_seed
-#     )
-
-#     model = create_model(model_name)
-#     model = model.to(device)
-
-#     # Loss
-#     loss_fn = nn.CrossEntropyLoss()
-
-#     # Optimizer
-#     optimizer = torch.optim.Adam(
-#         model.parameters(),
-#         lr=learning_rate
-#     )
-
-#     # Checkpoint folder
-#     checkpoint_dir.mkdir(exist_ok=True)
-#     checkpoint_path = (
-#         checkpoint_dir / f"{model_name}_best.pt"
-#     )
-#     best_val_loss = float("inf")
-
-#     history = []
-    
-#     #MULTI epoch training loop
-#     for epoch in range(1, epochs + 1):
-#         train_loss, train_metrics = run_batches(
-#             model=model,
-#             loader=train_loader,
-#             loss_fn=loss_fn,
-#             optimizer=optimizer,
-#             max_batches=max_batches
-#         )
-
-#         val_loss, val_metrics = run_batches(
-#             model=model,
-#             loader=val_loader,
-#             loss_fn=loss_fn,
-#             max_batches=max_batches
-#         )
-#         print(f"\nEpoch {epoch}/{epochs}")
-
-#         print(
-#             f"Train | "
-#             f"Loss: {train_loss:.4f} | "
-#             f"Accuracy: {train_metrics['accuracy']:.4f} | "
-#             f"F1: {train_metrics['macro_f1']:.4f}"
-#         )
-
-#         print(
-#             f"Val   | "
-#             f"Loss: {val_loss:.4f} | "
-#             f"Accuracy: {val_metrics['accuracy']:.4f} | "
-#             f"F1: {val_metrics['macro_f1']:.4f}"
-#         )
-
-#         history.append({
-#             "epoch": epoch,
-#             "train_loss": train_loss,
-#             "train_accuracy": train_metrics["accuracy"],
-#             "train_macro_f1": train_metrics["macro_f1"],
-#             "val_loss": val_loss,
-#             "val_accuracy": val_metrics["accuracy"],
-#             "val_macro_f1": val_metrics["macro_f1"]
-#         })
-
-#          # Save best checkpoint
-#         if val_loss < best_val_loss:
-
-#             best_val_loss = val_loss
-
-#             torch.save(
-#                 {
-#                     "epoch": epoch,
-#                     "model_state_dict": model.state_dict(),
-#                     "val_loss": val_loss,
-#                     "val_accuracy": val_metrics["accuracy"],
-#                     "val_macro_f1": val_metrics["macro_f1"]
-#                 },
-#                 checkpoint_path
-#             )
-
-#             print("Saved:", checkpoint_path)
 
 def train_model(
     model_name,
@@ -243,18 +146,26 @@ def train_model(
         lr=learning_rate
     )
 
-    # Checkpoint folder
-    checkpoint_dir.mkdir(exist_ok=True)
-    checkpoint_path = (
-        checkpoint_dir / f"{model_name}_best.pt"
-    )
-    best_val_macro_f1 = 0.0
+   # Create separate checkpoint directory for each experiment
+    run_checkpoint_dir = checkpoint_dir / f"{model_name}_ep{epochs}"
+
+    run_checkpoint_dir.mkdir(parents=True, exist_ok=True)
+
+    # Path for the best model
+    checkpoint_path = run_checkpoint_dir / "best.pt"
+
+    best_val_macro_f1 = float("-inf")
 
     history = []
     
     start_train = time.time()
     #MULTI epoch training loop
     for epoch in range(1, epochs + 1):
+        # Start timing this epoch
+        if device.type == "cuda":
+            torch.cuda.synchronize()
+
+        epoch_start = time.perf_counter() #calculate epoch time
         train_loss, train_metrics = run_batches(
             model=model,
             loader=train_loader,
@@ -269,8 +180,16 @@ def train_model(
             loss_fn=loss_fn,
             max_batches=max_batches
         )
-        print(f"\nEpoch {epoch}/{epochs}")
-
+        # Test after every epoch (NO training)
+        # Evaluate test set after every epoch
+        test_loss, test_metrics = run_batches(
+            model=model,
+            loader=test_loader,
+            loss_fn=loss_fn,
+            optimizer=None,
+            max_batches=max_batches
+        )
+        #just to print the results of the epochs
         print(
             f"Train | "
             f"Loss: {train_loss:.4f} | "
@@ -287,14 +206,44 @@ def train_model(
 
         history.append({
             "epoch": epoch,
+
+            # Training results
             "train_loss": train_loss,
             "train_accuracy": train_metrics["accuracy"],
             "train_macro_f1": train_metrics["macro_f1"],
+
+            # Validation results
             "val_loss": val_loss,
             "val_accuracy": val_metrics["accuracy"],
-            "val_macro_f1": val_metrics["macro_f1"]
-        })
+            "val_macro_f1": val_metrics["macro_f1"],
 
+            # Testing results
+            "test_loss": test_loss,
+            "test_accuracy": test_metrics["accuracy"],
+            "test_macro_f1": test_metrics["macro_f1"]
+        })
+        # Save checkpoint for EVERY epoch in order to compare training progress later like when its saturated
+    
+        epoch_checkpoint_path = (
+            run_checkpoint_dir / f"epoch_{epoch:03d}.pt"
+        )
+
+        torch.save(
+            {
+                "epoch": epoch,
+                "model_state_dict": model.state_dict(),
+                "optimizer_state_dict": optimizer.state_dict(),
+                "train_loss": train_loss,
+                "train_accuracy": train_metrics["accuracy"],
+                "train_macro_f1": train_metrics["macro_f1"],
+                "val_loss": val_loss,
+                "val_accuracy": val_metrics["accuracy"],
+                "val_macro_f1": val_metrics["macro_f1"],
+            },
+            epoch_checkpoint_path
+        )
+        
+        print(f"Epoch checkpoint saved: {epoch_checkpoint_path}")
          # Save best checkpoint
         val_macro_f1 = val_metrics["macro_f1"]
         if val_macro_f1 > best_val_macro_f1:
@@ -314,12 +263,31 @@ def train_model(
 
             print("Saved:", checkpoint_path)
 
-    # Save history
-    results_dir.mkdir(exist_ok=True)
-    history_path = (
-        results_dir / f"{model_name}_history.csv"
-    )
+        # Wait for GPU operations to finish
+        if device.type == "cuda":
+            torch.cuda.synchronize()
 
+        # Calculate this epoch's execution time
+        epoch_time = time.perf_counter() - epoch_start
+
+        epoch_minutes = int(epoch_time // 60)
+        epoch_seconds = epoch_time % 60
+
+        print(
+            f"Epoch {epoch}/{epochs} time: "
+            f"{epoch_minutes:02d}:{epoch_seconds:05.2f} "
+            f"({epoch_time:.2f} seconds)"
+        )
+
+    # Save history
+    # Create a separate results folder for each model
+    model_results_dir = results_dir / model_name
+    model_results_dir.mkdir(parents=True, exist_ok=True)
+
+    # Save history for each experiment
+    history_path = (
+        model_results_dir / f"{model_name}_ep{epochs}_history.csv"
+    )
     with history_path.open(
         "w",
         newline=""
@@ -390,13 +358,16 @@ def train_model(
 
     print(f"Summary appended to: {summary_path}")
 
-if __name__ == "__main__":
 
+
+
+if __name__ == "__main__":
+    total_start = time.perf_counter()
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
         "--model",
-        choices=["linear", "mlp"],
+        choices=models,
         required=True
     )
 
@@ -440,3 +411,19 @@ if __name__ == "__main__":
         random_seed=args.seed,
         max_batches=args.max_batches
     )
+        # Make sure all GPU operations are completed
+    if torch.cuda.is_available():
+        torch.cuda.synchronize()
+
+    # Calculate total execution time
+    total_time = time.perf_counter() - total_start
+
+    hours = int(total_time // 3600)
+    minutes = int((total_time % 3600) // 60)
+    seconds = total_time % 60
+
+    print("\n========== TOTAL EXECUTION TIME ==========")
+    print(f"Total seconds: {total_time:.2f} s")
+    print(f"Total minutes: {total_time / 60:.2f} min")
+    print(f"Total runtime: {hours:02d}:{minutes:02d}:{seconds:05.2f}")
+    print("==========================================")
