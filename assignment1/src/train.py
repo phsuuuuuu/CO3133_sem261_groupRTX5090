@@ -12,13 +12,14 @@ from src.metrics import calculate_metrics
 from src.models.linear import LinearClassifier
 from src.models.mlp import MLP
 from src.models.cnn import CNN
+from src.models.lstm import LSTM
 from src.metrics import count_parameters, measure_time
 
 device = torch.device(
     "cuda" if torch.cuda.is_available() else "cpu"
 )
 
-models = ['linear', 'mlp', 'cnn']
+models = ['linear', 'mlp', 'cnn', 'lstm']
 
 def run_batches(
     model,
@@ -108,8 +109,10 @@ def create_model(model_name):
         return MLP()
     if model_name == "cnn":
         return CNN()
+    if model_name == 'lstm':
+        return LSTM()
     raise ValueError(
-        "Model must be 'linear', 'mlp', or 'cnn'"
+        "Model must be 'linear', 'mlp', 'cnn', or 'lstm"
     )
 
 

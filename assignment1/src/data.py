@@ -46,7 +46,7 @@ def create_split(
     val_indices = indices[:validation_size]
     train_indices = indices[validation_size:]
 
-    #save  indices
+    #save indices
     split_path = Path(split_path)
     split_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -68,6 +68,7 @@ def calculate_mean_std(images, train_indices):
     std = train_images.std().item()
 
     return mean, std 
+
 def build_loaders(
         batch_size = 200,
         validation_size = 6000,
@@ -87,7 +88,7 @@ def build_loaders(
         train_indices = data["train_indices"]
         val_indices = data["val_indices"]
     else:
-        #making  indexing train + vaalidation
+        #making indexing train + vaalidation
         train_indices, val_indices = create_split( 
             dataset_size=len(raw_train),
             validation_size=validation_size,
@@ -96,13 +97,13 @@ def build_loaders(
         )
 
 
-    #cal  mean +  std  for normalization  // no valid also no test only train
+    #cal mean + std  for normalization // no valid also no test only train
     mean, std = calculate_mean_std(raw_train.data, train_indices)
 
     print(f"Training mean: {mean:.4f}")
     print(f"Training std:  {std:.4f}")
 
-    #preprocessing  data
+    #preprocessing data
     transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize((mean,), (std,))
@@ -121,11 +122,11 @@ def build_loaders(
         transform=transform
     )
 
-    #create  subset for train + validation
+    #create subset for train + validation
     train_dataset = Subset(full_train, train_indices)
     val_dataset = Subset(full_train, val_indices)
 
-    #create  dataloader
+    #create dataloader
     train_loader = DataLoader(
         train_dataset,
         batch_size=batch_size,
