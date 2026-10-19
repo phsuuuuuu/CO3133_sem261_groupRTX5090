@@ -1,0 +1,2 @@
+epoch,train_loss,train_accuracy,train_macro_f1,val_loss,val_accuracy,val_macro_f1,test_loss,test_accuracy,test_macro_f1
+1,2.5018274784088135,0.075,0.035918205595624954,2.365389823913574,0.115,0.02062780269058296,2.398879289627075,0.1,0.01818181818181818
