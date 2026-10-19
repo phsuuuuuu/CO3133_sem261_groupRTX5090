@@ -1,4 +1,4 @@
-#just eg metrics make by Phu for call func after Thanh make it again or  change plz keep the same  name 
+#just eg metrics make by Phu for call func after Thanh make it again or change plz keep the same name 
 from sklearn.metrics import accuracy_score, f1_score
 import time
 import torch

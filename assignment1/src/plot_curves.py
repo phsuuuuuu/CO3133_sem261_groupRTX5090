@@ -2,9 +2,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-df_linear = pd.read_csv("results/linear_history.csv")
+df_linear = pd.read_csv("results/linear/linear_ep10_history.csv")
 
-df_mlp = pd.read_csv("results/mlp_history.csv")
+df_mlp = pd.read_csv("results/mlp/mlp_ep10_history.csv")
 
 df_cnn = pd.read_csv("results/cnn/cnn_ep10_history.csv")
 
@@ -30,6 +30,7 @@ for ax, (metric, title) in zip(axes, metrics):
     ax.plot(df_linear["epoch"],df_linear[f"val_{metric}"],label=f"Linear Val",color="tab:blue",linestyle="--")
     ax.plot(df_mlp["epoch"], df_mlp[f"val_{metric}"],label=f"MLP Val",color="tab:orange",linestyle="--")
     ax.plot(df_cnn["epoch"], df_cnn[f"val_{metric}"],label=f"CNN Val",color="tab:green",linestyle="--")
+    ax.plot(df_lstm["epoch"], df_lstm[f"val_{metric}"],label=f"LSTM Val",color="tab:red",linestyle="--")
     ax.plot(df_transformer["epoch"], df_transformer[f"val_{metric}"],label=f"Transformer Val",color="tab:cyan",linestyle="--")
 
     ax.set_title(f"Comparison of {title}")
