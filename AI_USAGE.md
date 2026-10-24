@@ -64,7 +64,7 @@ I read and understood the explanations and syntax examples before using them. I 
 - **Tool name / version:** Gemini 3.8 Flash
 - **Member who used it:** Cao Duc Thanh
 - **Time / development stage:** Assignment 1 M1 — Plot the result from csv
-- **Purpose:** Our team needs to plot a graph from linear_history.csv and mlp_history.csv to compare the loss, f1 score, and accuracy between MLP and Linear Model. I don't know how to use mathplotlib and its syntaxes so I need gemini teach me how to use the library.
+- **Purpose:** Our team needed to plot a graph from linear_history.csv and mlp_history.csv to compare the loss, f1 score, and accuracy between MLP and Linear Model. I didn't know how to use mathplotlib and its syntaxes so I needed gemini teach me how to use the library.
 - **Affected assignment section(s):** plot_curves.py
 - **Representative prompt / prompt-log link:** https://share.gemini.google/bx1k8Hgs9Epo
 - **How AI output was edited and verified:** I coded and tried to understand the function and update some parameters and paths to match with out assignments. I then ran the file and see that the graph is like what I need.
@@ -76,11 +76,47 @@ I read and understood the explanations and syntax examples before using them. I 
 - **Tool name / version:** Gemini 3.8 Flash
 - **Member who used it:** Cao Duc Thanh
 - **Time / development stage:** Assignment 1 M1 — Edit the assignment1.html
-- **Purpose:** I want to edit and add some details about the draft M1 of assignment 1. I haven't coded HTML before so I need gemini teach me how to edit it.
+- **Purpose:** I wanted to edit and add some details about the draft M1 of assignment 1. I haven't coded HTML before so I needed gemini teach me how to edit it.
 - **Affected assignment section(s):** assignment1.html
 - **Representative prompt / prompt-log link:** https://share.gemini.google/TgX9DyJ9Nqcz
 - **How AI output was edited and verified:** I edited that file to match with our assignments. I go to github.io to check.
 - **Sources used for verification:** https://phsuuuuuu.github.io/CO3133_sem261_groupRTX5090/assignment1.html I 
+- **Member responsible for final verification:** Cao Duc Thanh
+
+### Entry A1-3
+
+- **Tool name / version:** Gemini 3.8 Flash
+- **Member who used it:** Cao Duc Thanh
+- **Time / development stage:** Assignment 1 M2 — Fixing LSTM errors
+- **Purpose:** I have read the D2L book and coded LSTM like it, but when I ran the code it had some errors. Therefore I need gemini to understand the error and fix it because I were not used to the pytorch library.
+- **Affected assignment section(s):** lstm.py
+- **Representative prompt / prompt-log link:** https://share.gemini.google/wVjtB3LHu1b6
+- **How AI output was edited and verified:** I read the instructions of gemini and try to fix the errors, I discussed with AI to find the best way to write my code. I finally ran the code successfully and saw that the accuracy went up to 90%.
+- **Sources used for verification:** results/figures/training_curves.png I 
+- **Member responsible for final verification:** Cao Duc Thanh
+
+### Entry A1-4
+
+- **Tool name / version:** Gemini 3.8 Flash
+- **Member who used it:** Cao Duc Thanh
+- **Time / development stage:** Assignment 1 M2 — Implement Transformer
+- **Purpose:** I have learned transformer architecture but I didn't know how to implement it. Therefore I needed to learn how to implement the code. 
+- **Affected assignment section(s):** transformer.py
+- **Representative prompt / prompt-log link:** https://share.gemini.google/X2LdCo2AsJpd
+- **How AI output was edited and verified:** I read the instructions of gemini and read the D2L book to implement transformer, I discussed with AI to find the best way to build my model. I finally ran the code successfully and saw that the accuracy went up to 80% with ViT.
+- **Sources used for verification:** results/figures/training_curves.png and D2L book
+- **Member responsible for final verification:** Cao Duc Thanh
+
+### Entry A1-5
+
+- **Tool name / version:** Gemini 3.8 Flash
+- **Member who used it:** Cao Duc Thanh
+- **Time / development stage:** Assignment 1 M2 — Write report
+- **Purpose:** I don't have much idea to write all the the requirement in handbook. Therefore I used Gemini to organize the idea, suggest some ideas for me to write, and check my report. 
+- **Affected assignment section(s):** report
+- **Representative prompt / prompt-log link:** https://share.gemini.google/phX1ifjJFugp
+- **How AI output was edited and verified:** I read the output of gemini and try to write the report, then I used gemini to check if I write right. 
+- **Sources used for verification:** the file of assignment 1
 - **Member responsible for final verification:** Cao Duc Thanh
 
 ---
@@ -122,6 +158,8 @@ I read and understood the explanations and syntax examples before using them. I 
   + https://www.geeksforgeeks.org/machine-learning/u-net-architecture-explained/
   + https://wiki.cloudfactory.com/docs/mp-wiki/model-architectures/deeplabv3
 - **Member responsible for final verification:** Cao Duc Thanh
+
+
 
 ---
 
