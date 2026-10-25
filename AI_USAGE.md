@@ -120,7 +120,39 @@ I read and understood the explanations and syntax examples before using them. I 
 - **Member responsible for final verification:** Cao Duc Thanh
 
 ---
+### AI Usage Disclosure
 
+**Tool:** ChatGPT (GPT-6)
+
+**Used by:** Đặng Thành Phú
+
+**Period:** October 2026
+
+**Purpose:** Concept clarification, mathematical verification, and limited report-writing assistance.  I (Phu) and  Thanh write report on each other work,  i wrote for Thanh  and ofc Thanh write for  mine for better   understanding this assignment.
+
+**AI Assistance:**
+
+ChatGPT was used as a supplementary learning tool to clarify selected concepts related to LSTM and Transformer architectures, including their internal operations, tensor dimensions, and parameter calculations. It also helped explain aspects of the training pipeline, evaluation metrics, and experimental results.
+
+Additionally, AI was used to review the organization, technical wording, and formatting of selected report sections.
+
+**Representative Prompts:**
+- "Explain the Transformer architecture."
+- "Why does PyTorch LSTM count both input and hidden biases?"
+- "Explain the parameter calculation of the Transformer."
+- "Check the report requirements and improve the formatting."
+
+**Affected Sections:** Sections 2.1, 2.5–2.8, 3.1–3.2, and 3.6.
+
+**Verification and Human Contribution:**
+
+Both team members worked on their assigned models and report sections, cross-checking each other's explanations and implementations. AI-generated suggestions were treated as supplementary references and reviewed against the project source code, mathematical formulations, and recorded experimental results.
+
+The final technical explanations, experimental interpretations, and report content remain the responsibility of the team.
+
+**Verification Sources:** Project source code, experiment logs, CO3133 course handbook, and relevant PyTorch documentation.
+
+**Responsibility:** Phu wrote report and  Phu and  Thanh both checking.
 ## Assignment 2
 
 ### Entry A2-1
