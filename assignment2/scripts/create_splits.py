@@ -1,6 +1,4 @@
 from pathlib import Path
-import json
-import numpy as np
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATASET_DIR = BASE_DIR / "dataset"
