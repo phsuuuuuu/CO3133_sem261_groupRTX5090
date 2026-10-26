@@ -17,9 +17,6 @@ file_list = list(DATASET_DIR.rglob("*_gtFine_labelIds.png"))
 
 total_counts = np.zeros(256, dtype=np.int64)
 
-valid_labels = [l.name for l in labels if 0 <= l.trainId < 19]
-print(len(valid_labels), valid_labels)
-
 for label_path in file_list:
     mask_labelId = np.array(Image.open(label_path))
     mask_trainId = lut[mask_labelId]
