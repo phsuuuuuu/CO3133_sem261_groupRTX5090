@@ -1,7 +1,6 @@
 from cityscapesscripts.helpers.labels import labels
 from pathlib import Path
 import numpy as np
-import glob
 from PIL import Image
 
 lut = np.full(256, 255, dtype=np.uint8)
