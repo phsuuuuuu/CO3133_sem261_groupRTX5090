@@ -1,4 +1,4 @@
-  ##terminal  = powershell
+## terminal  = powershell
 
 1/prepare environment
     make virtual env:
@@ -16,7 +16,7 @@
     deactivate
 
 2/ prepare data
-    Download dataset from [text](https://www.cityscapes-dataset.com/downloads/) (just download 2 files: gtFine_trainvaltest.zip (241MB) and leftImg8bit_trainvaltest.zip (11GB))
+    Download dataset from [cityscapes](https://www.cityscapes-dataset.com/downloads/) (just download 2 files: gtFine_trainvaltest.zip (241MB) and leftImg8bit_trainvaltest.zip (11GB))
     After that extract all the files into assignment2/dataset/
 
     Then run the prepare_data.py by:
