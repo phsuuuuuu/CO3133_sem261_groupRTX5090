@@ -1,0 +1,21 @@
+# Ignore entire dataset content but keep dataset folder structure
+dataset/*
+!dataset/.gitkeep
+
+# Checkpoints / Model weights
+checkpoints/*
+!checkpoints/.gitkeep
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+venv/
+env/
+
+# Data archives
+*.zip
+*.tar.gz
+*.tar
