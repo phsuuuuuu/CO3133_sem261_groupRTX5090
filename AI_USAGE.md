@@ -120,39 +120,21 @@ I read and understood the explanations and syntax examples before using them. I 
 - **Member responsible for final verification:** Cao Duc Thanh
 
 ---
-### AI Usage Disclosure
+ **Tool name / version:** GPT-6
+- **Member who used it:** Dang Thanh Phu
+- **Time / development stage:** Assignment 1 M2 — Write report
+- **Purpose:** Consulted ChatGPT to better understand LSTM and Transformer architectures, including hidden states, attention mechanisms, tensor dimensions, and parameter calculations. Asked questions about PyTorch LSTM biases, data normalization, training procedures, and evaluation metrics. Additionally, used ChatGPT to clarify experimental results, discuss model limitations, and assist in structuring and refining technical explanations in the report.
+- **Affected assignment section(s):** report: Sections 2.1, 2.5–2.8, 3.1–3.2, and 3.6.
+- **Representative prompt / prompt-log link:**
+   + LSTM Architecture and Parameter Calculation: Asked how the LSTM processes Fashion-MNIST images as sequences of 28 rows, each containing 28 features. Specifically questioned the parameter-count formula for a hidden dimension of 2,048 and why PyTorch includes separate input-to-hidden and hidden-to-hidden bias vectors.
+   + Transformer Architecture: Asked for explanations of how 28 × 28 images are divided into 49 patches, projected into 32-dimensional embeddings, and combined with a classification token and positional embeddings. Also discussed Query, Key, Value projections, four attention heads, residual connections, feed-forward layers, tensor dimensions, and the calculation of 28,202 trainable parameters.
+   + Training Behavior and Checkpoint Selection: Asked how to interpret training and validation curves, identify possible overfitting or underfitting, and explain why the checkpoint with the highest validation macro-F1 may differ from the epoch with the lowest validation loss.
+   + Experimental Results and Limitations: Requested assistance interpreting the recorded accuracy, macro-F1, training time, inference time, and parameter counts of the five architectures. Discussed the Transformer improvement between 10 and 30 epochs, differences in model capacity, and limitations of comparing architectures under unequal parameter and computational budgets.
+- **How AI output was edited and verified:** I read the output of GPT and try to write the report, then I used GPT to check if I write right and i check and compare it with the recorded experimental results to make sure the data is not wrong.
+- **Sources used for verification:** the file of assignment 1
+- **Member responsible for final verification:** Dang Thanh Phu
 
-**Tool:** ChatGPT (GPT-6)
 
-**Used by:** Đặng Thành Phú
-
-**Period:** October 2026
-
-**Purpose:** Concept clarification, mathematical verification, and limited report-writing assistance.  I (Phu) and  Thanh write report on each other work,  i wrote for Thanh  and ofc Thanh write for  mine for better   understanding this assignment.
-
-**AI Assistance:**
-
-ChatGPT was used as a supplementary learning tool to clarify selected concepts related to LSTM and Transformer architectures, including their internal operations, tensor dimensions, and parameter calculations. It also helped explain aspects of the training pipeline, evaluation metrics, and experimental results.
-
-Additionally, AI was used to review the organization, technical wording, and formatting of selected report sections.
-
-**Representative Prompts:**
-- "Explain the Transformer architecture."
-- "Why does PyTorch LSTM count both input and hidden biases?"
-- "Explain the parameter calculation of the Transformer."
-- "Check the report requirements and improve the formatting."
-
-**Affected Sections:** Sections 2.1, 2.5–2.8, 3.1–3.2, and 3.6.
-
-**Verification and Human Contribution:**
-
-Both team members worked on their assigned models and report sections, cross-checking each other's explanations and implementations. AI-generated suggestions were treated as supplementary references and reviewed against the project source code, mathematical formulations, and recorded experimental results.
-
-The final technical explanations, experimental interpretations, and report content remain the responsibility of the team.
-
-**Verification Sources:** Project source code, experiment logs, CO3133 course handbook, and relevant PyTorch documentation.
-
-**Responsibility:** Phu wrote report and  Phu and  Thanh both checking.
 ## Assignment 2
 
 ### Entry A2-1
