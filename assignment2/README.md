@@ -21,3 +21,16 @@
 
     Then run the prepare_data.py by:
     python assignment2/scripts/prepare_data.py
+
+python -m src.train --config configs/deeplabv3.yaml --max-batches 5 --epochs 1
+
+3/ models
+init in src/models/__init__ for ur unet
+i already sample a unet for u check in configss
+--> modify base on u
+
+4/ how to run:
+deeplabv3:
+python -m src.train --config configs/deeplabv3.yaml
+unet:
+python -m src.train --config configs/unet.yaml

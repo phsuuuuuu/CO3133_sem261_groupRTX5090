@@ -1,0 +1,12 @@
+model: unet
+num_classes: 19
+ignore_index: 255
+seed: 666
+epochs: 2
+lr: 0.001
+amp: true
+batch_size: 4
+max_batches: 20
+resume: null
+checkpoint_dir: checkpoints/unet
+cfg:

@@ -1,0 +1,14 @@
+model: deeplabv3_resnet50
+weights_backbone: IMAGENET1K_V1
+
+num_classes: 19
+ignore_index: 255
+seed: 666
+epochs: 2
+lr: 0.001
+amp: true
+batch_size: 4
+max_batches: 20
+resume: checkpoints/deeplabv3/exp
+checkpoint_dir: checkpoints/deeplabv3/exp
+cfg: "val"
