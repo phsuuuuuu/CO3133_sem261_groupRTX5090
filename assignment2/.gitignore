@@ -14,8 +14,12 @@ __pycache__/
 .env
 venv/
 env/
+.venv/
 
 # Data archives
 *.zip
 *.tar.gz
 *.tar
+
+command.md
+

@@ -12,16 +12,18 @@ import torch.nn as nn
 import yaml
 
 from src.data import get_loaders
-from src.evaluate import select_loader, validate
+from src.evaluate import get_logits, select_loader, validate
 from src.metrics import ConfusionMatrix
-from src.models.deeplabv3 import resnet_deeplabv3
+from src.models import build_model
 MAX_TRAIN_BATCHES=621
 MAX_VALIDATION_BATCHES=124 
 MAX_TEST_BATCHES=125
 
 def train_one_epoch(model, loader, optimizer, device, max_batches=0):
     model.train()
-    model.backbone.eval()  
+    backbone = getattr(model, "backbone", None)
+    if backbone is not None and not any(p.requires_grad for p in backbone.parameters()):
+        backbone.eval()
 
     criterion = nn.CrossEntropyLoss(ignore_index=255)
     total_loss = 0
@@ -39,7 +41,7 @@ def train_one_epoch(model, loader, optimizer, device, max_batches=0):
             continue
 
         optimizer.zero_grad()
-        logits = model.forward(images)["out"]
+        logits = get_logits(model(images))
         loss = criterion(logits, masks)
 
         loss.backward()
@@ -48,6 +50,8 @@ def train_one_epoch(model, loader, optimizer, device, max_batches=0):
         total_loss += loss.item() * images.size(0)
         total_samples += images.size(0)
 
+    if total_samples == 0:
+        raise ValueError("No training samples with labeled pixels were processed")
     return total_loss / total_samples
 
 
@@ -56,7 +60,7 @@ def run_directory(cfg, max_batches):
         path = Path(cfg["resume"])
         return path if path.is_dir() else path.parent
 
-    base = Path(cfg.get("checkpoint_dir", "checkpoints/deeplabv3"))
+    base = Path(cfg.get("checkpoint_dir", f"checkpoints/{cfg.get('model', 'deeplabv3_resnet50')}"))
 
     if max_batches:
         base = base / "exp"
@@ -101,7 +105,7 @@ def main(cfg):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print("Device:", device)
 
-    model = resnet_deeplabv3(cfg).to(device)
+    model = build_model(cfg).to(device)
     optimizer = torch.optim.AdamW(
         filter(lambda p: p.requires_grad, model.parameters()),
         lr=float(cfg["lr"])
@@ -174,20 +178,10 @@ def main(cfg):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="configs/deeplabv3.yaml")
-    parser.add_argument("--resume", default=None)
-    parser.add_argument("--epochs", type=int, default=0)
-    parser.add_argument("--max_batches", type=int, default=0)
 
     args = parser.parse_args()
 
     with open(args.config, encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
-
-    if args.resume:
-        cfg["resume"] = args.resume
-    if args.epochs is not None and args.epochs > 0:
-        cfg["epochs"] = args.epochs
-    if args.max_batches is not None and args.max_batches > 0:
-        cfg["max_batches"] = args.max_batches
 
     main(cfg)
