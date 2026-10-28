@@ -2,21 +2,33 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Assignment 2 — M2 Draft — CO3133 Group RTX5090</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1">
+
+  <title>Assignment 2 &mdash; M2 Draft &mdash; CO3133 Group RTX5090</title>
+
 
   <style>
+
     * {
       box-sizing: border-box;
     }
 
     body {
       max-width: 900px;
+
       margin: 28px auto;
+
       padding: 0 20px;
+
       font-family: Arial, sans-serif;
+
       line-height: 1.6;
+
       color: #222;
     }
 
@@ -27,26 +39,35 @@
 
     h2 {
       margin-top: 32px;
+
       border-bottom: 1px solid #ddd;
+
       padding-bottom: 6px;
+
       font-size: 22px;
     }
 
     a {
       color: #0969da;
+
       overflow-wrap: anywhere;
     }
 
     a:focus-visible {
       outline: 2px solid #0969da;
+
       outline-offset: 3px;
     }
 
     nav {
       display: flex;
+
       flex-wrap: wrap;
+
       gap: 8px 20px;
+
       padding: 12px 0;
+
       border-bottom: 1px solid #ddd;
     }
 
@@ -56,19 +77,24 @@
 
     nav a[aria-current="page"] {
       font-weight: bold;
+
       text-decoration: underline;
     }
 
     table {
       width: 100%;
+
       border-collapse: collapse;
+
       margin: 16px 0;
     }
 
     th,
     td {
       padding: 10px;
+
       border: 1px solid #ddd;
+
       text-align: left;
     }
 
@@ -82,8 +108,11 @@
 
     .placeholder {
       padding: 14px;
+
       border: 1px dashed #ccc;
+
       color: #666;
+
       background: #fafafa;
     }
 
@@ -97,24 +126,35 @@
 
     img {
       max-width: 100%;
+
       height: auto;
+
       border: 1px solid #ddd;
+
       border-radius: 4px;
+
       display: block;
+
       margin: 10px 0 20px 0;
     }
 
     footer {
       margin-top: 40px;
+
       padding-top: 16px;
+
       border-top: 1px solid #ddd;
+
       font-size: 14px;
+
       color: #666;
     }
 
     @media (max-width: 600px) {
+
       body {
         margin: 16px auto;
+
         padding: 0 16px;
       }
 
@@ -126,308 +166,725 @@
       td {
         padding: 8px;
       }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
   <header>
-    <strong>CO3133 · Group RTX5090</strong>
+
+    <strong>
+      CO3133 · Group RTX5090
+    </strong>
+
+
     <nav aria-label="Main navigation">
-      <a href="../index.html">Home</a>
-      <a href="../assignment1/assignment1.html">Assignment 1</a>
-      <a href="assignment2.html" aria-current="page">Assignment 2</a>
-      <a href="../assignment3/assignment3.html">Assignment 3</a>
+
+      <a href="../index.html">
+        Home
+      </a>
+
+      <a href="../assignment1/assignment1.html">
+        Assignment 1
+      </a>
+
+      <a
+        href="assignment2.html"
+        aria-current="page">
+
+        Assignment 2
+
+      </a>
+
+      <a href="../assignment3/assignment3.html">
+        Assignment 3
+      </a>
+
     </nav>
+
   </header>
 
+
   <main>
+
+
     <p>
-      <a href="assignment2.html">&larr; Back to Assignment 2</a>
+
+      <a href="assignment2.html">
+        &larr; Back to Assignment 2
+
+      </a>
+
     </p>
+
 
     <p class="muted">
+
       Assignment 2 · Group RTX5090
+
     </p>
+
 
     <h1>
+
       Deep Learning on Large-Scale Data and Specialized Tasks
+
     </h1>
 
+
     <p>
-      <strong>Instructor:</strong>
+
+      <strong>
+        Instructor:
+      </strong>
+
       Dr. Le Thanh Sach
+
       <br>
-      <strong>Members:</strong>
+
+
+      <strong>
+        Members:
+      </strong>
+
       Dang Thanh Phu · Cao Duc Thanh
+
     </p>
+
 
     <p class="placeholder">
-      <strong>Status:</strong>
+
+      <strong>
+        Status:
+      </strong>
+
       Progress Report / Draft
+
       <br>
-      Pipeline setup, data preprocessing, EDA, baseline U-Net, and pretrained DeepLabV3 training are in progress.
+
+      Pipeline setup, data preprocessing, EDA,
+      baseline U-Net, and pretrained DeepLabV3 training are in progress.
+
     </p>
 
+
     <section aria-labelledby="contents-heading">
+
       <h2 id="contents-heading">
         Contents
       </h2>
 
       <ul>
-        <li><a href="#problem">Problem statement</a></li>
-        <li><a href="#dataset">Dataset description and EDA</a></li>
-        <li><a href="#method">Methodology</a></li>
-        <li><a href="#setup">Experimental setup</a></li>
-        <li><a href="#results">Results</a></li>
-        <li><a href="#discussion">Comparison and discussion</a></li>
-        <li><a href="#errors">Error analysis</a></li>
-        <li><a href="#conclusion">Limitations and conclusion</a></li>
-        <li><a href="#references">References</a></li>
-        <li><a href="#ai-usage">AI usage disclosure</a></li>
-        <li><a href="#links">Links</a></li>
-        <li><a href="#presentation">Presentation</a></li>
+
+        <li>
+          <a href="#problem">
+            Problem statement
+          </a>
+        </li>
+
+        <li>
+          <a href="#dataset">
+            Dataset description and EDA
+          </a>
+        </li>
+
+        <li>
+          <a href="#method">
+            Methodology
+          </a>
+        </li>
+
+        <li>
+          <a href="#setup">
+            Experimental setup
+          </a>
+        </li>
+
+        <li>
+          <a href="#results">
+            Results
+          </a>
+        </li>
+
+        <li>
+          <a href="#discussion">
+            Comparison and discussion
+          </a>
+        </li>
+
+        <li>
+          <a href="#errors">
+            Error analysis
+          </a>
+        </li>
+
+        <li>
+          <a href="#conclusion">
+            Limitations and conclusion
+          </a>
+        </li>
+
+        <li>
+          <a href="#references">
+            References
+          </a>
+        </li>
+
+        <li>
+          <a href="#ai-usage">
+            AI usage disclosure
+          </a>
+        </li>
+
+        <li>
+          <a href="#links">
+            Links
+          </a>
+        </li>
+
+        <li>
+          <a href="#m3-report">
+            M3 report
+          </a>
+        </li>
+
+        <li>
+          <a href="#presentation">
+            Presentation
+          </a>
+        </li>
+
       </ul>
+
     </section>
 
+
     <section id="problem">
+
       <h2>
         Problem statement
       </h2>
+
       <p>
         Cityscapes 19-class urban semantic segmentation.
         Build an end-to-end training pipeline, enforce city-level partitioning to prevent spatial leakage,
         and evaluate baseline and modern models (U-Net and DeepLabV3-ResNet50).
       </p>
+
     </section>
 
+
     <section id="dataset">
+
       <h2>
         Dataset description and EDA
       </h2>
 
+
       <ul>
+
         <li>
-          <strong>Dataset:</strong>
-          Cityscapes (19 semantic classes, ignore index 255).
+
+          <strong>
+            Dataset:
+          </strong>
+
+          Cityscapes (19 classes, ignore index 255).
+
         </li>
+
+
         <li>
-          <strong>Splits:</strong>
-          2,481 train (14 cities), 494 validation (4 cities), 500 test (3 cities).
+
+          <strong>
+            Splits:
+          </strong>
+
+          2,481 train (14 cities), 494 validation (4 cities),
+          500 test (3 cities).
+
         </li>
+
+
         <li>
-          <strong>Preprocessing:</strong>
-          Resized to 512&times;1024, random crop to 512&times;512 during training, random horizontal flip, and ImageNet normalization.
+
+          <strong>
+            Preprocessing:
+          </strong>
+
+          Resized to 512&times;1024, random crop to 512&times;512 during training,
+          random horizontal flip, and ImageNet normalization.
+
         </li>
+
       </ul>
 
-      <p>
-        <strong>Class pixel distribution across splits:</strong>
-      </p>
-      <img src="../figures/a2_eda_split_distribution.png" alt="Class pixel distribution">
 
       <p>
-        <strong>Region and instance size distribution per class:</strong>
+        <strong>
+          Class pixel distribution across splits:
+        </strong>
       </p>
-      <img src="../figures/a2_eda_region_size.png" alt="Region size distribution">
+
+      <img
+        src="../figures/a2_eda_split_distribution.png"
+        alt="Class pixel distribution">
+
 
       <p>
-        <strong>Mask quality and spatial ignore distribution:</strong>
+        <strong>
+          Region and instance size distribution per class:
+        </strong>
       </p>
-      <img src="../figures/a2_eda_mask_quality.png" alt="Mask quality">
+
+      <img
+        src="../figures/a2_eda_region_size.png"
+        alt="Region size distribution">
+
 
       <p>
-        <strong>Scene complexity and class co-occurrence:</strong>
+        <strong>
+          Mask quality and spatial ignore distribution:
+        </strong>
       </p>
-      <img src="../figures/a2_eda_cooccurrence.png" alt="Class co-occurrence">
+
+      <img
+        src="../figures/a2_eda_mask_quality.png"
+        alt="Mask quality">
+
 
       <p>
-        <strong>Processed batch from DataLoader:</strong>
+        <strong>
+          Scene complexity and class co-occurrence:
+        </strong>
       </p>
-      <img src="../figures/a2_batch.png" alt="Processed batch">
+
+      <img
+        src="../figures/a2_eda_cooccurrence.png"
+        alt="Class co-occurrence">
+
+
+      <p>
+        <strong>
+          Processed batch from DataLoader:
+        </strong>
+      </p>
+
+      <img
+        src="../figures/a2_batch.png"
+        alt="Processed batch">
+
     </section>
 
+
     <section id="method">
+
       <h2>
         Methodology
       </h2>
 
       <ul>
+
         <li>
-          <strong>U-Net (Baseline):</strong>
-          4 encoder stages (DoubleConv + MaxPool2d), bottleneck, 4 decoder stages (ConvTranspose2d + DoubleConv with skip connections) &mdash; 31,037,651 parameters.
+
+          <strong>
+            U-Net (Baseline):
+          </strong>
+
+          4 encoder stages (DoubleConv + MaxPool2d), bottleneck,
+          4 decoder stages (ConvTranspose2d + DoubleConv with skip connections)
+          &mdash; 31,037,651 parameters.
+
         </li>
+
+
         <li>
-          <strong>DeepLabV3-ResNet50:</strong>
-          ResNet-50 backbone pretrained on ImageNet-1K (frozen), Atrous Spatial Pyramid Pooling (ASPP) with dilation rates (6, 12, 18), 19-class classifier &mdash; 15,620,883 trainable parameters (39,631,059 total).
+
+          <strong>
+            DeepLabV3-ResNet50:
+          </strong>
+
+          ResNet-50 backbone pretrained on ImageNet-1K (frozen),
+          Atrous Spatial Pyramid Pooling (ASPP) with dilation rates (6, 12, 18),
+          19-class classifier &mdash; 15,620,883 trainable parameters (39,631,059 total).
+
         </li>
+
+
         <li>
-          <strong>Loss &amp; Optimizer:</strong>
-          Cross-Entropy Loss (ignore_index = 255), AdamW (lr = 0.001).
+
+          <strong>
+            Loss &amp; Optimizer:
+          </strong>
+
+          Cross-Entropy Loss (ignore_index = 255),
+          AdamW (lr = 0.001).
+
         </li>
+
       </ul>
+
     </section>
 
+
     <section id="setup">
+
       <h2>
         Experimental setup
       </h2>
 
       <ul>
+
         <li>
-          <strong>Hardware / Environment:</strong>
-          Python 3.12, PyTorch 2.13.0+cu126, NVIDIA GeForce RTX 5070 Ti (16GB VRAM).
+
+          <strong>
+            Hardware / Environment:
+          </strong>
+
+          Python 3.12, PyTorch 2.13, NVIDIA GeForce RTX 5070 Ti.
+
         </li>
+
+
         <li>
-          <strong>Hyperparameters:</strong>
-          batch_size = 8, epochs = 10, num_workers = 4, pin_memory = true, drop_last = true.
+
+          <strong>
+            Hyperparameters:
+          </strong>
+
+          batch_size = 8, epochs = 10, seed = 666.
+
         </li>
+
+
         <li>
-          <strong>Evaluation:</strong>
+
+          <strong>
+            Evaluation:
+          </strong>
+
           Loss, mIoU, Mean Dice, and Pixel Accuracy on validation split (494 images).
+          Best checkpoint saved by validation mIoU.
+
         </li>
+
       </ul>
+
     </section>
 
+
     <section id="results">
+
       <h2>
         Results
       </h2>
 
+
       <div class="table-wrap">
+
         <table>
+
           <thead>
+
             <tr>
-              <th>Model</th>
-              <th>Parameters</th>
-              <th>Train Loss</th>
-              <th>Val mIoU</th>
-              <th>Val Mean Dice</th>
-              <th>Val Pixel Acc</th>
+
+              <th>
+                Model
+              </th>
+
+              <th>
+                Parameters
+              </th>
+
+              <th>
+                Train Loss
+              </th>
+
+              <th>
+                Val mIoU
+              </th>
+
+              <th>
+                Val Mean Dice
+              </th>
+
+              <th>
+                Val Pixel Acc
+              </th>
+
             </tr>
+
           </thead>
+
+
           <tbody>
+
             <tr>
-              <td><strong>U-Net (Scratch)</strong></td>
-              <td>31.0M</td>
-              <td>0.3580</td>
-              <td>0.3134</td>
-              <td>0.3820</td>
-              <td>86.35%</td>
+
+              <td>
+                <strong>
+                  U-Net (Scratch)
+                </strong>
+              </td>
+
+              <td>
+                31.0M
+              </td>
+
+              <td>
+                0.3580
+              </td>
+
+              <td>
+                0.3134
+              </td>
+
+              <td>
+                0.3820
+              </td>
+
+              <td>
+                86.35%
+              </td>
+
             </tr>
+
+
             <tr>
-              <td><strong>DeepLabV3-ResNet50</strong></td>
-              <td>15.6M / 39.6M</td>
-              <td>0.2262</td>
-              <td><strong>0.5657</strong></td>
-              <td><strong>0.6995</strong></td>
-              <td><strong>90.44%</strong></td>
+
+              <td>
+
+                <strong>
+                  DeepLabV3-ResNet50
+                </strong>
+
+              </td>
+
+              <td>
+                15.6M / 39.6M
+              </td>
+
+              <td>
+                0.2262
+              </td>
+
+              <td>
+                <strong>
+                  0.5657
+                </strong>
+              </td>
+
+              <td>
+                <strong>
+                  0.6995
+                </strong>
+              </td>
+
+              <td>
+                <strong>
+                  90.44%
+                </strong>
+              </td>
+
             </tr>
+
           </tbody>
+
         </table>
+
       </div>
 
+
       <p>
-        <strong>Training and validation curves:</strong>
+
+        <strong>
+          Training and validation curves:
+        </strong>
+
       </p>
-      <img src="../figures/a2_training_curves.png" alt="Training curves">
+
+
+      <img
+        src="../figures/a2_training_curves.png"
+        alt="Training curves">
+
     </section>
 
+
     <section id="discussion">
+
       <h2>
         Comparison and discussion
       </h2>
+
       <p class="placeholder">
         Compare your approaches and explain the findings.
       </p>
+
     </section>
 
+
     <section id="errors">
+
       <h2>
         Error analysis
       </h2>
+
       <p class="placeholder">
         Describe failure cases and possible reasons.
       </p>
+
     </section>
 
+
     <section id="conclusion">
+
       <h2>
         Limitations and conclusion
       </h2>
+
       <p class="placeholder">
         Summarize the limitations, conclusions, and future work.
       </p>
+
     </section>
 
+
     <section id="references">
+
       <h2>
         References
       </h2>
+
       <p class="placeholder">
         Add citations and links for datasets,
         papers, and other sources.
       </p>
+
     </section>
 
+
     <section id="ai-usage">
+
       <h2>
         AI usage disclosure
       </h2>
+
       <p>
-        Gemini 3.8 Flash was used for guidance on PyTorch syntax, DataLoader, batch size debugging, and plotting scripts.
+        ChatGPT and Gemini 3.8 Flash were used for guidance on PyTorch syntax, DataLoader, batch size debugging, and plotting scripts.
       </p>
+
       <p>
+
         <a href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/blob/main/AI_USAGE.md">
+
           Open the AI usage log
+
         </a>
+
       </p>
+
     </section>
 
+
     <section id="links">
+
       <h2>
         Links
       </h2>
 
+
       <ul>
+
         <li>
+
           <a href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/tree/main/assignment2">
+
             Assignment 2 source code
+
           </a>
+
         </li>
+
+
         <li>
+
           <a href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/blob/main/assignment2/requirements.txt">
+
             Python requirements
+
           </a>
+
         </li>
+
+
         <li>
+
           <a href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090">
+
             Group repository
+
           </a>
+
         </li>
+
       </ul>
+
     </section>
 
+
+    <section id="m3-report">
+
+      <h2>
+        M3 report
+      </h2>
+
+      <p class="placeholder">
+        M3 report will be available upon completion.
+      </p>
+
+    </section>
+
+
     <section id="presentation">
+
       <h2>
         Presentation
       </h2>
+
       <p class="placeholder">
         <strong>YouTube presentation:</strong>
         Add the presentation link here.
       </p>
+
     </section>
 
+
     <p>
-      <a href="assignment2.html">&larr; Back to Assignment 2</a>
+
+      <a href="assignment2.html">
+        &larr; Back to Assignment 2
+
+      </a>
+
     </p>
+
 
   </main>
 
+
   <footer>
+
     Group RTX5090 · CO3133 · Semester-261 · HCMUT — VNU-HCM
+
   </footer>
+
 
 </body>
 
