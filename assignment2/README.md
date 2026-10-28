@@ -74,7 +74,7 @@ Generated figures are saved in `docs/figures/` and `assignment2/docs/figures/`:
 
 ### A. Baseline U-Net (From Scratch)
 * **Architecture:** 4 downsampling stages (DoubleConv + MaxPool2d), bottleneck (512 channels), 4 upsampling stages (ConvTranspose2d) with skip connections.
-* **Config:** `configs/unet_base.yaml` (Batch size: 8, Epochs: 10, Seed: 42).
+* **Config:** `configs/unet_base.yaml` (Batch size: 8, Epochs: 10, Seed: 666).
 ```powershell
 python -m src.train --config configs/unet_base.yaml
 ```

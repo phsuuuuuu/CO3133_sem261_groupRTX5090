@@ -723,8 +723,13 @@
         Comparison and discussion
       </h2>
 
-      <p class="placeholder">
-        Compare your approaches and explain the findings.
+      <p>
+        Both models use the same split, input size, epochs, batch size, optimizer and seed.
+        DeepLabV3 reaches <strong>+25.2 mIoU points</strong> over U-Net (56.6% vs 31.3%) with only half as many trainable parameters (15.6M vs 31.0M),
+        because the ImageNet-pretrained backbone already provides strong features and ASPP adds multi-scale context.
+        U-Net trained from scratch is still improving at epoch 10, so it is under-trained rather than saturated.
+        The gap is small on large classes (road IoU 0.90 vs 0.93) and large on thin or rare classes (see below).
+        <em>Preliminary:</em> single run, validation split only.
       </p>
 
     </section>
@@ -736,8 +741,12 @@
         Error analysis
       </h2>
 
-      <p class="placeholder">
-        Describe failure cases and possible reasons.
+      <p>
+        Per-class IoU (validation) shows the main error group: <strong>small or rare classes</strong>.
+        U-Net gets IoU &asymp; 0 on wall, traffic light, rider, truck, bus, train and motorcycle.
+        DeepLabV3 recovers them only partly (wall 0.29, traffic light 0.38, rider 0.34, truck 0.35).
+        Likely causes: strong pixel imbalance (road/building/vegetation dominate, see EDA), loss of thin structures after downsampling,
+        and an unweighted cross-entropy loss. Visual failure examples will be added in M3.
       </p>
 
     </section>
@@ -749,8 +758,10 @@
         Limitations and conclusion
       </h2>
 
-      <p class="placeholder">
-        Summarize the limitations, conclusions, and future work.
+      <p>
+        Limitations: 10 epochs, one seed, frozen backbone, no test-set numbers yet.
+        Current conclusion: pretraining helps much more than model size at this budget.
+        Plan for M3: freeze vs. full fine-tune ablation, class-weighted loss, test-set evaluation, qualitative error analysis, and compute cost (FPS, VRAM).
       </p>
 
     </section>
@@ -762,10 +773,12 @@
         References
       </h2>
 
-      <p class="placeholder">
-        Add citations and links for datasets,
-        papers, and other sources.
-      </p>
+      <ul>
+        <li>M. Cordts et al. The Cityscapes Dataset for Semantic Urban Scene Understanding. CVPR 2016. <a href="https://www.cityscapes-dataset.com/">cityscapes-dataset.com</a></li>
+        <li>O. Ronneberger, P. Fischer, T. Brox. U-Net: Convolutional Networks for Biomedical Image Segmentation. MICCAI 2015.</li>
+        <li>L.-C. Chen et al. Rethinking Atrous Convolution for Semantic Image Segmentation (DeepLabV3). arXiv:1706.05587, 2017.</li>
+        <li>torchvision <code>deeplabv3_resnet50</code>: <a href="https://pytorch.org/vision/stable/models.html">pytorch.org/vision</a></li>
+      </ul>
 
     </section>
 
@@ -778,6 +791,7 @@
 
       <p>
         ChatGPT and Gemini 3.8 Flash were used for guidance on PyTorch syntax, DataLoader, batch size debugging, and plotting scripts.
+        Claude (Opus 5.5) was used for the final handbook check and to draft the discussion/error-analysis text from our logged metrics, which we verified against <code>metrics_val.json</code>.
       </p>
 
       <p>
@@ -858,9 +872,9 @@
         Presentation
       </h2>
 
-      <p class="placeholder">
+      <p>
         <strong>YouTube presentation:</strong>
-        Add the presentation link here.
+        required for M3 Final (11 Nov 2026), not for this draft.
       </p>
 
     </section>

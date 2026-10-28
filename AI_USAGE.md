@@ -109,6 +109,17 @@
 - **Affected files/sections:** Assignment 1 and Assignment 3 landing pages; A1 M2 draft page; A1 M3 report viewer
 - **Responsible member:** Dang Thanh Phu
 
+### Entry A1-9
+
+- **Tool:** Claude Code (Anthropic, Claude Opus 5.5)
+- **Used by:** Cao Duc Thanh
+- **Task:** A1 M2 / A2 M2 — Final check before submission (28 Oct 2026)
+- **Prompt summary:** Asked to check A1 M2 and A2 M2 against `handbook-ene.pdf`, then fix the missing items.
+- **AI contribution:** Found inconsistent CNN numbers in the A1 report (93.19% vs 93.08%) and fixed them using `results/cnn/cnn_ep10_history.csv`. Rewrote the A1 report AI disclosure and references, rewrote `assignment1/README.md`, added the slides/checkpoint links, filled the A2 M2 draft discussion sections from `metrics_val.json`, and fixed page/README inconsistencies.
+- **Student verification:** Re-checked every changed number against the CSV/JSON logs, recompiled the report, and opened the updated pages.
+- **Affected files/sections:** A1 report Sec. 3.2, 3.4, 4, References; `assignment1/README.md`; `docs/index.html`; `docs/assignment1/*`; `docs/assignment2/*`; `assignment2/README.md`
+- **Responsible member:** Cao Duc Thanh
+
 ---
 
 ## Assignment 2
@@ -158,7 +169,7 @@
 - **Affected files/sections:** `assignment2/src/data.py`
 - **Responsible member:** Cao Duc Thanh
 
-### Entry A2-3
+### Entry A2-4
 
 - **Tool:** Gemini 3.8 Flash
 - **Used by:** Cao Duc Thanh
@@ -169,7 +180,7 @@
 - **Affected files/sections:** `assignment2/src/data.py`; `assignment2/src/train.py`; `assignment2/configs/deeplabv3.yaml`
 - **Responsible member:** Cao Duc Thanh
 
-### Entry A2-4
+### Entry A2-5
 
 - **Tool:** Gemini 3.8 Flash
 - **Used by:** Cao Duc Thanh
@@ -180,7 +191,7 @@
 - **Affected files/sections:** `src/models/unet.py`
 - **Responsible member:** Cao Duc Thanh
 
-### Entry A2-5
+### Entry A2-6
 
 - **Tool:** Gemini 3.8 Flash
 - **Used by:** Cao Duc Thanh
