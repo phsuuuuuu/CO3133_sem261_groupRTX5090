@@ -1,6 +1,7 @@
 """Cityscapes validation/test evaluation for [B, 19, H, W] segmentation logits."""
 
 import argparse
+import json
 from pathlib import Path
 
 import torch
@@ -97,6 +98,7 @@ def main():
     parser.add_argument("--checkpoint")
     parser.add_argument("--split", choices=["val", "test"])
     parser.add_argument("--max_batches", type=int, default=None)
+    parser.add_argument("--save_json", default=None, help="Path to save metrics json")
     args = parser.parse_args()
 
     with open(args.config, "r", encoding="utf-8") as f:
@@ -123,6 +125,13 @@ def main():
     print(f"mIoU: {result['miou']:.4f} | Dice: {result['mdice']:.4f} | PixelAcc: {result['pixel_acc']:.4f}")
     if max_batches:
         print(f"Limited evaluation: at most {max_batches} batches.")
+
+    if args.save_json:
+        save_path = Path(args.save_json)
+        save_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(save_path, "w", encoding="utf-8") as f:
+            json.dump(result, f, indent=4)
+        print("Metrics saved to:", save_path)
 
 
 if __name__ == "__main__":
