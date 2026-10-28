@@ -134,7 +134,19 @@ I read and understood the explanations and syntax examples before using them. I 
 - **Sources used for verification:** the file of assignment 1
 - **Member responsible for final verification:** Dang Thanh Phu
 
+---
+Tool name / version: GPT-6
+Member who used it: Dang Thanh Phu
+Time / development stage: Assignment 1 M3 — Website organization and report integration
+Purpose: Used ChatGPT to reorganize the Assignment 1 and Assignment 3 website pages following Assignment 2’s layout, integrate the Assignment 1 M3 report, and add placeholders for YouTube presentation links.
+Affected assignment section(s): Assignment 1 and Assignment 3 landing pages, Assignment 1 M2 draft page, and Assignment 1 M3 report viewer.
+Representative prompt / prompt-log link:- Page structure and formatting: Asked ChatGPT to use Assignment 2’s format for the Assignment 1 and Assignment 3 folders and pages.
+- Report integration: Asked ChatGPT to add the Assignment 1 M3 report to the website.
+- Presentation link: Asked ChatGPT to leave a placeholder for the YouTube presentation link.
 
+How AI output was edited and verified: The existing Assignment 2 page was used as the layout reference. Assignment 1’s draft content was preserved in a separate M2 page, and the M3 viewer was linked to the existing report PDF. Automated checks verified local link destinations, milestone cards, page titles, presentation placeholders, and formatting.
+Sources used for verification: Existing website files in docs/assignment1, docs/assignment2, and docs/assignment3, and docs/reports/Assignment1_M3_RTX5090.pdf.
+Member responsible for final verification: Dang Thanh Phu
 ## Assignment 2
 
 ### Entry A2-1
