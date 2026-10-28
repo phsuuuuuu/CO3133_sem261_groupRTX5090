@@ -12,13 +12,12 @@
     }
 
     body {
-      max-width: 960px;
+      max-width: 900px;
       margin: 28px auto;
       padding: 0 20px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-family: Arial, sans-serif;
       line-height: 1.6;
-      color: #24292f;
-      background-color: #ffffff;
+      color: #222;
     }
 
     header {
@@ -28,16 +27,14 @@
     nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px 24px;
+      gap: 20px;
       padding: 12px 0;
-      border-bottom: 1px solid #d0d7de;
-      margin-top: 8px;
+      border-bottom: 1px solid #ddd;
     }
 
     nav a {
       color: #0969da;
       text-decoration: none;
-      font-weight: 500;
     }
 
     nav a:hover {
@@ -45,176 +42,89 @@
     }
 
     nav a[aria-current="page"] {
-      font-weight: 700;
+      font-weight: bold;
       text-decoration: underline;
     }
 
     .back-link {
-      display: inline-block;
-      margin-bottom: 12px;
       color: #0969da;
       text-decoration: none;
-      font-weight: 600;
-    }
-
-    .back-link:hover {
-      text-decoration: underline;
+      font-weight: bold;
     }
 
     h1 {
       font-size: 28px;
       margin-top: 14px;
-      margin-bottom: 8px;
-      color: #1f2328;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 4px 10px;
-      font-size: 13px;
-      font-weight: 600;
-      border-radius: 20px;
-      background: #dafbe1;
-      color: #1a7f37;
-      border: 1px solid rgba(27, 31, 36, 0.15);
-      margin-bottom: 12px;
     }
 
     h2 {
-      margin-top: 36px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #d0d7de;
-      font-size: 22px;
-      color: #1f2328;
+      margin-top: 32px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #ddd;
+      font-size: 20px;
     }
 
     h3 {
-      margin-top: 24px;
-      font-size: 17px;
-      color: #24292f;
+      margin-top: 20px;
+      font-size: 16px;
     }
 
-    p, li {
-      font-size: 15px;
-      color: #24292f;
-    }
-
-    .meta-box {
+    .meta {
       background: #f6f8fa;
       border: 1px solid #d0d7de;
-      border-radius: 8px;
-      padding: 18px 22px;
-      margin: 18px 0 28px 0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 16px 0;
     }
 
-    .meta-box p {
+    .meta p {
       margin: 4px 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      display: block;
+      margin: 10px 0 20px 0;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 18px 0;
-      font-size: 14px;
+      margin: 14px 0;
     }
 
     th, td {
-      padding: 10px 12px;
-      border: 1px solid #d0d7de;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
       text-align: left;
     }
 
     th {
-      background: #f6f8fa;
-      font-weight: 600;
+      background: #f5f5f5;
     }
 
     .table-wrap {
       overflow-x: auto;
     }
 
-    .highlight-best {
-      background: #ddf4ff;
-      font-weight: bold;
-      color: #0969da;
-    }
-
-    figure {
-      margin: 20px 0 30px 0;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      border: 1px solid #d0d7de;
-      border-radius: 6px;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    figcaption {
-      font-size: 13px;
-      color: #57609a;
-      text-align: center;
-      font-style: italic;
-    }
-
-    pre, code {
-      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-    }
-
-    code {
-      padding: 2px 6px;
-      font-size: 13.5px;
-      background-color: #eff1f3;
-      border-radius: 4px;
-    }
-
     pre {
-      padding: 14px 16px;
+      background: #f6f8fa;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 12px;
       overflow-x: auto;
-      background-color: #f6f8fa;
-      border: 1px solid #d0d7de;
-      border-radius: 6px;
-      font-size: 13.5px;
-      line-height: 1.5;
-    }
-
-    .callout {
-      border-left: 4px solid #0969da;
-      background: #f0f7ff;
-      padding: 14px 18px;
-      border-radius: 0 6px 6px 0;
-      margin: 18px 0;
-    }
-
-    .callout-success {
-      border-left: 4px solid #1a7f37;
-      background: #f2fcf4;
-      padding: 14px 18px;
-      border-radius: 0 6px 6px 0;
-      margin: 18px 0;
+      font-size: 13px;
     }
 
     footer {
-      margin-top: 50px;
-      padding-top: 20px;
-      border-top: 1px solid #d0d7de;
-      color: #656d76;
-      font-size: 13px;
-    }
-
-    @media (max-width: 650px) {
-      body {
-        margin: 16px auto;
-        padding: 0 14px;
-      }
-      h1 {
-        font-size: 24px;
-      }
-      th, td {
-        padding: 8px;
-      }
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      color: #666;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -222,7 +132,7 @@
 <body>
 
   <header>
-    <div><strong>CO3133 · Deep Learning and Its Applications</strong></div>
+    <div><strong>CO3133 · Group RTX5090</strong></div>
     <nav aria-label="Main navigation">
       <a href="../index.html">Home</a>
       <a href="../assignment1/assignment1.html">Assignment 1</a>
@@ -232,377 +142,100 @@
   </header>
 
   <main>
-    <a href="assignment2.html" class="back-link">&larr; Back to Assignment 2 Overview</a>
+    <p><a href="assignment2.html" class="back-link">&larr; Back to Assignment 2</a></p>
 
-    <div class="badge">Milestone 2: Draft Submission</div>
-    <h1>Assignment 2 — Milestone 2: Technical Progress & Preliminary Metrics</h1>
+    <h1>Assignment 2 — Milestone 2 (Draft)</h1>
 
-    <div class="meta-box">
-      <p><strong>Course:</strong> CO3133 — Deep Learning and Its Applications (Semester-261)</p>
+    <div class="meta">
+      <p><strong>Topic:</strong> Semantic Segmentation on Cityscapes</p>
       <p><strong>Instructor:</strong> Dr. Le Thanh Sach</p>
-      <p><strong>Group:</strong> RTX5090</p>
-      <p><strong>Members:</strong> Dang Thanh Phu (2452967) · Cao Duc Thanh (2453164)</p>
-      <p><strong>Task Track:</strong> Specialized Computer Vision — Semantic Segmentation</p>
-      <p><strong>Dataset:</strong> Cityscapes Dataset (Urban Street Scene Segmentation)</p>
-      <p><strong>Milestone Scope:</strong> Simple Baseline + Pretrained Model in Progress, Comprehensive EDA, and Preliminary Metrics (Handbook Section 7.5).</p>
-      <p><strong>Submission Date:</strong> 28 October 2026</p>
+      <p><strong>Group:</strong> RTX5090 (Dang Thanh Phu · Cao Duc Thanh)</p>
+      <p><strong>Status:</strong> M2 Draft Completed (EDA, Baseline U-Net, and Pretrained DeepLabV3 in progress)</p>
     </div>
 
-    <!-- ================================================= -->
-    <!-- SECTION 1 -->
-    <!-- ================================================= -->
-    <section>
-      <h2>1. Task Formulation & Data Splitting Protocol</h2>
-      <p>
-        The objective of this project is high-resolution <strong>semantic scene parsing</strong> for autonomous urban driving. 
-        Given an input RGB image \( X \in \mathbb{R}^{3 \times H \times W} \), the network predicts a pixel-level dense classification map 
-        \( \hat{Y} \in \{0, 1, \dots, 18\}^{H \times W} \) spanning 19 semantic classes (e.g., Road, Building, Sky, Car, Pedestrian, Rider), 
-        with unlabeled, out-of-boundary, and vehicle hood pixels assigned to ignore index <code>255</code> (excluded from loss computation and evaluation metrics).
-      </p>
+    <!-- 1. DATA & SPLIT -->
+    <h2>1. Dataset & Split</h2>
+    <ul>
+      <li><strong>Dataset:</strong> Cityscapes (19 classes, ignore index 255).</li>
+      <li><strong>Split (City-level):</strong> Train: 2,481 images (14 cities) | Val: 494 images (4 cities) | Test: 500 images (3 cities).</li>
+    </ul>
 
-      <h3>City-Level Split & Spatial Leakage Prevention</h3>
-      <p>
-        In urban driving video streams, sequential frames captured within the same geographic municipality exhibit heavy visual correlation (similar architecture, road textures, and weather conditions). 
-        To strictly prevent spatial data leakage as mandated by Handbook Section 3.1 & 18, our dataset splitting script (<code>scripts/create_splits.py</code>) enforces <strong>strict city-level partitioning</strong>:
-      </p>
-      <ul>
-        <li><strong>Training Set:</strong> 2,481 images from 14 distinct German cities (Aachen, Bochum, Bremen, Cologne, Darmstadt, Dusseldorf, Hamburg, Hanover, Kassel, Monchengladbach, Strasbourg, Stuttgart, Ulm, Weimar).</li>
-        <li><strong>Validation Set:</strong> 494 images from 4 held-out cities (Erfurt, Jena, Tubingen, Zurich).</li>
-        <li><strong>Test Set:</strong> 500 images from 3 cities of the official validation set (Frankfurt, Lindau, Munster).</li>
-      </ul>
-      <div class="callout">
-        <strong>Leakage Assertion:</strong> The intersection between training and validation municipality sets is strictly empty: <code>len(train_cities &cap; val_cities) == 0</code>.
-      </div>
-    </section>
+    <!-- 2. EDA -->
+    <h2>2. Exploratory Data Analysis (EDA)</h2>
 
-    <!-- ================================================= -->
-    <!-- SECTION 2 -->
-    <!-- ================================================= -->
-    <section>
-      <h2>2. Exploratory Data Analysis (EDA)</h2>
-      <p>
-        In accordance with Handbook Section 19.4 and Section 22 (Semantic Segmentation Focus), extensive exploratory analysis was performed covering region sizes, mask qualities, scene co-occurrences, and split distributions.
-      </p>
+    <h3>Class Pixel Distribution Across Splits</h3>
+    <img src="../figures/a2_eda_split_distribution.png" alt="Class Pixel Distribution">
 
-      <h3>2.1 Region & Instance Size Distribution per Class</h3>
-      <figure>
-        <img src="../figures/a2_eda_region_size.png" alt="Region and instance size distribution per class">
-        <figcaption>Figure 1: Region and instance size distribution per class in log10(pixels) scale across Cityscapes.</figcaption>
-      </figure>
-      <p>
-        <strong>Key Findings:</strong> Object scale varies across more than 4 orders of magnitude. Background "stuff" classes (<em>Road, Sky, Building</em>) dominate large continuous regions exceeding \(10^5\) pixels per scene. 
-        Conversely, slender foreground "thing" categories (<em>Pole, Traffic Light, Traffic Sign</em>) frequently occupy fewer than \(10^3\) pixels, highlighting the acute risk of vanishing gradients for small categories in standard pooling architectures.
-      </p>
+    <h3>Region and Instance Size Distribution per Class</h3>
+    <img src="../figures/a2_eda_region_size.png" alt="Region Size Distribution">
 
-      <h3>2.2 Mask Quality & Spatial Ignore Distribution</h3>
-      <figure>
-        <img src="../figures/a2_eda_mask_quality.png" alt="Mask quality and spatial ignore distribution">
-        <figcaption>Figure 2: Heatmap of spatial ignore probability (left) and per-image ignore pixel distribution (right).</figcaption>
-      </figure>
-      <p>
-        <strong>Key Findings:</strong> The mean ignore pixel ratio across training samples is <strong>12.8%</strong>. The spatial probability map reveals intense concentration in two areas:
-        (1) The bottom center, where the car hood/windshield of the data recording vehicle is systematically masked out; and 
-        (2) Distant horizons where small background clutter cannot be unambiguously annotated. This confirms the necessity of configuring <code>ignore_index=255</code> in the cross-entropy criterion and confusion matrix calculations.
-      </p>
+    <h3>Mask Quality & Spatial Ignore Probability Map</h3>
+    <img src="../figures/a2_eda_mask_quality.png" alt="Mask Quality Analysis">
 
-      <h3>2.3 Scene Complexity & Class Co-occurrence</h3>
-      <figure>
-        <img src="../figures/a2_eda_cooccurrence.png" alt="Scene complexity and class co-occurrence">
-        <figcaption>Figure 3: Unique semantic classes per image (left) and conditional co-occurrence probability matrix P(Y|X) (right).</figcaption>
-      </figure>
-      <p>
-        <strong>Key Findings:</strong> Images exhibit high structural complexity, with an average of <strong>11.2 unique semantic classes</strong> per scene. 
-        The conditional co-occurrence heatmap indicates that vehicles (<em>Car, Bus, Truck</em>) and vulnerable road users (<em>Person, Rider, Bicycle</em>) appear almost exclusively in co-presence with <em>Road</em> and <em>Sidewalk</em>, providing strong contextual priors.
-      </p>
+    <h3>Scene Complexity & Class Co-occurrence</h3>
+    <img src="../figures/a2_eda_cooccurrence.png" alt="Class Co-occurrence">
 
-      <h3>2.4 Class Pixel Distribution Across Splits</h3>
-      <figure>
-        <img src="../figures/a2_eda_split_distribution.png" alt="Class pixel distribution across splits">
-        <figcaption>Figure 4: Relative valid pixel percentages across Train (2,481), Val (494), and Test (500) sets (Log Scale).</figcaption>
-      </figure>
-      <p>
-        <strong>Key Findings:</strong> Class imbalance is extreme: <em>Road</em> and <em>Building</em> constitute over 50% of valid labeled pixels, whereas tail categories (<em>Train: 0.16%, Motorcycle: 0.12%, Rider: 0.14%</em>) account for less than 0.2% each. 
-        Crucially, the logarithmic distribution is strictly preserved across Train, Val, and Test splits, proving that our city-level partition is statistically unbiased.
-      </p>
+    <h3>Preprocessed Batch Example</h3>
+    <img src="../figures/a2_batch.png" alt="Batch Sample">
 
-      <h3>2.5 Preprocessed Batch Verification</h3>
-      <figure>
-        <img src="../figures/a2_batch.png" alt="Preprocessed batch visualization">
-        <figcaption>Figure 5: Verification of a training batch following random cropping (512&times;512), horizontal flips, color jitter, and ImageNet standardization.</figcaption>
-      </figure>
-    </section>
+    <!-- 3. RESULTS -->
+    <h2>3. Preliminary Model Comparison (10 Epochs)</h2>
 
-    <!-- ================================================= -->
-    <!-- SECTION 3 -->
-    <!-- ================================================= -->
-    <section>
-      <h2>3. Model Architectures & Pipeline Implementation</h2>
-      <p>
-        Handbook Section 20 mandates implementing both a <strong>simple baseline model</strong> and at least one <strong>pretrained/modern model</strong> with a clear fine-tuning protocol.
-      </p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Type</th>
+            <th>Train Loss</th>
+            <th>Val mIoU</th>
+            <th>Val Mean Dice</th>
+            <th>Val Pixel Acc</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>U-Net</strong></td>
+            <td>Baseline (from scratch)</td>
+            <td>0.3580</td>
+            <td>31.34%</td>
+            <td>38.20%</td>
+            <td>86.35%</td>
+          </tr>
+          <tr>
+            <td><strong>DeepLabV3-ResNet50</strong></td>
+            <td>Pretrained (ImageNet backbone)</td>
+            <td>0.2262</td>
+            <td><strong>56.57%</strong></td>
+            <td><strong>69.95%</strong></td>
+            <td><strong>90.44%</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Architecture</th>
-              <th>Type</th>
-              <th>Backbone & Weights</th>
-              <th>Key Structural Mechanism</th>
-              <th>Trainable Params</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>U-Net</strong></td>
-              <td>Baseline from Scratch</td>
-              <td>Custom 4-stage encoder (Random Kaiming Init)</td>
-              <td>DoubleConv (3&times;3 conv + BN + ReLU) + MaxPool + TransposeConv with Skip Connections</td>
-              <td>~31,037,651</td>
-            </tr>
-            <tr>
-              <td><strong>DeepLabV3</strong></td>
-              <td>Modern Pretrained</td>
-              <td>ResNet-50 (Pretrained on ImageNet-1K, Frozen)</td>
-              <td>Atrous Spatial Pyramid Pooling (ASPP) with dilation rates (6, 12, 18) + Image Pooling</td>
-              <td>~15,620,883 (Head only)<br><span class="muted">Total: 39,631,059</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <h3>Convergence Trajectories</h3>
+    <img src="../figures/a2_training_curves.png" alt="Training Curves Comparison">
 
-      <h3>Baseline: Custom U-Net (`src/models/unet.py`)</h3>
-      <p>
-        Our baseline model is implemented purely in PyTorch. The contraction path consists of 4 encoder stages with base channels = 32, doubling feature channels up to 512 at the bottleneck. 
-        The expansion path utilizes <code>ConvTranspose2d(stride=2)</code> followed by concatenation of high-resolution feature maps via skip connections to restore fine-grained spatial boundaries.
-      </p>
-
-      <h3>Pretrained Model: DeepLabV3-ResNet50 (`src/models/deeplabv3.py`)</h3>
-      <p>
-        For our modern pretrained architecture, we employ DeepLabV3 with a ResNet-50 backbone pre-trained on ImageNet-1K (<code>weights_backbone=ResNet50_Weights.IMAGENET1K_V1</code>). 
-        To stabilize training and prevent catastrophic forgetting under a limited epoch budget, the entire ResNet-50 feature extractor is frozen (<code>param.requires_grad = False</code>). 
-        Only the Atrous Spatial Pyramid Pooling (ASPP) module and the 19-class linear classifier are fine-tuned using AdamW with learning rate \(10^{-3}\).
-      </p>
-    </section>
-
-    <!-- ================================================= -->
-    <!-- SECTION 4 -->
-    <!-- ================================================= -->
-    <section>
-      <h2>4. Preliminary Experimental Results</h2>
-      <p>
-        Both the baseline U-Net and the pretrained DeepLabV3-ResNet50 models were trained for <strong>10 full epochs</strong> on the complete 2,481-image Cityscapes training split with identical optimizer hyperparameters and evaluation protocols.
-      </p>
-
-      <figure>
-        <img src="../figures/a2_training_curves.png" alt="Preliminary training curves comparison">
-        <figcaption>Figure 6: Comparative convergence trajectories: Training Cross-Entropy Loss, Validation mIoU (%), and Validation Mean Dice Score (%).</figcaption>
-      </figure>
-
-      <h3>Epoch-by-Epoch Validation Progress (10 Full Epochs)</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th rowspan="2">Epoch</th>
-              <th colspan="3">U-Net Baseline (from Scratch)</th>
-              <th colspan="3">DeepLabV3-ResNet50 (Pretrained Backbone)</th>
-            </tr>
-            <tr>
-              <th>Train Loss</th>
-              <th>Val mIoU</th>
-              <th>Val Dice</th>
-              <th>Train Loss</th>
-              <th>Val mIoU</th>
-              <th>Val Dice</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>0.9935</td>
-              <td>18.71%</td>
-              <td>23.55%</td>
-              <td>0.4590</td>
-              <td>43.85%</td>
-              <td>55.75%</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>0.6386</td>
-              <td>21.60%</td>
-              <td>26.23%</td>
-              <td>0.3323</td>
-              <td>47.67%</td>
-              <td>60.26%</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>0.5449</td>
-              <td>22.48%</td>
-              <td>28.10%</td>
-              <td>0.2979</td>
-              <td>47.94%</td>
-              <td>60.46%</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>0.5038</td>
-              <td>23.69%</td>
-              <td>29.06%</td>
-              <td>0.2792</td>
-              <td>51.07%</td>
-              <td>64.46%</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>0.4610</td>
-              <td>27.55%</td>
-              <td>33.71%</td>
-              <td>0.2677</td>
-              <td>51.84%</td>
-              <td>65.48%</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>0.4322</td>
-              <td>25.53%</td>
-              <td>31.27%</td>
-              <td>0.2559</td>
-              <td>51.25%</td>
-              <td>64.47%</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>0.4057</td>
-              <td>26.28%</td>
-              <td>31.93%</td>
-              <td>0.2483</td>
-              <td>55.24%</td>
-              <td>68.79%</td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>0.3936</td>
-              <td>29.35%</td>
-              <td>35.54%</td>
-              <td>0.2431</td>
-              <td>56.13%</td>
-              <td>69.69%</td>
-            </tr>
-            <tr>
-              <td>9</td>
-              <td>0.3717</td>
-              <td>29.59%</td>
-              <td>35.91%</td>
-              <td>0.2359</td>
-              <td class="highlight-best">56.57% (Best)</td>
-              <td class="highlight-best">69.95% (Best)</td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>0.3580</td>
-              <td class="highlight-best">31.34% (Best)</td>
-              <td class="highlight-best">38.20% (Best)</td>
-              <td>0.2262</td>
-              <td>52.30%</td>
-              <td>65.03%</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="callout-success">
-        <strong>Quantitative Analysis:</strong>
-        <ul>
-          <li><strong>Superiority of Transfer Learning:</strong> DeepLabV3 with ImageNet pre-training achieves <strong>43.85% mIoU in Epoch 1</strong>, immediately outperforming the baseline U-Net after all 10 epochs (31.34% mIoU).</li>
-          <li><strong>Peak Performance Gain:</strong> DeepLabV3 peaks at <strong>56.57% mIoU</strong> and <strong>69.95% Dice Score</strong> at Epoch 9. This represents an absolute gain of <strong>+25.23% mIoU</strong> (+80.5% relative boost) and <strong>+31.75% Dice</strong> over the baseline U-Net.</li>
-          <li><strong>Receptive Field Impact:</strong> While U-Net relies on aggressive downsampling and simple transpose convolutions, DeepLabV3's ASPP module captures multi-scale context without loss of spatial resolution, dramatically boosting accuracy on both expansive regions (Road, Sidewalk) and thin objects (Poles, Signs).</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ================================================= -->
-    <!-- SECTION 5 -->
-    <!-- ================================================= -->
-    <section>
-      <h2>5. Hardware & Reproducibility Verification</h2>
-      <p>
-        In compliance with Handbook Section 4.2, all configurations, hardware specifications, random seeds, and checkpoint locations are documented below for complete experimental reproducibility:
-      </p>
-
-      <ul>
-        <li><strong>GPU Accelerator:</strong> NVIDIA GeForce RTX 5070 Ti (16 GB GDDR7 VRAM, Blackwell Architecture)</li>
-        <li><strong>Software Environment:</strong> Python 3.12, PyTorch 2.13.0 + cu126, torchvision 0.28.0</li>
-        <li><strong>Batch & Worker Setup:</strong> <code>batch_size = 8</code>, <code>num_workers = 4</code>, <code>pin_memory = True</code>, <code>drop_last = True</code></li>
-        <li><strong>Random Seed:</strong> Seed 42 for U-Net baseline, Seed 666 for DeepLabV3</li>
-        <li><strong>Saved Checkpoints:</strong>
-          <ul>
-            <li>Baseline U-Net Best: <code>assignment2/checkpoints/unet_base_1024x512_s42/best.pt</code></li>
-            <li>DeepLabV3 Best: <code>assignment2/checkpoints/deeplabv3/exp_1/best.pt</code></li>
-          </ul>
-        </li>
-      </ul>
-
-      <h3>Reproduction Commands</h3>
-      <pre><code># 1. Activate Environment
-./.venv/Scripts/activate.ps1
-
-# 2. Run Baseline U-Net (Full 10 Epochs)
+    <!-- 4. REPRODUCTION -->
+    <h2>4. Quick Reproduction</h2>
+    <pre><code># Train Baseline U-Net (10 epochs)
 python -m src.train --config configs/unet_base.yaml
 
-# 3. Run Pretrained DeepLabV3 (Full 10 Epochs)
+# Train Pretrained DeepLabV3 (10 epochs)
 python -m src.train --config configs/deeplabv3.yaml
 
-# 4. Evaluate Checkpoint on Validation Split
-python -m src.evaluate --config configs/deeplabv3.yaml --checkpoint checkpoints/deeplabv3/exp_1/best.pt --split val --save_json checkpoints/deeplabv3/exp_1/metrics_val.json</code></pre>
-    </section>
+# Evaluate Checkpoint
+python -m src.evaluate --config configs/deeplabv3.yaml --checkpoint checkpoints/deeplabv3/exp_1/best.pt --split val</code></pre>
 
-    <!-- ================================================= -->
-    <!-- SECTION 6 -->
-    <!-- ================================================= -->
-    <section>
-      <h2>6. AI Usage Disclosure (M2 Milestone)</h2>
-      <p>
-        In accordance with Section 5 of the Course Project Handbook, all generative AI tool usage for Milestone 2 has been disclosed with full auditability. Complete interaction logs are recorded in <a href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/blob/main/AI_USAGE.md" target="_blank" rel="noopener"><code>AI_USAGE.md</code></a>.
-      </p>
-
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Tool & Version</th>
-              <th>Member</th>
-              <th>Stage / Task</th>
-              <th>Nature of AI Assistance</th>
-              <th>Verification Method</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Gemini 3.8 Flash</td>
-              <td>Cao Duc Thanh</td>
-              <td>M2 — DeepLabV3 Batch Crash Debugging</td>
-              <td>Diagnosed <code>ValueError</code> in ASPPPooling BatchNorm caused by odd training size (2,481 mod 8 = 1); suggested <code>drop_last=True</code> and single-sample safeguard.</td>
-              <td>Verified against PyTorch BatchNorm documentation; inspected DataLoader batch sizes; training completed 10 epochs without crashes.</td>
-            </tr>
-            <tr>
-              <td>Gemini 3.8 Flash</td>
-              <td>Dang Thanh Phu</td>
-              <td>M2 — Hardware Configuration & Training Curves</td>
-              <td>Assisted in tuning batch size and worker concurrency for RTX 5070 Ti, and authored matplotlib script for multi-metric curve plotting.</td>
-              <td>Benchmarked throughput on GPU; verified generated figures against recorded CSV log values.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+    <!-- 5. AI DISCLOSURE -->
+    <h2>5. AI Usage Disclosure</h2>
+    <p>AI tools (Gemini 3.8 Flash) were used for batch size debugging (addressing single-sample BatchNorm in ASPPPooling) and plotting scripts. Details are logged in <a href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/blob/main/AI_USAGE.md" target="_blank" rel="noopener">AI_USAGE.md</a>.</p>
   </main>
 
   <footer>
-    Group RTX5090 · CO3133 Deep Learning and Its Applications · Semester 261 · HCMUT — VNU-HCM
+    CO3133 · Group RTX5090 · Semester 261 · HCMUT
   </footer>
 
 </body>
-
 </html>
