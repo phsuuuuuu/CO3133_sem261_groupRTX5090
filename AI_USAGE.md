@@ -4,15 +4,14 @@
 
 ### Entry CW-1
 
-- **Tool name / version:** ChatGPT
-- **Member who used it:** Dang Thanh Phu
-- **Time / development stage:** Week 3 — Course website setup
-- **Purpose:** Assistance with HTML/CSS, navigation links, GitHub Pages setup, and disclosure wording.
-- **Affected assignment section(s):** `index.html`, `assignment1.html`, `assignment2.html`, `assignment3.html`, and `AI_USAGE.md`
-- **Representative prompt / prompt-log link:** “Create a simple CO3133 website for Group RTX5090 with a homepage and three assignment report pages, preserving existing repository content.”
-- **How AI output was edited and verified:** Group details, repository URLs, and page paths were adjusted. Local links were checked and verified in browser.
-- **Sources used for verification:** Course handbook, repository files, and official GitHub Pages documentation.
-- **Member responsible for final verification:** Dang Thanh Phu
+- **Tool:** ChatGPT
+- **Used by:** Dang Thanh Phu
+- **Task:** Week 3 — Setting up the course website (HTML/CSS, navigation links, GitHub Pages, disclosure wording)
+- **Prompt summary:** Asked to create a simple CO3133 website for Group RTX5090 with a homepage and three assignment report pages, preserving existing repository content.
+- **AI contribution:** Suggested HTML/CSS page structure, navigation links, GitHub Pages setup steps, and disclosure wording.
+- **Student verification:** Adjusted group details, repository URLs, and page paths; checked all local links in the browser. Cross-checked with the course handbook, repository files, and official GitHub Pages documentation.
+- **Affected files/sections:** `index.html`; `assignment1.html`; `assignment2.html`; `assignment3.html`; `AI_USAGE.md`
+- **Responsible member:** Dang Thanh Phu
 
 ---
 
@@ -20,113 +19,95 @@
 
 ### Entry A1-1
 
-- **Tool name / version:** ChatGPT (OpenAI, GPT-5.6 Sol)
-- **Member who used it:** Dang Thanh Phu
-- **Time / development stage:** Assignment 1 M1 — Data preparation, EDA, and training pipeline
-- **Purpose:** Asked about function prototypes for DataLoader, library needed and syntax, writing CLI argument parser in `train.py`, and saving training/validation epoch results into CSV.
-- **Affected assignment section(s):** Directly: `src/train.py`; Indirectly: `src/data.py`, `src/eda.py`
-- **Representative prompt / prompt-log link:**
-  - "What function should I create for the DataLoader?"
-  - "How do I use `argparse` in `train.py`?"
-  - "How do I save training results from each epoch into a CSV file?"
-  - "What does this PyTorch function do?"
-  - "Can you explain/fix the syntax of this function?"
-  - "How do I save the training and validation results from each epoch, such as loss, accuracy, and macro-F1, into a CSV file?"
-  - "guide me an example about how to plot something"
-- **How AI output was edited and verified:** Read and understood explanations and syntax before using. Wrote and adapted code myself and tested locally. Checked dataset sizes, preprocessing output, EDA figures, training execution, checkpoints, and saved CSV files to ensure correct operation.
-- **Sources used for verification:** PyTorch documentation and local test runs.
-- **Member responsible for final verification:** Dang Thanh Phu
+- **Tool:** ChatGPT (OpenAI, GPT-5.6 Sol)
+- **Used by:** Dang Thanh Phu
+- **Task:** A1 M1 — Data preparation, EDA, and training pipeline
+- **Prompt summary:** Asked about DataLoader function prototypes, required libraries and syntax, using `argparse` in `train.py`, saving per-epoch training/validation results (loss, accuracy, macro-F1) to CSV, explaining/fixing PyTorch function syntax, and an example of plotting.
+- **AI contribution:** Explained function prototypes, library usage, and syntax; gave examples for the CLI argument parser, CSV logging, and plotting.
+- **Student verification:** Read and understood the explanations before use; wrote and adapted the code personally. Tested locally by checking dataset sizes, preprocessing output, EDA figures, training execution, checkpoints, and saved CSV files. Compared with PyTorch documentation.
+- **Affected files/sections:** `src/train.py` (direct); `src/data.py`, `src/eda.py` (indirect)
+- **Responsible member:** Dang Thanh Phu
 
 ### Entry A1-2
 
-- **Tool name / version:** Gemini 3.8 Flash
-- **Member who used it:** Cao Duc Thanh
-- **Time / development stage:** Assignment 1 M1 — Plot the result from csv
-- **Purpose:** Our team needed to plot a graph from linear_history.csv and mlp_history.csv to compare the loss, f1 score, and accuracy between MLP and Linear Model. I didn't know how to use matplotlib and its syntaxes so I needed gemini teach me how to use the library.
-- **Affected assignment section(s):** `src/plot_curves.py`
-- **Representative prompt / prompt-log link:** https://share.gemini.google/bx1k8Hgs9Epo
-- **How AI output was edited and verified:** I coded and tried to understand the function and update some parameters and paths to match with out assignments. I then ran the file and see that the graph is like what I need.
-- **Sources used for verification:** `training_curves.png`
-- **Member responsible for final verification:** Cao Duc Thanh
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A1 M1 — Plotting results from CSV
+- **Prompt summary:** Asked how to use matplotlib to plot loss, F1 score, and accuracy from `linear_history.csv` and `mlp_history.csv` to compare the Linear and MLP models. Log: https://share.gemini.google/bx1k8Hgs9Epo
+- **AI contribution:** Taught matplotlib usage and syntax with example plotting code.
+- **Student verification:** Wrote the code, studied each function, and updated parameters and paths to match the assignment. Ran the script and checked that `training_curves.png` showed the expected graph.
+- **Affected files/sections:** `src/plot_curves.py`
+- **Responsible member:** Cao Duc Thanh
 
 ### Entry A1-3
 
-- **Tool name / version:** Gemini 3.8 Flash
-- **Member who used it:** Cao Duc Thanh
-- **Time / development stage:** Assignment 1 M1 — Edit the assignment1.html
-- **Purpose:** I wanted to edit and add some details about the draft M1 of assignment 1. I haven't coded HTML before so I needed gemini teach me how to edit it.
-- **Affected assignment section(s):** `docs/assignment1/assignment1.html`
-- **Representative prompt / prompt-log link:** https://share.gemini.google/TgX9DyJ9Nqcz
-- **How AI output was edited and verified:** I edited that file to match with our assignments. I go to github.io to check.
-- **Sources used for verification:** https://phsuuuuuu.github.io/CO3133_sem261_groupRTX5090/assignment1/assignment1.html
-- **Member responsible for final verification:** Cao Duc Thanh
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A1 M1 — Editing `assignment1.html` for the M1 draft
+- **Prompt summary:** Asked how to edit and add details to the HTML page of the A1 M1 draft (no prior HTML experience). Log: https://share.gemini.google/TgX9DyJ9Nqcz
+- **AI contribution:** Explained how to edit the HTML page.
+- **Student verification:** Edited the file to match the assignment and checked the deployed page at https://phsuuuuuu.github.io/CO3133_sem261_groupRTX5090/assignment1/assignment1.html
+- **Affected files/sections:** `docs/assignment1/assignment1.html`
+- **Responsible member:** Cao Duc Thanh
 
 ### Entry A1-4
 
-- **Tool name / version:** Gemini 3.8 Flash
-- **Member who used it:** Cao Duc Thanh
-- **Time / development stage:** Assignment 1 M2 — Fixing LSTM errors
-- **Purpose:** I have read the D2L book and coded LSTM like it, but when I ran the code it had some errors. Therefore I need gemini to understand the error and fix it because I were not used to the pytorch library.
-- **Affected assignment section(s):** `src/models/lstm.py`
-- **Representative prompt / prompt-log link:** https://share.gemini.google/wVjtB3LHu1b6
-- **How AI output was edited and verified:** I read the instructions of gemini and try to fix the errors, I discussed with AI to find the best way to write my code. I finally ran the code successfully and saw that the accuracy went up to 90%.
-- **Sources used for verification:** `results/figures/training_curves.png`
-- **Member responsible for final verification:** Cao Duc Thanh
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A1 M2 — Fixing LSTM errors
+- **Prompt summary:** Asked to explain and fix runtime errors in an LSTM implemented following the D2L book. Log: https://share.gemini.google/wVjtB3LHu1b6
+- **AI contribution:** Explained the errors and suggested fixes for the PyTorch code.
+- **Student verification:** Followed the explanations, fixed the errors, and discussed alternatives with the AI. Ran the code successfully and confirmed accuracy reached ~90% in `results/figures/training_curves.png`.
+- **Affected files/sections:** `src/models/lstm.py`
+- **Responsible member:** Cao Duc Thanh
 
 ### Entry A1-5
 
-- **Tool name / version:** Gemini 3.8 Flash
-- **Member who used it:** Cao Duc Thanh
-- **Time / development stage:** Assignment 1 M2 — Implement Transformer
-- **Purpose:** I have learned transformer architecture but I didn't know how to implement it. Therefore I needed to learn how to implement the code.
-- **Affected assignment section(s):** `src/models/transformer.py`
-- **Representative prompt / prompt-log link:** https://share.gemini.google/X2LdCo2AsJpd
-- **How AI output was edited and verified:** I read the instructions of gemini and read the D2L book to implement transformer, I discussed with AI to find the best way to build my model. I finally ran the code successfully and saw that the accuracy went up to 80% with ViT.
-- **Sources used for verification:** `results/figures/training_curves.png` and D2L book
-- **Member responsible for final verification:** Cao Duc Thanh
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A1 M2 — Implementing the Transformer
+- **Prompt summary:** Asked how to implement the Transformer architecture in code. Log: https://share.gemini.google/X2LdCo2AsJpd
+- **AI contribution:** Explained how to implement the Transformer and discussed design options for the model.
+- **Student verification:** Implemented the model following the AI's explanation and the D2L book. Ran the code successfully and confirmed accuracy reached ~80% with ViT in `results/figures/training_curves.png`.
+- **Affected files/sections:** `src/models/transformer.py`
+- **Responsible member:** Cao Duc Thanh
 
 ### Entry A1-6
 
-- **Tool name / version:** Gemini 3.8 Flash
-- **Member who used it:** Cao Duc Thanh
-- **Time / development stage:** Assignment 1 M2 — Write report
-- **Purpose:** I don't have much idea to write all the the requirement in handbook. Therefore I used Gemini to organize the idea, suggest some ideas for me to write, and check my report.
-- **Affected assignment section(s):** Assignment 1 Report
-- **Representative prompt / prompt-log link:** https://share.gemini.google/phX1ifjJFugp
-- **How AI output was edited and verified:** I read the output of gemini and try to write the report, then I used gemini to check if I write right.
-- **Sources used for verification:** The files of assignment 1
-- **Member responsible for final verification:** Cao Duc Thanh
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A1 M2 — Writing the report
+- **Prompt summary:** Asked to help organize ideas, suggest content covering the handbook requirements, and check the report. Log: https://share.gemini.google/phX1ifjJFugp
+- **AI contribution:** Organized ideas, suggested content, and reviewed the draft.
+- **Student verification:** Wrote the report based on the suggestions, then checked it against the Assignment 1 files.
+- **Affected files/sections:** Assignment 1 Report
+- **Responsible member:** Cao Duc Thanh
 
 ### Entry A1-7
 
-- **Tool name / version:** GPT-6
-- **Member who used it:** Dang Thanh Phu
-- **Time / development stage:** Assignment 1 M2 — Write report
-- **Purpose:** Consulted ChatGPT to better understand LSTM and Transformer architectures, including hidden states, attention mechanisms, tensor dimensions, and parameter calculations. Asked questions about PyTorch LSTM biases, data normalization, training procedures, and evaluation metrics. Additionally, used ChatGPT to clarify experimental results, discuss model limitations, and assist in structuring and refining technical explanations in the report.
-- **Affected assignment section(s):** Report: Sections 2.1, 2.5–2.8, 3.1–3.2, and 3.6
-- **Representative prompt / prompt-log link:**
-  - *LSTM Architecture and Parameter Calculation:* Asked how the LSTM processes Fashion-MNIST images as sequences of 28 rows, each containing 28 features. Specifically questioned the parameter-count formula for a hidden dimension of 2,048 and why PyTorch includes separate input-to-hidden and hidden-to-hidden bias vectors.
-  - *Transformer Architecture:* Asked for explanations of how 28 × 28 images are divided into 49 patches, projected into 32-dimensional embeddings, and combined with a classification token and positional embeddings. Also discussed Query, Key, Value projections, four attention heads, residual connections, feed-forward layers, tensor dimensions, and the calculation of 28,202 trainable parameters.
-  - *Training Behavior and Checkpoint Selection:* Asked how to interpret training and validation curves, identify possible overfitting or underfitting, and explain why the checkpoint with the highest validation macro-F1 may differ from the epoch with the lowest validation loss.
-  - *Experimental Results and Limitations:* Requested assistance interpreting the recorded accuracy, macro-F1, training time, inference time, and parameter counts of the five architectures. Discussed the Transformer improvement between 10 and 30 epochs, differences in model capacity, and limitations of comparing architectures under unequal parameter and computational budgets.
-- **How AI output was edited and verified:** I read the output of GPT and try to write the report, then I used GPT to check if I write right and checked and compared it with the recorded experimental results to make sure the data is not wrong.
-- **Sources used for verification:** The files of assignment 1
-- **Member responsible for final verification:** Dang Thanh Phu
+- **Tool:** GPT-6
+- **Used by:** Dang Thanh Phu
+- **Task:** A1 M2 — Writing the report
+- **Prompt summary:**
+  - *LSTM architecture and parameters:* How the LSTM processes Fashion-MNIST images as 28 rows of 28 features; the parameter-count formula for hidden dimension 2,048; why PyTorch has separate input-to-hidden and hidden-to-hidden biases.
+  - *Transformer architecture:* Splitting 28 × 28 images into 49 patches, 32-dim embeddings, classification token, positional embeddings, Q/K/V projections, four attention heads, residual connections, feed-forward layers, tensor dimensions, and the 28,202 trainable parameters.
+  - *Training behavior and checkpoint selection:* Interpreting training/validation curves, overfitting/underfitting, and why the best validation macro-F1 checkpoint may differ from the lowest validation loss epoch.
+  - *Results and limitations:* Interpreting accuracy, macro-F1, training/inference time, and parameter counts of the five architectures; the Transformer improvement from 10 to 30 epochs; limitations of comparing models under unequal parameter and compute budgets.
+- **AI contribution:** Explained LSTM/Transformer concepts, PyTorch LSTM biases, data normalization, training procedures, and evaluation metrics; helped structure and refine technical explanations in the report.
+- **Student verification:** Wrote the report from the explanations, then compared all statements with the recorded experimental results and Assignment 1 files to make sure the data was correct.
+- **Affected files/sections:** Report Sec. 2.1, 2.5–2.8, 3.1–3.2, 3.6
+- **Responsible member:** Dang Thanh Phu
 
 ### Entry A1-8
 
-- **Tool name / version:** GPT-6
-- **Member who used it:** Dang Thanh Phu
-- **Time / development stage:** Assignment 1 M3 — Website organization and report integration
-- **Purpose:** Used ChatGPT to reorganize the Assignment 1 and Assignment 3 website pages following Assignment 2’s layout, integrate the Assignment 1 M3 report, and add placeholders for YouTube presentation links.
-- **Affected assignment section(s):** Assignment 1 and Assignment 3 landing pages, Assignment 1 M2 draft page, and Assignment 1 M3 report viewer
-- **Representative prompt / prompt-log link:**
-  - *Page structure and formatting:* Asked ChatGPT to use Assignment 2’s format for the Assignment 1 and Assignment 3 folders and pages.
-  - *Report integration:* Asked ChatGPT to add the Assignment 1 M3 report to the website.
-  - *Presentation link:* Asked ChatGPT to leave a placeholder for the YouTube presentation link.
-- **How AI output was edited and verified:** The existing Assignment 2 page was used as the layout reference. Assignment 1’s draft content was preserved in a separate M2 page, and the M3 viewer was linked to the existing report PDF. Automated checks verified local link destinations, milestone cards, page titles, presentation placeholders, and formatting.
-- **Sources used for verification:** Existing website files in `docs/assignment1`, `docs/assignment2`, and `docs/assignment3`, and `docs/reports/Assignment1_M3_RTX5090.pdf`
-- **Member responsible for final verification:** Dang Thanh Phu
+- **Tool:** GPT-6
+- **Used by:** Dang Thanh Phu
+- **Task:** A1 M2 — Website organization and report integration
+- **Prompt summary:** Asked to restructure the Assignment 1 and Assignment 3 folders/pages following Assignment 2's format, add the A1 M2 report to the website, and leave a placeholder for the YouTube presentation link.
+- **AI contribution:** Reorganized the pages using Assignment 2's layout, integrated the M2 report viewer, and added presentation link placeholders.
+- **Student verification:** Used the existing Assignment 2 page as the layout reference; kept A1 draft content in a separate M2 page and linked the M2 viewer to the existing report PDF. Checked local link destinations, milestone cards, page titles, placeholders, and formatting against files in `docs/assignment1`, `docs/assignment2`, `docs/assignment3`, and `docs/reports/Assignment1_M3_RTX5090.pdf`.
+- **Affected files/sections:** Assignment 1 and Assignment 3 landing pages; A1 M2 draft page; A1 M3 report viewer
+- **Responsible member:** Dang Thanh Phu
 
 ---
 
@@ -134,14 +115,12 @@
 
 ### Entry A2-1
 
-- **Tool name / version:** Gemini 3.8 Flash
-- **Member who used it:** Cao Duc Thanh
-- **Time / development stage:** Assignment 2 M1 — Understand the requirement and find the dataset
-- **Purpose:** I need to understand the specs of assignment 2, and find a dataset to implement the assignment 2.
-- **Affected assignment section(s):** Dataset of assignment 2
-- **Representative prompt / prompt-log link:** https://gemini.google.com/app/6c45defefd0a4e2a
-- **How AI output was edited and verified:** I search it in the internet to see each dataset.
-- **Sources used for verification:**
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A2 M1 — Understanding the requirements and finding a dataset
+- **Prompt summary:** Asked to explain the Assignment 2 specification and suggest suitable datasets. Log: https://gemini.google.com/app/6c45defefd0a4e2a
+- **AI contribution:** Explained the specification and suggested candidate datasets.
+- **Student verification:** Looked up each suggested dataset online:
   - https://www.kaggle.com/datasets/bardiaardakanian/voc0712
   - https://www.kaggle.com/datasets/sovitrath/voc-2012-segmentation-data
   - https://www.cityscapes-dataset.com/
@@ -149,48 +128,68 @@
   - https://www.kaggle.com/datasets/pengcw1/market-1501
   - https://www.kaggle.com/datasets/whurobin/dukemtmcreid
   - https://www.kaggle.com/datasets/abhyudaya12/veri-vehicle-re-identification-dataset
-- **Member responsible for final verification:** Cao Duc Thanh
+- **Affected files/sections:** Assignment 2 dataset selection
+- **Responsible member:** Cao Duc Thanh
 
 ### Entry A2-2
 
-- **Tool name / version:** Gemini 3.8 Flash
-- **Member who used it:** Cao Duc Thanh
-- **Time / development stage:** Assignment 2 M1 — Do research and write proposal for assignment 2
-- **Purpose:** I need to do some researches about the datasets, the models (pretrained and scratch model), the training process, learn how to write a proposal, and check if my proposal meets requirements of the specs.
-- **Affected assignment section(s):** Proposal of assignment 2
-- **Representative prompt / prompt-log link:** https://share.gemini.google/DGWCyHXayaPi
-- **How AI output was edited and verified:** I search it in the internet to see each dataset.
-- **Sources used for verification:**
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A2 M1 — Research and proposal writing
+- **Prompt summary:** Asked about the datasets, pretrained and from-scratch models, the training process, how to write a proposal, and whether the proposal met the specification. Log: https://share.gemini.google/DGWCyHXayaPi
+- **AI contribution:** Provided background on datasets, models, and training; gave proposal-writing guidance and reviewed the proposal against the specification.
+- **Student verification:** Checked the information against:
   - https://arxiv.org/pdf/2105.15203
   - https://www.cityscapes-dataset.com/
   - https://pyimagesearch.com/2016/11/07/intersection-over-union-iou-for-object-detection/
   - https://www.geeksforgeeks.org/machine-learning/u-net-architecture-explained/
   - https://wiki.cloudfactory.com/docs/mp-wiki/model-architectures/deeplabv3
-- **Member responsible for final verification:** Cao Duc Thanh
+- **Affected files/sections:** Assignment 2 Proposal
+- **Responsible member:** Cao Duc Thanh
 
 ### Entry A2-3
 
-- **Tool name / version:** Gemini 3.8 Flash
-- **Member who used it:** Cao Duc Thanh
-- **Time / development stage:** Assignment 2 M2 — DeepLabV3 batch-size crash debugging and DataLoader optimization
-- **Purpose:** Diagnose `ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 256, 1, 1])` occurring during DeepLabV3 training on Cityscapes, explain why single-sample batches cause BatchNorm failures in ASPPPooling, and configure DataLoader with `drop_last=True` and batch safeguards.
-- **Affected assignment section(s):** `assignment2/src/data.py`, `assignment2/src/train.py`, `assignment2/configs/deeplabv3.yaml`
-- **Representative prompt / prompt-log link:** "Fix ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 256, 1, 1]) in DeepLabV3 training on Cityscapes."
-- **How AI output was edited and verified:** Read PyTorch BatchNorm2d documentation, verified that 2,481 training samples divided by batch size 8 leaves a remainder of 1 at the final batch. Configured `drop_last=True` in `src/data.py` and added single-sample batch skip safeguard in `src/train.py`. Ran full 10 epochs on RTX 5070 Ti successfully without errors.
-- **Sources used for verification:** PyTorch documentation for `nn.BatchNorm2d` and torchvision DeepLabV3 implementation.
-- **Member responsible for final verification:** Cao Duc Thanh
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A2 M2 — How to implement the data.py
+- **Prompt summary:** Asked about how to implement src/data.py and explain what the file did
+- **AI contribution:** Give the sample code and explain what each line of code means and how it connects to the problem
+- **Student verification:** implemnt the code and try to understand every line of code, run it with the model U-net
+- **Affected files/sections:** `assignment2/src/data.py`
+- **Responsible member:** Cao Duc Thanh
+
+### Entry A2-3
+
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A2 M2 — Debugging a DeepLabV3 batch-size crash and optimizing the DataLoader
+- **Prompt summary:** Asked to fix `ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 256, 1, 1])` in DeepLabV3 training on Cityscapes.
+- **AI contribution:** Explained why single-sample batches break BatchNorm in ASPPPooling; suggested `drop_last=True` and a batch-size safeguard.
+- **Student verification:** Read the PyTorch `nn.BatchNorm2d` docs and the torchvision DeepLabV3 implementation; confirmed 2,481 training samples with batch size 8 leave a final batch of 1. Set `drop_last=True` in `src/data.py`, added a single-sample batch skip in `src/train.py`, and ran the full 10 epochs on an RTX 5070 Ti without errors.
+- **Affected files/sections:** `assignment2/src/data.py`; `assignment2/src/train.py`; `assignment2/configs/deeplabv3.yaml`
+- **Responsible member:** Cao Duc Thanh
 
 ### Entry A2-4
 
-- **Tool name / version:** Gemini 3.8 Flash
-- **Member who used it:** Dang Thanh Phu
-- **Time / development stage:** Assignment 2 M2 — Preliminary metrics comparison and M2 Draft website scaffolding
-- **Purpose:** Assist in creating comparative training curve plots (Loss, mIoU, Dice) between Baseline U-Net and DeepLabV3-ResNet50, and scaffold the M2 Draft webpage (`docs/assignment2/m2.html`) according to Course Project Handbook Section 7.5 and Section 22.
-- **Affected assignment section(s):** `docs/assignment2/m2.html`, `docs/assignment2/assignment2.html`, `docs/figures/a2_training_curves.png`, `assignment2/README.md`
-- **Representative prompt / prompt-log link:** "Plot comparative training curves for Loss, mIoU, and Dice from U-Net and DeepLabV3 log.csv files, and format HTML for M2 draft webpage with EDA findings, model architectures, and quantitative preliminary tables."
-- **How AI output was edited and verified:** Checked and confirmed all numerical figures (U-Net best mIoU 31.34%, DeepLabV3 best mIoU 56.57%) against the generated `log.csv` files. Verified local image paths, responsive layout, and navigation on GitHub Pages.
-- **Sources used for verification:** `assignment2/checkpoints/unet_base_1024x512_s42/log.csv`, `assignment2/checkpoints/deeplabv3/exp_1/log.csv`, `handbook-ene.pdf` Section 7.5.
-- **Member responsible for final verification:** Dang Thanh Phu
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A2 M2 — Learn and implement the U-net
+- **Prompt summary:** Ask about how U-net works and how each layer contributes to the whole model, and how to implement U-net using pytorch
+- **AI contribution:** Give the explaination of U-net and produce the sample code for U-net
+- **Student verification:** Learn and try to understand the model. Then implement the U-net and compare the code with the theory.
+- **Affected files/sections:** `src/models/unet.py`
+- **Responsible member:** Cao Duc Thanh
+
+### Entry A2-5
+
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A2 M2 — Preliminary metrics comparison and M2 draft webpage scaffolding
+- **Prompt summary:** Asked to plot comparative training curves (Loss, mIoU, Dice) from the U-Net and DeepLabV3 `log.csv` files, and to format the M2 draft webpage with EDA findings, model architectures, and preliminary result tables.
+- **AI contribution:** Produced plotting code for the comparison curves and scaffolded the M2 draft page following Handbook Sec. 7.5 and Sec. 22.
+- **Student verification:** Confirmed all numbers (U-Net best mIoU 31.34%, DeepLabV3 best mIoU 56.57%) against `assignment2/checkpoints/unet_base_1024x512_s42/log.csv` and `assignment2/checkpoints/deeplabv3/exp_1/log.csv`; checked against `handbook-ene.pdf` Sec. 7.5. Verified image paths, responsive layout, and navigation on GitHub Pages.
+- **Affected files/sections:** `docs/assignment2/m2.html`; `docs/assignment2/assignment2.html`; `docs/figures/a2_training_curves.png`; `assignment2/README.md`
+- **Responsible member:** Cao Duc Thanh
 
 ---
 
