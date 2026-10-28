@@ -22,8 +22,8 @@
 
 | Full Name      | Student ID | Role / Contribution      | GitHub                       |
 | -------------  | ---------- | ------------------------ | ---------------------------- |
-|Dang  Thanh Phu | 2452967    |                          | https://github.com/phsuuuuuu |
-|Cao Duc Thanh  | 2453164   |                          | https://github.com/thanhmcpe123 |
+|Dang  Thanh Phu | 2452967    | A1: data pipeline, training loop, Linear/MLP/CNN, README, Pages · A2: training engine, evaluation, DeepLabV3, experiments | https://github.com/phsuuuuuu |
+|Cao Duc Thanh  | 2453164   | A1: LSTM, Transformer, evaluation, report/slides/video · A2: data & splits, metrics, U-Net, EDA, error analysis | https://github.com/thanhmcpe123 |
 
 
 ---
