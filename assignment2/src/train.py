@@ -29,9 +29,14 @@ def train_one_epoch(model, loader, optimizer, device, max_batches=0):
     total_loss = 0
     total_samples = 0
 
+    total_batches = min(len(loader), max_batches) if max_batches else len(loader)
+
     for i, (images, masks) in enumerate(loader):
         if max_batches and i >= max_batches:
             break
+
+        if images.size(0) <= 1:
+            continue
 
         images = images.to(device)
         masks = masks.to(device, dtype=torch.long)
@@ -49,6 +54,9 @@ def train_one_epoch(model, loader, optimizer, device, max_batches=0):
 
         total_loss += loss.item() * images.size(0)
         total_samples += images.size(0)
+
+        if (i + 1) % 50 == 0 or (i + 1) == total_batches:
+            print(f"  Batch [{i + 1}/{total_batches}] - Loss: {loss.item():.4f}")
 
     if total_samples == 0:
         raise ValueError("No training samples with labeled pixels were processed")

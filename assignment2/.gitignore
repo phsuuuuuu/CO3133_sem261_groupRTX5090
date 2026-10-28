@@ -2,8 +2,11 @@
 dataset/*
 !dataset/.gitkeep
 
-# Checkpoints / Model weights
-checkpoints/*
+# Checkpoints / Model weights (ignore heavy weights, preserve logs and metrics)
+checkpoints/**/*.pt
+checkpoints/**/*.pth
+*.pt
+*.pth
 !checkpoints/.gitkeep
 
 # Python cache & virtual environments

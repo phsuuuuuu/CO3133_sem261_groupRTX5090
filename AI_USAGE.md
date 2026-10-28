@@ -185,7 +185,29 @@ Member responsible for final verification: Dang Thanh Phu
   + https://wiki.cloudfactory.com/docs/mp-wiki/model-architectures/deeplabv3
 - **Member responsible for final verification:** Cao Duc Thanh
 
+### Entry A2-3
 
+- **Tool name / version:** Gemini 3.8 Flash
+- **Member who used it:** Cao Duc Thanh
+- **Time / development stage:** Assignment 2 M2 — DeepLabV3 batch-size crash debugging and DataLoader optimization
+- **Purpose:** Diagnose `ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 256, 1, 1])` occurring during DeepLabV3 training on Cityscapes, explain why single-sample batches cause BatchNorm failures in ASPPPooling, and configure DataLoader with `drop_last=True` and batch safeguards.
+- **Affected assignment section(s):** `assignment2/src/data.py`, `assignment2/src/train.py`, `assignment2/configs/deeplabv3.yaml`
+- **Representative prompt / prompt-log link:** "Fix ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 256, 1, 1]) in DeepLabV3 training on Cityscapes."
+- **How AI output was edited and verified:** Read PyTorch BatchNorm2d documentation, verified that 2,481 training samples divided by batch size 8 leaves a remainder of 1 at the final batch. Configured `drop_last=True` in `src/data.py` and added single-sample batch skip safeguard in `src/train.py`. Ran full 10 epochs on RTX 5070 Ti successfully without errors.
+- **Sources used for verification:** PyTorch documentation for `nn.BatchNorm2d` and torchvision DeepLabV3 implementation.
+- **Member responsible for final verification:** Cao Duc Thanh
+
+### Entry A2-4
+
+- **Tool name / version:** Gemini 3.8 Flash
+- **Member who used it:** Dang Thanh Phu
+- **Time / development stage:** Assignment 2 M2 — Preliminary metrics comparison and M2 Draft website scaffolding
+- **Purpose:** Assist in creating comparative training curve plots (Loss, mIoU, Dice) between Baseline U-Net and DeepLabV3-ResNet50, and scaffold the M2 Draft webpage (`docs/assignment2/m2.html`) according to Course Project Handbook Section 7.5 and Section 22.
+- **Affected assignment section(s):** `docs/assignment2/m2.html`, `docs/assignment2/assignment2.html`, `docs/figures/a2_training_curves.png`, `assignment2/README.md`
+- **Representative prompt / prompt-log link:** "Plot comparative training curves for Loss, mIoU, and Dice from U-Net and DeepLabV3 log.csv files, and format HTML for M2 draft webpage with EDA findings, model architectures, and quantitative preliminary tables."
+- **How AI output was edited and verified:** Checked and confirmed all numerical figures (U-Net best mIoU 31.34%, DeepLabV3 best mIoU 56.57%) against the generated `log.csv` files. Verified local image paths, responsive layout, and navigation on GitHub Pages.
+- **Sources used for verification:** `assignment2/checkpoints/unet_base_1024x512_s42/log.csv`, `assignment2/checkpoints/deeplabv3/exp_1/log.csv`, `handbook-ene.pdf` Section 7.5.
+- **Member responsible for final verification:** Dang Thanh Phu
 
 ---
 
