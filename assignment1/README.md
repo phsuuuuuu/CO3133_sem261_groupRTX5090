@@ -20,13 +20,17 @@ python src/data.py
 
 python src/eda.py
 
-python -m src.train --model linear --epochs 1 --max-batches 1
+python -m src.train --model linear 
 
-python -m src.train --model mlp --epochs 1 --max-batches 1
+python -m src.train --model mlp 
 
-python -m src.train --model linear --epochs 10
+python -m src.train --model cnn 
 
-python -m src.train --model mlp --epochs 10
+python -m src.train --model lstm 
+
+python -m src.train --model transformer 
+
+python -m src.train --model transformer --epochs 30
 
 python -m src.plot_curves
 
