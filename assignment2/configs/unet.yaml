@@ -6,7 +6,8 @@ epochs: 2
 lr: 0.001
 amp: true
 batch_size: 4
-max_batches: 20
+max_train_batches: 0
+max_eval_batches: 0
 resume: null
 checkpoint_dir: checkpoints/unet
 cfg:
