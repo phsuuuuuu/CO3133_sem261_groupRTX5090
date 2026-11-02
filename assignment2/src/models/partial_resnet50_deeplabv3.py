@@ -10,13 +10,19 @@ def resnet_layer3_4_finetune(cfg):
         num_classes=19,
         aux_loss=False,
     )
-    #unfreeze layer 3, 4 and head to fine tune the model, keep layer1  and 2 freezed
+    # Freeze all backbone parameters first
+    for param in model.backbone.parameters():
+        param.requires_grad = False
+
+    # Unfreeze layer 3 and 4, keep layer 1 and 2 frozen
     for param in model.backbone.layer3.parameters():
         param.requires_grad = True
     for param in model.backbone.layer4.parameters():
-            param.requires_grad = True
+        param.requires_grad = True
     return model
+
 
 if __name__ == "__main__":
     model = resnet_layer3_4_finetune(None)
-    print(model)
+    trainable = [name for name, p in model.named_parameters() if p.requires_grad]
+    print(f"Trainable params count: {len(trainable)}")

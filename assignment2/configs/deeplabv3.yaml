@@ -7,9 +7,10 @@ seed: 666
 epochs: 10
 lr: 0.001
 amp: true
-batch_size: 4
+batch_size: 8
+num_workers: 4
+pin_memory: true
 max_train_batches: 0
 max_eval_batches: 0
-# resume: checkpoints/deeplabv3/local/best.pt
 checkpoint_dir: checkpoints/deeplabv3/local
 eval_every: 1
