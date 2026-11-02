@@ -7,9 +7,9 @@ seed: 666
 epochs: 10
 lr: 0.001
 amp: true
-batch_size: 2
+batch_size: 8
 max_train_batches: 0
 max_eval_batches: 0
-resume: checkpoints/deeplabv3/resnet_layer3_4_finetune/best.pt
+# resume: checkpoints/deeplabv3/resnet_layer3_4_finetune/best.pt
 checkpoint_dir: checkpoints/deeplabv3/resnet50_full_deeplabv3
 eval_every: 1

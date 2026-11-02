@@ -10,6 +10,6 @@ amp: true
 batch_size: 4
 max_train_batches: 0
 max_eval_batches: 0
-resume: checkpoints/deeplabv3/local/best.pt
+# resume: checkpoints/deeplabv3/local/best.pt
 checkpoint_dir: checkpoints/deeplabv3/local
 eval_every: 1
