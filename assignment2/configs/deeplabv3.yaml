@@ -4,11 +4,12 @@ weights_backbone: IMAGENET1K_V1
 num_classes: 19
 ignore_index: 255
 seed: 666
-epochs: 2
+epochs: 10
 lr: 0.001
 amp: true
-batch_size: 8
+batch_size: 4
 max_train_batches: 0
 max_eval_batches: 0
-resume: checkpoints/deeplabv3/exp/last.pt
-checkpoint_dir: checkpoints/deeplabv3/exp
+resume: checkpoints/deeplabv3/local/best.pt
+checkpoint_dir: checkpoints/deeplabv3/local
+eval_every: 1
