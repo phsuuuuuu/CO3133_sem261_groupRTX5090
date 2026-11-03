@@ -106,7 +106,30 @@ def main(cfg):
         torch.backends.cudnn.benchmark = True
 
     model = build_model(cfg).to(device)
-    optimizer = torch.optim.AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=float(cfg["lr"]))
+    backbone_lr = cfg.get("backbone_lr")
+
+    if backbone_lr is None:
+        optimizer = torch.optim.AdamW(
+            filter(lambda p: p.requires_grad, model.parameters()),
+            lr=float(cfg["lr"]),
+        )
+    else:
+        optimizer = torch.optim.AdamW([
+            {
+                "params": [
+                    p for p in model.backbone.parameters()
+                    if p.requires_grad
+                ],
+                "lr": float(backbone_lr),
+            },
+            {
+                "params": [
+                    p for p in model.classifier.parameters()
+                    if p.requires_grad
+                ],
+                "lr": float(cfg["lr"]),
+            },
+        ])
     print("Device: ", device)
 
     use_amp = bool(cfg.get("amp", False)) and device.type == "cuda"
