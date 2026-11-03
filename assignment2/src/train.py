@@ -104,6 +104,8 @@ def main(cfg):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     if device.type == "cuda":
         torch.backends.cudnn.benchmark = True
+        torch.backends.cuda.matmul.allow_tf32 = True
+        torch.backends.cudnn.allow_tf32 = True
 
     model = build_model(cfg).to(device)
     backbone_lr = cfg.get("backbone_lr")

@@ -69,21 +69,25 @@ def get_loaders(cfg):
     test_ds = CityscapesSeg(data_dir, splits_dir / "test.txt", is_train=False)
 
     persistent_workers = num_workers > 0
+    prefetch_factor = 2 if num_workers > 0 else None
 
     train_loader = DataLoader(
         train_ds, batch_size=batch_size, shuffle=True,
         num_workers=num_workers, pin_memory=pin_memory,
         worker_init_fn=seed_worker, generator=g,
-        drop_last=True, persistent_workers=persistent_workers
+        drop_last=True, persistent_workers=persistent_workers,
+        prefetch_factor=prefetch_factor
     )
     val_loader = DataLoader(
         val_ds, batch_size=batch_size, shuffle=False,
         num_workers=num_workers, pin_memory=pin_memory,
-        persistent_workers=persistent_workers
+        persistent_workers=persistent_workers,
+        prefetch_factor=prefetch_factor
     )
     test_loader = DataLoader(
         test_ds, batch_size=batch_size, shuffle=False,
-        num_workers=num_workers, pin_memory=pin_memory
+        num_workers=num_workers, pin_memory=pin_memory,
+        prefetch_factor=prefetch_factor
     )
 
     return train_loader, val_loader, test_loader

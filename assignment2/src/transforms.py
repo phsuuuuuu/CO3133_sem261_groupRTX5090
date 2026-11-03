@@ -12,8 +12,11 @@ class SegTransform:
         self.normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 
     def __call__(self, img, mask):
-        img = TF.resize(img, self.base_size, interpolation=TF.InterpolationMode.BILINEAR)
-        mask = TF.resize(mask, self.base_size, interpolation=TF.InterpolationMode.NEAREST)
+        target_w, target_h = self.base_size[1], self.base_size[0]
+        if img.size != (target_w, target_h):
+            img = TF.resize(img, self.base_size, interpolation=TF.InterpolationMode.BILINEAR)
+        if mask.size != (target_w, target_h):
+            mask = TF.resize(mask, self.base_size, interpolation=TF.InterpolationMode.NEAREST)
 
         if self.is_train:
             i, j, h, w = transforms.RandomCrop.get_params(img, output_size=self.crop_size)
