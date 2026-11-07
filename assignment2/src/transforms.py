@@ -13,22 +13,27 @@ class SegTransform:
 
     def __call__(self, img, mask):
         target_w, target_h = self.base_size[1], self.base_size[0]
+        # Resize to 1024x512: Bilinear for image, Nearest Neighbor for mask (prevents class id interpolation)
         if img.size != (target_w, target_h):
             img = TF.resize(img, self.base_size, interpolation=TF.InterpolationMode.BILINEAR)
         if mask.size != (target_w, target_h):
             mask = TF.resize(mask, self.base_size, interpolation=TF.InterpolationMode.NEAREST)
 
         if self.is_train:
+            # Synchronized spatial crop across both image and mask
             i, j, h, w = transforms.RandomCrop.get_params(img, output_size=self.crop_size)
             img = TF.crop(img, i, j, h, w)
             mask = TF.crop(mask, i, j, h, w)
 
+            # Synchronized random horizontal flip
             if random.random() > 0.5:
                 img = TF.hflip(img)
                 mask = TF.hflip(mask)
 
+            # Photometric augmentation applied ONLY to image, never to mask
             img = self.color_jitter(img)
 
+        # Standard ImageNet normalization for image, int64 tensor for mask
         img = TF.to_tensor(img)
         img = self.normalize(img)
         mask = torch.as_tensor(transforms.PILToTensor()(mask).squeeze(0), dtype=torch.int64)

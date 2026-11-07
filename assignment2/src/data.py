@@ -14,6 +14,7 @@ class CityscapesSeg(Dataset):
         with open(split_file, "r") as f:
             self.samples = [line.strip() for line in f if line.strip()]
 
+        # Official val split is treated as local test; custom train/val splits come from official train
         is_official_val = "test.txt" in str(split_file)
         split_folder = "val" if is_official_val else "train"
 
@@ -33,6 +34,7 @@ class CityscapesSeg(Dataset):
         mask = Image.open(mask_path)
         return self.transform(img, mask)
 
+# Ensure deterministic worker seeding for DataLoader reproducibility
 def seed_worker(worker_id):
     worker_seed = torch.initial_seed() % 2**32
     np.random.seed(worker_seed)

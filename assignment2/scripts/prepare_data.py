@@ -3,8 +3,10 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+# Fast 256-entry Look-Up Table (LUT): default all to 255 (ignore/void)
 lut = np.full(256, 255, dtype=np.uint8)
 
+# Map 34 official Cityscapes raw labelIds to 19 evaluation trainIds (0..18)
 for label in labels:
     if label.id >= 0 and 0 <= label.trainId < 19:
         lut[label.id] = label.trainId
@@ -23,16 +25,20 @@ total_counts = np.zeros(256, dtype=np.int64)
 
 for label_path in file_list:
     mask_labelId = np.array(Image.open(label_path))
+    # Vectorized O(1) pixel-wise mapping via LUT
     mask_trainId = lut[mask_labelId]
 
+    # Save converted 19-class mask as *_trainIds.png for fast training access
     train_id_path = str(label_path).replace("labelIds", "trainIds")
     Image.fromarray(mask_trainId).save(train_id_path)
 
+    # Accumulate pixel counts only on official train split to verify class distribution
     if "train" in label_path.parts:
         total_counts += np.bincount(mask_trainId.flatten(), minlength=256)
 
 total_pixels = np.sum(total_counts)
 if total_pixels > 0:
+    # Verify ignore pixel ratio matches M1 baseline (~11.47%)
     ignore_ratio = (total_counts[255] / total_pixels) * 100
     print(f"Ignore ratio: {ignore_ratio:.2f}%")
 else:

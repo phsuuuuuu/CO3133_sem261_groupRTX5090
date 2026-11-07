@@ -32,10 +32,12 @@ class ConfusionMatrix:
         pred = pred.to(self.total_mat.device)
         target = target.to(self.total_mat.device)
 
+        # Filter out void/ignore pixels (255) and out-of-range values
         mask = (target != self.ignore_index) & (target >= 0) & (target < self.num_classes)
         t = target[mask]
         p = pred[mask]
 
+        # Vectorized GPU accumulation: flatten 2D class pairs into 1D indices for fast torch.bincount
         indices = t * self.num_classes + p
         bins = torch.bincount(indices, minlength=self.num_classes ** 2)
         self.total_mat += bins.view(self.num_classes, self.num_classes)
@@ -49,16 +51,19 @@ class ConfusionMatrix:
         fp = mat.sum(dim=0) - tp
         fn = mat.sum(dim=1) - tp
 
+        # IoU = TP / (TP + FP + FN); mark unrepresented classes (union == 0) as NaN
         union = tp + fp + fn
         iou = torch.full((self.num_classes,), float('nan'), dtype=torch.float32, device=mat.device)
         valid_iou = union > 0
         iou[valid_iou] = tp[valid_iou] / union[valid_iou]
 
+        # Dice = 2*TP / (2*TP + FP + FN)
         dice_denom = 2 * tp + fp + fn
         dice = torch.full((self.num_classes,), float('nan'), dtype=torch.float32, device=mat.device)
         valid_dice = dice_denom > 0
         dice[valid_dice] = (2 * tp[valid_dice]) / dice_denom[valid_dice]
 
+        # Use nanmean to exclude absent classes from mean calculations per handbook spec
         miou = torch.nanmean(iou).item()
         mdice = torch.nanmean(dice).item()
 

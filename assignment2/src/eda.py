@@ -44,7 +44,7 @@ def run_region_size_analysis(train_samples, max_samples=500):
         train_path, inst_path = resolve_paths(sample, is_test_split=False)
         mask = np.array(Image.open(train_path))
 
-        # Cityscapes instance encoding: instance_id = label_id * 1000 + instance_num
+        # Cityscapes instance encoding: instance_id = label_id * 1000 + instance_num (count instance area)
         if inst_path.exists():
             inst_map = np.array(Image.open(inst_path))
             u_ids, u_counts = np.unique(inst_map, return_counts=True)
@@ -56,7 +56,7 @@ def run_region_size_analysis(train_samples, max_samples=500):
                         if cnt >= 20:
                             class_areas[CLASS_NAMES[t_id]].append(cnt)
 
-        # Connected component sizes for stuff and non-instance classes
+        # Connected component labeling for "stuff" classes (downscaled 2x for fast analysis)
         downscaled = mask[::2, ::2]
         for t_id, lbl in enumerate(EVAL_LABELS):
             if not lbl.hasInstances:
@@ -98,6 +98,7 @@ def run_mask_quality_analysis(train_samples):
     for sample in train_samples:
         train_path, _ = resolve_paths(sample, is_test_split=False)
         mask = np.array(Image.open(train_path).resize((512, 256), resample=Image.NEAREST))
+        # Accumulate spatial ignore map (reveals systematic unannotated regions like ego-vehicle hood)
         ign = (mask == 255)
         ignore_ratios.append(float(np.mean(ign) * 100.0))
         spatial_acc += ign

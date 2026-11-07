@@ -3,9 +3,11 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATASET_DIR = BASE_DIR / "dataset"
 TRAIN_GT_DIR = DATASET_DIR / "gtFine_trainvaltest" / "gtFine" / "train"
+# Official validation set (500 images) is designated as our local test set
 VAL_GT_DIR = DATASET_DIR / "gtFine_trainvaltest" / "gtFine" / "val"
 SPLITS_DIR = BASE_DIR / "splits"
 
+# City-based split: entire cities reserved for validation to prevent spatial frame leakage (~500 images total)
 VAL_CITIES = {"erfurt", "jena", "tubingen", "zurich"}
 
 def get_city_samples(city_dir: Path):
@@ -47,6 +49,7 @@ print(f"Test set:  {len(test_samples)} images from {len(test_cities)} cities (of
 print(f"  {sorted(list(test_cities))}")
 print(f"Total train+val images from official train: {len(train_samples) + len(val_samples)} / 2975")
 
+# Strict anti-leakage verification: ensure 0 city or sample overlap across all splits
 assert len(train_cities.intersection(VAL_CITIES)) == 0, "ERROR: City leakage between Train and Val!"
 assert len(train_cities.intersection(test_cities)) == 0, "ERROR: City leakage between Train and Test!"
 assert len(VAL_CITIES.intersection(test_cities)) == 0, "ERROR: City leakage between Val and Test!"
