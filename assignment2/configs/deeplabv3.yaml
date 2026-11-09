@@ -1,13 +1,13 @@
 model: deeplabv3_resnet50
 weights_backbone: IMAGENET1K_V1
 
-# Frozen
-lr: 0.001
-head_lr: 0.001
+# Model 1: Frozen Backbone (train ASPP head only) - Synced with colab.ipynb
+lr: 0.0001
+head_lr: 0.0001
 num_classes: 19
 ignore_index: 255
 seed: 666
-epochs: 10
+epochs: 60
 amp: true
 batch_size: 8
 num_workers: 4

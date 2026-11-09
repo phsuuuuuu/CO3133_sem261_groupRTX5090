@@ -196,6 +196,17 @@
 - **Tool:** Gemini 3.8 Flash
 - **Used by:** Cao Duc Thanh
 - **Task:** A2 M2 — Preliminary metrics comparison and M2 draft webpage scaffolding
+- **Prompt summary:** Asked to give knowledge about loss used in segmatation problem and how to implement losses.py, give code to test the files
+- **AI contribution:** Give the theory of loss function used in segmantation problem, instruct student to write code line by line and then write code for testing 
+- **Student verification:** losses.py runs well with the test file
+- **Affected files/sections:** losses.py, class_weights.json, test_losses.py
+- **Responsible member:** Cao Duc Thanh
+
+### Entry A2-7
+
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A2 M3 — Write weightedCELoss, SoftDiceLoss
 - **Prompt summary:** Asked to plot comparative training curves (Loss, mIoU, Dice) from the U-Net and DeepLabV3 `log.csv` files, and to format the M2 draft webpage with EDA findings, model architectures, and preliminary result tables.
 - **AI contribution:** Produced plotting code for the comparison curves and scaffolded the M2 draft page following Handbook Sec. 7.5 and Sec. 22.
 - **Student verification:** Confirmed all numbers (U-Net best mIoU 31.34%, DeepLabV3 best mIoU 56.57%) against `assignment2/checkpoints/unet_base_1024x512_s42/log.csv` and `assignment2/checkpoints/deeplabv3/exp_1/log.csv`; checked against `handbook-ene.pdf` Sec. 7.5. Verified image paths, responsive layout, and navigation on GitHub Pages.

@@ -1,17 +1,16 @@
-# U-Net Final Configuration (E0 Baseline comparison against DeepLabV3)
 model: unet
 base_channels: 32
 num_classes: 19
 ignore_index: 255
-seed: 666                  # Đồng bộ với seed của 3 model DeepLabV3 trong repo
-epochs: 40                 # 40 epochs chuẩn so sánh trực tiếp
-lr: 0.001                  # Learning rate chuẩn cho scratch AdamW
+seed: 666                  
+epochs: 40                 
+lr: 0.001                  
 optimizer: adamw
-amp: true                  # Mixed precision FP16/TF32
-batch_size: 8              # Tương ứng GPU VRAM >= 16GB (A100/L4/T4 hoặc RTX 5070 Ti)
+amp: true                  
+batch_size: 8              
 num_workers: 4
 pin_memory: true
-max_train_batches: 0       # 0 = toàn bộ dataset
+max_train_batches: 0       
 max_eval_batches: 0
 eval_every: 1
 checkpoint_dir: checkpoints/unet_final_1024x512_s42
