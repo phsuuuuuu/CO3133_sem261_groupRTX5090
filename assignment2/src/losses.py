@@ -30,7 +30,7 @@ class WeightedCELoss(nn.Module):
         self.ignore_index = ignore_index
 
     def forward(self, logits, target):
-        weight = None if self.weight is None else self.weight.to(logits.dtype)
+        weight = None if self.weight is None else self.weight.to(device=logits.device, dtype=logits.dtype)
         return F.cross_entropy(logits, target, weight=weight, ignore_index=self.ignore_index)
 
 

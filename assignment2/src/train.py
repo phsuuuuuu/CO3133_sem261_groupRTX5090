@@ -1,6 +1,11 @@
 import argparse
 import csv
+import sys
 from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
 
 import numpy as np
 import torch
@@ -13,14 +18,15 @@ from src.data import get_loaders
 from src.evaluate import validate
 from src.metrics import ConfusionMatrix
 from src.models import build_model
+from src.losses import build_loss
 
-
-def train_one_epoch(model, loader, optimizer, device, max_batches=0, amp=False, scaler=None):
+def train_one_epoch(model, loader, optimizer, device, criterion=None, max_batches=0, amp=False, scaler=None):
     model.train()
     backbone = getattr(model, "backbone", None)
     if backbone and not any(p.requires_grad for p in backbone.parameters()):
         backbone.eval()
-    criterion = nn.CrossEntropyLoss(ignore_index=255)
+    if criterion is None:
+        criterion = nn.CrossEntropyLoss(ignore_index=255)
     total_samples = 0
     total_loss = 0
     use_amp = amp and device.type == "cuda"
@@ -133,6 +139,7 @@ def main(cfg):
             },
         ])
     print("Device: ", device)
+    criterion = build_loss(cfg).to(device)
 
     use_amp = bool(cfg.get("amp", False)) and device.type == "cuda"
     scaler = torch.amp.GradScaler("cuda", enabled=use_amp)
@@ -149,6 +156,7 @@ def main(cfg):
         with TrainingTimer(device) as train_time:
             train_result = train_one_epoch(
                 model, train_loader, optimizer, device,
+                criterion=criterion,
                 max_batches=max_train_batches, amp=use_amp, scaler=scaler
             )
 
@@ -156,7 +164,8 @@ def main(cfg):
         with TrainingTimer(device) as eval_time:
             eval_result = validate(
                 model, eval_loader, device,
-                amp=use_amp, max_batches=max_eval_batches, metric=metric
+                amp=use_amp, max_batches=max_eval_batches, metric=metric,
+                criterion=criterion
             )
 
         improved = eval_result["miou"] > best_miou

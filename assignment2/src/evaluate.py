@@ -2,7 +2,12 @@
 
 import argparse
 import json
+import sys
 from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
 
 import torch
 import torch.nn as nn
@@ -13,6 +18,7 @@ from src.cost import TrainingTimer
 from src.data import get_loaders
 from src.metrics import ConfusionMatrix
 from src.models import build_model
+from src.losses import build_loss
 
 NUM_CLASSES = 19
 IGNORE_INDEX = 255
@@ -27,13 +33,14 @@ def load_checkpoint(path, model):
 
 
 @torch.inference_mode()
-def validate(model, loader, device, amp=False, max_batches=0, metric=None):
+def validate(model, loader, device, amp=False, max_batches=0, metric=None, criterion=None):
     if max_batches < 0:
         raise ValueError("max_batches must be non-negative; use 0 for all batches")
     model.eval()
     if metric is None: metric = ConfusionMatrix(num_classes=NUM_CLASSES, ignore_index=IGNORE_INDEX, device=device)
     metric.reset()
-    criterion = nn.CrossEntropyLoss(ignore_index=IGNORE_INDEX)
+    if criterion is None:
+        criterion = nn.CrossEntropyLoss(ignore_index=IGNORE_INDEX)
     use_amp = amp and device.type == "cuda"
     total_samples=0
     total_loss=0
@@ -104,9 +111,10 @@ def main():
     checkpoint = load_checkpoint(checkpoint_path, model)
     print("Checkpoint:", checkpoint_path)
 
+    criterion = build_loss(cfg).to(device)
     loader = select_loader(get_loaders(cfg), split)
     with TrainingTimer(device) as eval_time:
-        result = validate(model, loader, device, amp=bool(cfg.get("amp", False)), max_batches=max_batches)
+        result = validate(model, loader, device, amp=bool(cfg.get("amp", False)), max_batches=max_batches, criterion=criterion)
     record = {
         "epoch": checkpoint["epoch"],
         "split": split,

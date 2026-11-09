@@ -1,0 +1,22 @@
+model: resnet_layer3_4_finetune
+weights_backbone: IMAGENET1K_V1
+
+# E2 Ablation: Weighted Cross-Entropy Loss (1 + log formula)
+loss: wce
+class_weights: configs/class_weights.json
+
+lr: 0.0001
+head_lr: 0.0001
+backbone_lr: 0.00001
+num_classes: 19
+ignore_index: 255
+seed: 666
+epochs: 60
+amp: true
+batch_size: 8
+num_workers: 4
+pin_memory: true
+max_train_batches: 0
+max_eval_batches: 0
+checkpoint_dir: checkpoints/dlv3_wce_1024x512_s666
+eval_every: 1
