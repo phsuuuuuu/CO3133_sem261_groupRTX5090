@@ -7,7 +7,7 @@
 - Video: https://youtu.be/TAB6kAfnlxA · AI usage: [AI_USAGE.md](../AI_USAGE.md)
 
 ## Environment
-Windows 11, Python 3.12, PyTorch (CUDA). Dependency versions are in `requirements.txt`.
+Windows 11, Python 3.12, PyTorch 2.11 + torchvision 0.26 (CUDA 13.0). Dependency versions are in `requirements.txt`.
 Hardware: RTX 5070 Ti (U-Net, WCE, CE+Dice) and Colab RTX PRO 6000 (DeepLabV3 frozen / partial / full, batch size 16, see `colab.ipynb`).
 
 ```powershell
