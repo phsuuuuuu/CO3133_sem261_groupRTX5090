@@ -278,10 +278,21 @@
 - **Prompt summary:** Asked to create error_analysis.py implementing confusion matrix, boundary error density, scale-dependent recall curate 4 distinct groups, and a quantitative error taxonomy table
 - **AI contribution:** Provided the evaluation script, boundary extraction, and confusion matrix heatmap plotting
 - **Student verification:** Ran error_analysis.py on local, verified metrics, and checked the generated plots
-- **Affected files/sections:** `assignment2/src/error_analysis.py`; `a2_confusion_matrix.png`; `a2_boundary_error.png`
+- **Affected files/sections:** assignment2/src/error_analysis.py; a2_confusion_matrix.png; a2_boundary_error.png
 - **Responsible member:** Cao Duc Thanh
 
 ### Entry A2-13
+
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A2 M3 — scripts for report data extraction and benchmarking
+- **Prompt summary:** Asked to write utility scripts (m3_training_summary.py, m3_error_qual.py, m3_eda_stats.py, benchmark_cost.py) to extract EDA statistics, summarize training runs, analyze error taxonomy, and benchmark model compute costs for the report
+- **AI contribution:** Provided the script logic for parsing logs, computing error categories, calculating dataset statistics, measuring FLOPs/latency, and exporting output JSONs and summary figures
+- **Student verification:** Ran all scripts locally on GPU, verified that output JSON files and plots matched the raw logs and dataset, and cross-checked numbers before including them in the report
+- **Affected files/sections:** assignment2/scripts/m3_training_summary.py, m3_error_qual.py, m3_eda_stats.py, benchmark_cost.py, docs/figures/m3/*; Report Sections 2.1, 3.2, 3.3, 3.5
+- **Responsible member:** Cao Duc Thanh
+
+### Entry A2-14
 
 - **Tool:** Gemini 3.8 Flash
 - **Used by:** Cao Duc Thanh
@@ -292,7 +303,7 @@
 - **Affected files/sections:** Assignment 2 Report
 - **Responsible member:** Cao Duc Thanh
 
-### Entry A2-14
+### Entry A2-15
 
 - **Tool:** Claude (Claude Opus 5.5)
 - **Used by:** Cao Duc Thanh
