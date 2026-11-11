@@ -1,0 +1,68 @@
+{
+ "top3": [
+  [
+   "road",
+   37.39163532398874
+  ],
+  [
+   "building",
+   22.993941469004188
+  ],
+  [
+   "vegetation",
+   15.300238200844968
+  ]
+ ],
+ "top3_sum_pct": 75.6858149938379,
+ "rare10": [
+  [
+   "motorcycle",
+   0.09804773226411714
+  ],
+  [
+   "rider",
+   0.12722949582128748
+  ],
+  [
+   "train",
+   0.16538448707637657
+  ],
+  [
+   "traffic light",
+   0.2151993304290727
+  ],
+  [
+   "bus",
+   0.25498334095095143
+  ],
+  [
+   "truck",
+   0.2990592444295865
+  ],
+  [
+   "bicycle",
+   0.4316402466726009
+  ],
+  [
+   "wall",
+   0.5093103939082713
+  ],
+  [
+   "traffic sign",
+   0.581129745905346
+  ],
+  [
+   "fence",
+   0.8421687319662422
+  ]
+ ],
+ "rare10_sum_pct": 3.5241527494238523
+}
+train 2481 void%=11.96 per-img 11.96+-6.77 cls/img 11.72 [5,18]
+val 494 void%=9.08 per-img 9.08+-6.77 cls/img 11.42 [4,18]
+test 500 void%=12.55 per-img 12.55+-7.34 cls/img 12.01 [3,16]
+pixel share train: {'road': 37.39, 'sidewalk': 5.73, 'building': 22.99, 'wall': 0.51, 'fence': 0.84, 'pole': 1.27, 'traffic light': 0.22, 'traffic sign': 0.58, 'vegetation': 15.3, 'terrain': 1.19, 'sky': 4.11, 'person': 1.24, 'rider': 0.13, 'car': 7.25, 'truck': 0.3, 'bus': 0.25, 'train': 0.17, 'motorcycle': 0.1, 'bicycle': 0.43}
+pixel share test: {'road': 37.64, 'sidewalk': 5.4, 'building': 21.92, 'wall': 0.73, 'fence': 0.82, 'pole': 1.48, 'traffic light': 0.2, 'traffic sign': 0.67, 'vegetation': 17.33, 'terrain': 0.83, 'sky': 3.36, 'person': 1.3, 'rider': 0.22, 'car': 6.51, 'truck': 0.3, 'bus': 0.39, 'train': 0.11, 'motorcycle': 0.08, 'bicycle': 0.71}
+regions: {"road": {"num_regions": 15067, "median_area_px": 38.0, "pct_regions_lt_1024px": 79.219486294551}, "sidewalk": {"num_regions": 20871, "median_area_px": 71.0, "pct_regions_lt_1024px": 78.85103732451726}, "building": {"num_regions": 47072, "median_area_px": 94.0, "pct_regions_lt_1024px": 76.5401937457512}, "wall": {"num_regions": 3730, "median_area_px": 152.5, "pct_regions_lt_1024px": 79.54423592493298}, "fence": {"num_regions": 4805, "median_area_px": 280.0, "pct_regions_lt_1024px": 71.8210197710718}, "pole": {"num_regions": 46112, "median_area_px": 87.0, "pct_regions_lt_1024px": 92.96278625954199}, "traffic light": {"num_regions": 8489, "median_area_px": 113.0, "pct_regions_lt_1024px": 94.28672399575922}, "traffic sign": {"num_regions": 14850, "median_area_px": 137.0, "pct_regions_lt_1024px": 90.11447811447812}, "vegetation": {"num_regions": 21862, "median_area_px": 249.0, "pct_regions_lt_1024px": 64.91629311133474}, "terrain": {"num_regions": 8092, "median_area_px": 121.5, "pct_regions_lt_1024px": 81.12951062778052}, "sky": {"num_regions": 8154, "median_area_px": 345.0, "pct_regions_lt_1024px": 58.79323031640913}, "person": {"num_regions": 11616, "median_area_px": 208.0, "pct_regions_lt_1024px": 78.21969696969697}, "rider": {"num_regions": 1877, "median_area_px": 189.0, "pct_regions_lt_1024px": 82.57858284496538}, "car": {"num_regions": 14023, "median_area_px": 446.0, "pct_regions_lt_1024px": 60.99265492405333}, "truck": {"num_regions": 625, "median_area_px": 451.0, "pct_regions_lt_1024px": 63.04}, "bus": {"num_regions": 635, "median_area_px": 288.0, "pct_regions_lt_1024px": 67.08661417322834}, "train": {"num_regions": 334, "median_area_px": 322.0, "pct_regions_lt_1024px": 66.1676646706587}, "motorcycle": {"num_regions": 858, "median_area_px": 204.0, "pct_regions_lt_1024px": 75.990675990676}, "bicycle": {"num_regions": 5610, "median_area_px": 184.5, "pct_regions_lt_1024px": 82.28163992869875}}
+cities: {'train': ['aachen', 'bochum', 'bremen', 'cologne', 'darmstadt', 'dusseldorf', 'hamburg', 'hanover', 'krefeld', 'monchengladbach', 'strasbourg', 'stuttgart', 'ulm', 'weimar'], 'val': ['erfurt', 'jena', 'tubingen', 'zurich'], 'test': ['frankfurt', 'lindau', 'munster']}
+batch: {'train_images': [[8, 3, 512, 512], 'torch.float32'], 'train_masks': [[8, 512, 512], 'torch.int64'], 'eval_images': [[8, 3, 512, 1024], 'torch.float32'], 'eval_masks': [[8, 512, 1024], 'torch.int64'], 'train_image_value_range': [-2.0665297508239746, 2.640000104904175], 'train_mask_values': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17, 18, 255]}

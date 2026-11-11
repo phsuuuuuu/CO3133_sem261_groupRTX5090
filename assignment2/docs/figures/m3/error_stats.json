@@ -1,0 +1,531 @@
+{
+  "final_config": "configs/dlv3_cedice.yaml",
+  "final_ckpt": "checkpoints/dlv3_cedice_1024x512_s666/best.pt",
+  "unet_ckpt": "checkpoints/unet_final_1024x512_s42/best.pt",
+  "num_images": 500,
+  "models": {
+    "final": {
+      "miou": 68.08577295242895,
+      "mdice": 79.81302327384545,
+      "pixel_acc": 93.92318400107789,
+      "per_class": {
+        "road": {
+          "iou": 96.91676469501687,
+          "recall": 98.53823085111053,
+          "precision": 98.33047715444114
+        },
+        "sidewalk": {
+          "iou": 76.43885966188448,
+          "recall": 86.52757256168961,
+          "precision": 86.76532604495661
+        },
+        "building": {
+          "iou": 88.91476277312516,
+          "recall": 94.3441310638557,
+          "precision": 93.92111695303207
+        },
+        "wall": {
+          "iou": 38.240228084394964,
+          "recall": 43.94987972946878,
+          "precision": 74.64201232244854
+        },
+        "fence": {
+          "iou": 48.92710681059464,
+          "recall": 61.474729193836,
+          "precision": 70.56305886593938
+        },
+        "pole": {
+          "iou": 47.55260714786935,
+          "recall": 63.35653132554745,
+          "precision": 65.59248556678241
+        },
+        "traffic light": {
+          "iou": 55.456262129980935,
+          "recall": 70.14652055158076,
+          "precision": 72.5881459036128
+        },
+        "traffic sign": {
+          "iou": 65.64703325292113,
+          "recall": 78.0490300374238,
+          "precision": 80.51191530502545
+        },
+        "vegetation": {
+          "iou": 89.20299982438456,
+          "recall": 94.72856307788193,
+          "precision": 93.86227770767934
+        },
+        "terrain": {
+          "iou": 55.97743235623742,
+          "recall": 67.56504980806697,
+          "precision": 76.54746110598805
+        },
+        "sky": {
+          "iou": 92.10758998794948,
+          "recall": 97.44030337222108,
+          "precision": 94.39149561960306
+        },
+        "person": {
+          "iou": 72.10199376284999,
+          "recall": 86.1508780332646,
+          "precision": 81.55476497003085
+        },
+        "rider": {
+          "iou": 52.99316692812401,
+          "recall": 67.13491283692757,
+          "precision": 71.55646341937405
+        },
+        "car": {
+          "iou": 91.1219084536244,
+          "recall": 96.67888726214186,
+          "precision": 94.06639295808316
+        },
+        "truck": {
+          "iou": 62.5082639740533,
+          "recall": 72.79142260627502,
+          "precision": 81.56605287869483
+        },
+        "bus": {
+          "iou": 69.55000484908568,
+          "recall": 72.46863193115026,
+          "precision": 94.52626368251012
+        },
+        "train": {
+          "iou": 68.21215695024384,
+          "recall": 82.9809261980744,
+          "precision": 79.30729064368012
+        },
+        "motorcycle": {
+          "iou": 52.476562292513215,
+          "recall": 65.03593175709035,
+          "precision": 73.09935751193105
+        },
+        "bicycle": {
+          "iou": 69.28398216129635,
+          "recall": 83.89207688435965,
+          "precision": 79.91513835004523
+        }
+      },
+      "boundary_err_rate": 29.58129933533746,
+      "interior_err_rate": 2.563780822101348,
+      "boundary_density_ratio": 11.538154541265264,
+      "boundary_share_of_errors": 63.296281994763724,
+      "band_share_of_valid_pixels": 13.002804736118536,
+      "scale_recall": {
+        "small": 52.65430927435967,
+        "medium": 83.03159944306556,
+        "large": 96.44332497450137
+      },
+      "scale_pixels": {
+        "small": 6840386,
+        "medium": 20740682,
+        "large": 201652975
+      },
+      "rare10_iou": 58.3294767433208,
+      "freq3_iou": 91.67817576417553,
+      "rare10_recall": 69.79240617261866,
+      "thin3_recall": 70.51736063818402
+    },
+    "unet": {
+      "miou": 49.34981037729001,
+      "mdice": 60.862661206941915,
+      "pixel_acc": 91.65384000141724,
+      "per_class": {
+        "road": {
+          "iou": 95.23299659353586,
+          "recall": 98.80491428663215,
+          "precision": 96.34275132036329
+        },
+        "sidewalk": {
+          "iou": 68.0243282052208,
+          "recall": 75.46380182046121,
+          "precision": 87.34206856722678
+        },
+        "building": {
+          "iou": 85.45144005387591,
+          "recall": 93.43301254880886,
+          "precision": 90.91158872147666
+        },
+        "wall": {
+          "iou": 16.37896780212307,
+          "recall": 18.646342655392147,
+          "precision": 57.39181159965293
+        },
+        "fence": {
+          "iou": 29.977170157252665,
+          "recall": 50.68735528171826,
+          "precision": 42.31920616212738
+        },
+        "pole": {
+          "iou": 46.0737307574763,
+          "recall": 55.93356705332609,
+          "precision": 72.32755227814965
+        },
+        "traffic light": {
+          "iou": 33.39610928331002,
+          "recall": 38.905021508111155,
+          "precision": 70.22479311129474
+        },
+        "traffic sign": {
+          "iou": 47.848416058145254,
+          "recall": 51.53689451943926,
+          "precision": 86.9886064234443
+        },
+        "vegetation": {
+          "iou": 89.12856415919346,
+          "recall": 94.84820344152098,
+          "precision": 93.66290463571141
+        },
+        "terrain": {
+          "iou": 49.30968864800608,
+          "recall": 62.471393838188106,
+          "precision": 70.06400674697547
+        },
+        "sky": {
+          "iou": 89.51340044678551,
+          "recall": 93.11743606564863,
+          "precision": 95.8553636764704
+        },
+        "person": {
+          "iou": 59.66920746487941,
+          "recall": 75.85778826908731,
+          "precision": 73.65668161434978
+        },
+        "rider": {
+          "iou": 22.592003255080613,
+          "recall": 31.49580138366946,
+          "precision": 44.41841329341044
+        },
+        "car": {
+          "iou": 85.13968726782402,
+          "recall": 94.58895701985722,
+          "precision": 89.4987125233129
+        },
+        "truck": {
+          "iou": 16.5778183163818,
+          "recall": 28.643942469407875,
+          "precision": 28.240472058710015
+        },
+        "bus": {
+          "iou": 31.1034357082837,
+          "recall": 41.394510658125945,
+          "precision": 55.57717963986101
+        },
+        "train": {
+          "iou": 3.8301197593908447,
+          "recall": 4.0861907845501815,
+          "precision": 37.933765298776095
+        },
+        "motorcycle": {
+          "iou": 10.031882462180661,
+          "recall": 13.394591036260902,
+          "precision": 28.550882239449958
+        },
+        "bicycle": {
+          "iou": 58.367430769564145,
+          "recall": 76.23988274630598,
+          "precision": 71.34526023642677
+        }
+      },
+      "boundary_err_rate": 30.002155544420905,
+      "interior_err_rate": 5.10940414002127,
+      "boundary_density_ratio": 5.871948024118525,
+      "boundary_share_of_errors": 46.74151589150042,
+      "band_share_of_valid_pixels": 13.002804736118536,
+      "scale_recall": {
+        "small": 49.066193048170085,
+        "medium": 76.51030954526952,
+        "large": 94.65604263958912
+      },
+      "scale_pixels": {
+        "small": 6840386,
+        "medium": 20740682,
+        "large": 201652975
+      },
+      "rare10_iou": 27.01033535717127,
+      "freq3_iou": 89.93766693553508,
+      "rare10_recall": 35.50305330429811,
+      "thin3_recall": 48.79182769362549
+    }
+  },
+  "taxonomy": {
+    "boundary": {
+      "pixels": 8817255,
+      "share_pct": 63.296281994763724,
+      "top_images": [
+        "frankfurt/frankfurt_000001_066574",
+        "munster/munster_000159_000019",
+        "frankfurt/frankfurt_000001_082087"
+      ]
+    },
+    "small": {
+      "pixels": 331318,
+      "share_pct": 2.378427022689162,
+      "top_images": [
+        "frankfurt/frankfurt_000001_066574",
+        "frankfurt/frankfurt_000001_028335",
+        "frankfurt/frankfurt_000001_055709"
+      ]
+    },
+    "related": {
+      "pixels": 2674476,
+      "share_pct": 19.199216432350852,
+      "top_images": [
+        "frankfurt/frankfurt_000001_017459",
+        "frankfurt/frankfurt_000001_012738",
+        "lindau/lindau_000047_000019"
+      ]
+    },
+    "other": {
+      "pixels": 2107082,
+      "share_pct": 15.126074550196261,
+      "top_images": [
+        "lindau/lindau_000047_000019",
+        "lindau/lindau_000014_000019",
+        "lindau/lindau_000046_000019"
+      ]
+    },
+    "total_error_pixels": 13930131
+  },
+  "errors_with_rare10_gt_pct": 22.242339285969383,
+  "top10_confusions": [
+    {
+      "true": "building",
+      "pred": "vegetation",
+      "pixels": 1222575,
+      "pct_of_true": 2.4325709324512017,
+      "pct_of_all_errors": 8.776478842876639,
+      "worst_image": "lindau/lindau_000014_000019"
+    },
+    {
+      "true": "sidewalk",
+      "pred": "road",
+      "pixels": 1077002,
+      "pct_of_true": 8.698647584922307,
+      "pct_of_all_errors": 7.7314563660600175,
+      "worst_image": "frankfurt/frankfurt_000001_017459"
+    },
+    {
+      "true": "vegetation",
+      "pred": "building",
+      "pixels": 960800,
+      "pct_of_true": 2.418126120377882,
+      "pct_of_all_errors": 6.89727899902736,
+      "worst_image": "lindau/lindau_000048_000019"
+    },
+    {
+      "true": "road",
+      "pred": "sidewalk",
+      "pixels": 876898,
+      "pct_of_true": 1.0162579743084903,
+      "pct_of_all_errors": 6.294973105421621,
+      "worst_image": "lindau/lindau_000024_000019"
+    },
+    {
+      "true": "pole",
+      "pred": "building",
+      "pixels": 542103,
+      "pct_of_true": 15.988093198181952,
+      "pct_of_all_errors": 3.8915858005929733,
+      "worst_image": "lindau/lindau_000050_000019"
+    },
+    {
+      "true": "building",
+      "pred": "pole",
+      "pixels": 462311,
+      "pct_of_true": 0.9198652846266672,
+      "pct_of_all_errors": 3.3187842957112177,
+      "worst_image": "frankfurt/frankfurt_000001_038844"
+    },
+    {
+      "true": "wall",
+      "pred": "building",
+      "pixels": 437984,
+      "pct_of_true": 26.1033539863304,
+      "pct_of_all_errors": 3.14414846493547,
+      "worst_image": "lindau/lindau_000047_000019"
+    },
+    {
+      "true": "pole",
+      "pred": "vegetation",
+      "pixels": 317975,
+      "pct_of_true": 9.37794835057527,
+      "pct_of_all_errors": 2.2826418502453425,
+      "worst_image": "frankfurt/frankfurt_000001_041664"
+    },
+    {
+      "true": "fence",
+      "pred": "building",
+      "pixels": 301377,
+      "pct_of_true": 16.04221116227078,
+      "pct_of_all_errors": 2.1634900633741347,
+      "worst_image": "frankfurt/frankfurt_000001_012738"
+    },
+    {
+      "true": "terrain",
+      "pred": "vegetation",
+      "pixels": 261243,
+      "pct_of_true": 13.718512217023488,
+      "pct_of_all_errors": 1.8753807842869532,
+      "worst_image": "frankfurt/frankfurt_000001_044787"
+    }
+  ],
+  "qualitative": {
+    "rules": {
+      "good": "4 highest per-image mIoU of final model",
+      "hard": "images in top quartile of #GT components <1024 px AND final per-image mIoU >= median; 4 largest (final - U-Net) per-image mIoU gap",
+      "fail": "4 lowest per-image pixel accuracy of final model"
+    },
+    "small_components_p75": 111.0,
+    "final_miou_median": 0.5403267920699367,
+    "good": [
+      {
+        "name": "munster/munster_000058_000019",
+        "n_small_components": 35,
+        "miou_final": 0.8252694582372603,
+        "acc_final": 0.9784615953962585,
+        "err_boundary": 9291,
+        "err_small": 42,
+        "err_related": 184,
+        "err_other": 959,
+        "miou_unet": 0.4944915185866806,
+        "acc_unet": 0.9626059084638364
+      },
+      {
+        "name": "munster/munster_000012_000019",
+        "n_small_components": 35,
+        "miou_final": 0.7986359435023935,
+        "acc_final": 0.9658600821035107,
+        "err_boundary": 14615,
+        "err_small": 215,
+        "err_related": 227,
+        "err_other": 1717,
+        "miou_unet": 0.44988754423321375,
+        "acc_unet": 0.9321292570588869
+      },
+      {
+        "name": "frankfurt/frankfurt_000001_021406",
+        "n_small_components": 48,
+        "miou_final": 0.7867659913623776,
+        "acc_final": 0.9263164982579911,
+        "err_boundary": 22796,
+        "err_small": 331,
+        "err_related": 5774,
+        "err_other": 5022,
+        "miou_unet": 0.41055845396332463,
+        "acc_unet": 0.8388033571683016
+      },
+      {
+        "name": "munster/munster_000099_000019",
+        "n_small_components": 20,
+        "miou_final": 0.7824066588555529,
+        "acc_final": 0.9797768338863316,
+        "err_boundary": 9319,
+        "err_small": 0,
+        "err_related": 101,
+        "err_other": 588,
+        "miou_unet": 0.452593252798516,
+        "acc_unet": 0.9633788529698228
+      }
+    ],
+    "hard": [
+      {
+        "name": "frankfurt/frankfurt_000001_014406",
+        "n_small_components": 150,
+        "miou_final": 0.7087129942373929,
+        "acc_final": 0.9378896919517515,
+        "err_boundary": 23847,
+        "err_small": 1403,
+        "err_related": 1155,
+        "err_other": 1756,
+        "miou_unet": 0.4146458903317327,
+        "acc_unet": 0.9242947223551675
+      },
+      {
+        "name": "frankfurt/frankfurt_000001_037705",
+        "n_small_components": 135,
+        "miou_final": 0.6196254957396045,
+        "acc_final": 0.8989382149499908,
+        "err_boundary": 22181,
+        "err_small": 1297,
+        "err_related": 13088,
+        "err_other": 5761,
+        "miou_unet": 0.3303275593470328,
+        "acc_unet": 0.8025514358093992
+      },
+      {
+        "name": "frankfurt/frankfurt_000001_042733",
+        "n_small_components": 118,
+        "miou_final": 0.6437236440491532,
+        "acc_final": 0.9327005556202127,
+        "err_boundary": 24064,
+        "err_small": 835,
+        "err_related": 4255,
+        "err_other": 2072,
+        "miou_unet": 0.3551217177712841,
+        "acc_unet": 0.8415835822632579
+      },
+      {
+        "name": "frankfurt/frankfurt_000001_034047",
+        "n_small_components": 117,
+        "miou_final": 0.623820944110194,
+        "acc_final": 0.9443346838241373,
+        "err_boundary": 21973,
+        "err_small": 395,
+        "err_related": 2001,
+        "err_other": 1214,
+        "miou_unet": 0.36943708593413466,
+        "acc_unet": 0.9261030579695639
+      }
+    ],
+    "fail": [
+      {
+        "name": "lindau/lindau_000047_000019",
+        "n_small_components": 3,
+        "miou_final": 0.3528860596715384,
+        "acc_final": 0.6134581530516462,
+        "err_boundary": 4060,
+        "err_small": 149,
+        "err_related": 63230,
+        "err_other": 54864,
+        "miou_unet": 0.13243813494834636,
+        "acc_unet": 0.5512589956479553
+      },
+      {
+        "name": "frankfurt/frankfurt_000001_017459",
+        "n_small_components": 116,
+        "miou_final": 0.469220550350957,
+        "acc_final": 0.7353115001777462,
+        "err_boundary": 33061,
+        "err_small": 925,
+        "err_related": 80175,
+        "err_other": 4970,
+        "miou_unet": 0.33450436735918393,
+        "acc_unet": 0.6668703341628155
+      },
+      {
+        "name": "frankfurt/frankfurt_000001_012738",
+        "n_small_components": 73,
+        "miou_final": 0.45546048321192806,
+        "acc_final": 0.7554557496769584,
+        "err_boundary": 17500,
+        "err_small": 278,
+        "err_related": 73508,
+        "err_other": 14127,
+        "miou_unet": 0.3204551358799642,
+        "acc_unet": 0.7162778181177054
+      },
+      {
+        "name": "lindau/lindau_000045_000019",
+        "n_small_components": 8,
+        "miou_final": 0.43882757893874813,
+        "acc_final": 0.7830563419581582,
+        "err_boundary": 8668,
+        "err_small": 1464,
+        "err_related": 46702,
+        "err_other": 12363,
+        "miou_unet": 0.10636016248409388,
+        "acc_unet": 0.5508852123914059
+      }
+    ]
+  }
+}

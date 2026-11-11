@@ -1,0 +1,338 @@
+{
+  "train": {
+    "num_images": 2481,
+    "pixel_share_pct": [
+      37.39163532398874,
+      5.72791439294188,
+      22.993941469004188,
+      0.5093103939082713,
+      0.8421687319662422,
+      1.2747558635514218,
+      0.2151993304290727,
+      0.581129745905346,
+      15.300238200844968,
+      1.190088862014301,
+      4.111577481230859,
+      1.2377329603534686,
+      0.12722949582128748,
+      7.247962696646326,
+      0.2990592444295865,
+      0.25498334095095143,
+      0.16538448707637657,
+      0.09804773226411714,
+      0.4316402466726009
+    ],
+    "void_pct_of_all_pixels": 11.956838233391155,
+    "void_pct_per_image_mean": 11.956838233391156,
+    "void_pct_per_image_std": 6.771529524225904,
+    "classes_per_image_mean": 11.720274083031036,
+    "classes_per_image_min": 5,
+    "classes_per_image_max": 18,
+    "regions_at_1024x512": {
+      "road": {
+        "num_regions": 15067,
+        "median_area_px": 38.0,
+        "pct_regions_lt_1024px": 79.219486294551
+      },
+      "sidewalk": {
+        "num_regions": 20871,
+        "median_area_px": 71.0,
+        "pct_regions_lt_1024px": 78.85103732451726
+      },
+      "building": {
+        "num_regions": 47072,
+        "median_area_px": 94.0,
+        "pct_regions_lt_1024px": 76.5401937457512
+      },
+      "wall": {
+        "num_regions": 3730,
+        "median_area_px": 152.5,
+        "pct_regions_lt_1024px": 79.54423592493298
+      },
+      "fence": {
+        "num_regions": 4805,
+        "median_area_px": 280.0,
+        "pct_regions_lt_1024px": 71.8210197710718
+      },
+      "pole": {
+        "num_regions": 46112,
+        "median_area_px": 87.0,
+        "pct_regions_lt_1024px": 92.96278625954199
+      },
+      "traffic light": {
+        "num_regions": 8489,
+        "median_area_px": 113.0,
+        "pct_regions_lt_1024px": 94.28672399575922
+      },
+      "traffic sign": {
+        "num_regions": 14850,
+        "median_area_px": 137.0,
+        "pct_regions_lt_1024px": 90.11447811447812
+      },
+      "vegetation": {
+        "num_regions": 21862,
+        "median_area_px": 249.0,
+        "pct_regions_lt_1024px": 64.91629311133474
+      },
+      "terrain": {
+        "num_regions": 8092,
+        "median_area_px": 121.5,
+        "pct_regions_lt_1024px": 81.12951062778052
+      },
+      "sky": {
+        "num_regions": 8154,
+        "median_area_px": 345.0,
+        "pct_regions_lt_1024px": 58.79323031640913
+      },
+      "person": {
+        "num_regions": 11616,
+        "median_area_px": 208.0,
+        "pct_regions_lt_1024px": 78.21969696969697
+      },
+      "rider": {
+        "num_regions": 1877,
+        "median_area_px": 189.0,
+        "pct_regions_lt_1024px": 82.57858284496538
+      },
+      "car": {
+        "num_regions": 14023,
+        "median_area_px": 446.0,
+        "pct_regions_lt_1024px": 60.99265492405333
+      },
+      "truck": {
+        "num_regions": 625,
+        "median_area_px": 451.0,
+        "pct_regions_lt_1024px": 63.04
+      },
+      "bus": {
+        "num_regions": 635,
+        "median_area_px": 288.0,
+        "pct_regions_lt_1024px": 67.08661417322834
+      },
+      "train": {
+        "num_regions": 334,
+        "median_area_px": 322.0,
+        "pct_regions_lt_1024px": 66.1676646706587
+      },
+      "motorcycle": {
+        "num_regions": 858,
+        "median_area_px": 204.0,
+        "pct_regions_lt_1024px": 75.990675990676
+      },
+      "bicycle": {
+        "num_regions": 5610,
+        "median_area_px": 184.5,
+        "pct_regions_lt_1024px": 82.28163992869875
+      }
+    }
+  },
+  "val": {
+    "num_images": 494,
+    "pixel_share_pct": [
+      34.26450421700378,
+      7.7909666531438395,
+      22.030251927665294,
+      1.3629513816750018,
+      1.0437555089891977,
+      0.9965190398972992,
+      0.17245468625742252,
+      0.4069719455444375,
+      19.034974232653468,
+      0.9951405982457152,
+      3.627098273988915,
+      1.1253884712711781,
+      0.17332183901544307,
+      5.7353135195467875,
+      0.11318636648335176,
+      0.1386764959153708,
+      0.5608817929464452,
+      0.1012988997079997,
+      0.3263441500490557
+    ],
+    "void_pct_of_all_pixels": 9.079197254258128,
+    "void_pct_per_image_mean": 9.079197254258128,
+    "void_pct_per_image_std": 6.766763858004848,
+    "classes_per_image_mean": 11.421052631578947,
+    "classes_per_image_min": 4,
+    "classes_per_image_max": 18
+  },
+  "test": {
+    "num_images": 500,
+    "pixel_share_pct": [
+      37.64142003986729,
+      5.401142796229442,
+      21.924559870018957,
+      0.7319523653823092,
+      0.8195335978085941,
+      1.479128909313003,
+      0.19724600852588028,
+      0.665127212366097,
+      17.33304769222257,
+      0.8307273976753968,
+      3.362052118934185,
+      1.2987944377877592,
+      0.21533232740653618,
+      6.509537939790208,
+      0.3008802667237344,
+      0.3885264982217323,
+      0.11250205101517143,
+      0.07952134753388265,
+      0.70896712317725
+    ],
+    "void_pct_of_all_pixels": 12.554152297973634,
+    "void_pct_per_image_mean": 12.554152297973634,
+    "void_pct_per_image_std": 7.3404573381223575,
+    "classes_per_image_mean": 12.008,
+    "classes_per_image_min": 3,
+    "classes_per_image_max": 16
+  },
+  "cities": {
+    "train": [
+      "aachen",
+      "bochum",
+      "bremen",
+      "cologne",
+      "darmstadt",
+      "dusseldorf",
+      "hamburg",
+      "hanover",
+      "krefeld",
+      "monchengladbach",
+      "strasbourg",
+      "stuttgart",
+      "ulm",
+      "weimar"
+    ],
+    "val": [
+      "erfurt",
+      "jena",
+      "tubingen",
+      "zurich"
+    ],
+    "test": [
+      "frankfurt",
+      "lindau",
+      "munster"
+    ]
+  },
+  "train_summary": {
+    "top3": [
+      [
+        "road",
+        37.39163532398874
+      ],
+      [
+        "building",
+        22.993941469004188
+      ],
+      [
+        "vegetation",
+        15.300238200844968
+      ]
+    ],
+    "top3_sum_pct": 75.6858149938379,
+    "rare10": [
+      [
+        "motorcycle",
+        0.09804773226411714
+      ],
+      [
+        "rider",
+        0.12722949582128748
+      ],
+      [
+        "train",
+        0.16538448707637657
+      ],
+      [
+        "traffic light",
+        0.2151993304290727
+      ],
+      [
+        "bus",
+        0.25498334095095143
+      ],
+      [
+        "truck",
+        0.2990592444295865
+      ],
+      [
+        "bicycle",
+        0.4316402466726009
+      ],
+      [
+        "wall",
+        0.5093103939082713
+      ],
+      [
+        "traffic sign",
+        0.581129745905346
+      ],
+      [
+        "fence",
+        0.8421687319662422
+      ]
+    ],
+    "rare10_sum_pct": 3.5241527494238523
+  },
+  "batch": {
+    "train_images": [
+      [
+        8,
+        3,
+        512,
+        512
+      ],
+      "torch.float32"
+    ],
+    "train_masks": [
+      [
+        8,
+        512,
+        512
+      ],
+      "torch.int64"
+    ],
+    "eval_images": [
+      [
+        8,
+        3,
+        512,
+        1024
+      ],
+      "torch.float32"
+    ],
+    "eval_masks": [
+      [
+        8,
+        512,
+        1024
+      ],
+      "torch.int64"
+    ],
+    "train_image_value_range": [
+      -2.0665297508239746,
+      2.640000104904175
+    ],
+    "train_mask_values": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      17,
+      18,
+      255
+    ]
+  }
+}

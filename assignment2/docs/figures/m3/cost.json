@@ -1,0 +1,65 @@
+{
+  "device": "NVIDIA GeForce RTX 5070 Ti",
+  "torch": "2.11.0+cu130",
+  "torchvision": "0.26.0+cu130",
+  "cuda": "13.0",
+  "protocol": {
+    "inference": "batch 1, input 3x512x1024, eval mode, fp16 autocast, 30 warm-up + 200 timed iters (CUDA events), argmax excluded",
+    "train_step": "batch 8, input 3x512x512, fp16 autocast + GradScaler, AdamW on trainable params, CE loss, 3 warm-up + 10 timed steps",
+    "flops": "torch.utils.flop_counter on 1x3x512x1024 forward (counts 2 FLOPs per MAC)"
+  },
+  "models": {
+    "unet": {
+      "total_params": 7763635,
+      "trainable_params": 7763635,
+      "fp32_weights_MB": 31.05454,
+      "gflops_forward_1x3x512x1024": 193.743290368,
+      "latency_ms_median": 6.950959920883179,
+      "latency_ms_mean": 8.161946232318877,
+      "latency_ms_std": 2.5638587284383423,
+      "fps_from_median": 143.86502172104906,
+      "inference_peak_vram_MB": 573.79150390625,
+      "train_step_ms_median": 94.55814361572266,
+      "train_step_peak_vram_MB": 5140.62646484375
+    },
+    "frozen": {
+      "total_params": 39638355,
+      "trainable_params": 16130323,
+      "fp32_weights_MB": 158.55342,
+      "gflops_forward_1x3x512x1024": 654.308278272,
+      "latency_ms_median": 16.48761558532715,
+      "latency_ms_mean": 17.702213606834412,
+      "latency_ms_std": 3.3704510737645923,
+      "fps_from_median": 60.65158390094513,
+      "inference_peak_vram_MB": 579.98828125,
+      "train_step_ms_median": 97.67127990722656,
+      "train_step_peak_vram_MB": 1236.71630859375
+    },
+    "partial": {
+      "total_params": 39638355,
+      "trainable_params": 38193427,
+      "fp32_weights_MB": 158.55342,
+      "gflops_forward_1x3x512x1024": 654.308278272,
+      "latency_ms_median": 16.549760818481445,
+      "latency_ms_mean": 17.89776767253876,
+      "latency_ms_std": 4.129964597399104,
+      "fps_from_median": 60.423833973677745,
+      "inference_peak_vram_MB": 443.1533203125,
+      "train_step_ms_median": 162.9934539794922,
+      "train_step_peak_vram_MB": 3851.45849609375
+    },
+    "full": {
+      "total_params": 39638355,
+      "trainable_params": 39638355,
+      "fp32_weights_MB": 158.55342,
+      "gflops_forward_1x3x512x1024": 654.308278272,
+      "latency_ms_median": 16.99505615234375,
+      "latency_ms_mean": 17.97836129665375,
+      "latency_ms_std": 3.1000611943661482,
+      "fps_from_median": 58.84064112739588,
+      "inference_peak_vram_MB": 615.4814453125,
+      "train_step_ms_median": 180.95973205566406,
+      "train_step_peak_vram_MB": 5161.2685546875
+    }
+  }
+}

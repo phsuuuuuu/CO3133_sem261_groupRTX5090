@@ -227,39 +227,81 @@
 
 
 ### Entry A2-8
-Tool: Claude (Claude Opus 5.5)
-Used by: Dang Thanh Phu
-Task: A2 — Migrating training from local to colab by using single-file Google Colab training notebook (colab.ipynb)
-Prompt summary: Asked to write a Colab notebook based on the code in src/, in one .ipynb file. It had to ask whether to resume training from Google Drive after the dataset is prepared, ask at the end whether to download or save the checkpoints and logs to Google Drive.
-AI contribution: Wrote colab.ipynb as a new file based on src/, without changing any other file. Merged the code from src/ (common, cost, transforms, data, metrics, models, evaluate, train) and from scripts/prepare_data.py and scripts/create_splits.py into the notebook, so it no longer needs git clone or the YAML configs. Added a question after data preparation that mounts Google Drive from a folder link or path and copies last.pt, best.pt, log.csv and metrics_test.json for each model to resume training. Added a question at the end that downloads the results as a zip and/or copies them to Google Drive, overwriting older files. Changed resume so that EPOCHS is the total number of epochs instead of extra epochs. Also applied the EVAL_EVERY setting, made checkpoint saving atomic, saved the AMP scaler state, and added checkboxes to choose which models to train. Ran the train, resume and evaluate code locally on a small fake dataset; the Drive, download and dataset-download steps could not be tested outside Colab.
-Student verification:  ran colab.ipynb on Colab end to end, tested the resume question with a Drive folder link, confirmed training continued from the saved epoch, and checked that the export step saved the files to Drive and downloaded the zip.
-Affected files/sections: colab.ipynb (new file)
-Responsible member: Dang Thanh Phu
 
+- **Tool:** Claude (Claude Opus 5.5)
+- **Used by:** Dang Thanh Phu
+- **Task:** A2 — Migrating training from local to colab by using single-file Google Colab training notebook (colab.ipynb)
+- **Prompt summary:** Asked to write a Colab notebook based on the code in src/, in one .ipynb file. It had to ask whether to resume training from Google Drive after the dataset is prepared, ask at the end whether to download or save the checkpoints and logs to Google Drive.
+- **AI contribution:** Wrote colab.ipynb as a new file based on src/, without changing any other file. Merged the code from src/ (common, cost, transforms, data, metrics, models, evaluate, train) and from scripts/prepare_data.py and scripts/create_splits.py into the notebook, so it no longer needs git clone or the YAML configs. Added a question after data preparation that mounts Google Drive from a folder link or path and copies last.pt, best.pt, log.csv and metrics_test.json for each model to resume training. Added a question at the end that downloads the results as a zip and/or copies them to Google Drive, overwriting older files. Changed resume so that EPOCHS is the total number of epochs instead of extra epochs. Also applied the EVAL_EVERY setting, made checkpoint saving atomic, saved the AMP scaler state, and added checkboxes to choose which models to train. Ran the train, resume and evaluate code locally on a small fake dataset; the Drive, download and dataset-download steps could not be tested outside Colab.
+- **Student verification:** ran colab.ipynb on Colab end to end, tested the resume question with a Drive folder link, confirmed training continued from the saved epoch, and checked that the export step saved the files to Drive and downloaded the zip.
+- **Affected files/sections:** `colab.ipynb` (new file)
+- **Responsible member:** Dang Thanh Phu
 
 ### Entry A2-9
-Tool: Claude (Claude Opus 5.5)
-Used by: Dang Thanh Phu
-Task: A2 M3 — Integrate result scores into the report tables
-Prompt summary: Asked to fill in the results tables with the scores from the training logs and test files.
-AI contribution: Only integrated the result scores: read the best-epoch validation metrics from each run's log.csv and the test metrics from each metrics_test.json, and filled them into the LaTeX results tables (mIoU, Dice, pixel accuracy, loss, epoch, training time). Checked that every number matches its source file and noted that the test metrics for the WCE and CE+Dice runs could not be verified because their metrics_test.json files are missing.
-Student verification: manually compared each table value with the log.csv and metrics_test.json files in each directory of models.
-Affected files/sections: Report Section 3.2 (Quantitative Results tables)
-Responsible member: Dang Thanh Phu
 
-
+- **Tool:** Claude (Claude Opus 5.5)
+- **Used by:** Dang Thanh Phu
+- **Task:** A2 M3 — Integrate result scores into the report tables
+- **Prompt summary:** Asked to fill in the results tables with the scores from the training logs and test files.
+- **AI contribution:** Only integrated the result scores: read the best-epoch validation metrics from each run's log.csv and the test metrics from each metrics_test.json, and filled them into the LaTeX results tables (mIoU, Dice, pixel accuracy, loss, epoch, training time). Checked that every number matches its source file and noted that the test metrics for the WCE and CE+Dice runs could not be verified because their metrics_test.json files are missing.
+- **Student verification:** manually compared each table value with the log.csv and metrics_test.json files in each directory of models.
+- **Affected files/sections:** Report Section 3.2 (Quantitative Results tables)
+- **Responsible member:** Dang Thanh Phu
 
 ### Entry A2-10
-Tool: Claude (Claude Opus 5.5)
-Used by: Dang Thanh Phu
-Task: A2 M3 — Demo: evaluate the partial fine-tuned DeepLabV3 (layer3 + layer4 + head)
-Prompt summary: Asked to run the evaluation for the partial fine-tuning model and to provide the command used for the live demo.
-AI contribution: Located the config and best checkpoint, ran src.evaluate on the full test split (500 images), saved the metrics to JSON, printed the per-class IoU, and checked that partial_resnet50_deeplabv3.py freezes the backbone and unfreezes only layer3 and layer4. Gave the evaluation and per-class IoU commands for the demo.
-Student verification: Re-ran the command on an RTX 4050 Laptop GPU and got the same result: best checkpoint from epoch 59, mIoU 66.53%, mean Dice 78.48%, pixel accuracy 94.07%. These match the existing checkpoints/deeplabv3/resnet_layer3_4_finetune/metrics_test.json. Read the freezing code in src/models/partial_resnet50_deeplabv3.py to confirm that layer1 and layer2 stay frozen.
-Affected files/sections: assignment2/demo/*
-Responsible member: Dang Thanh Phu
 
+- **Tool:** Claude (Claude Opus 5.5)
+- **Used by:** Dang Thanh Phu
+- **Task:** A2 M3 — Demo: evaluate the partial fine-tuned DeepLabV3 (layer3 + layer4 + head)
+- **Prompt summary:** Asked to run the evaluation for the partial fine-tuning model and to provide the command used for the live demo.
+- **AI contribution:** Located the config and best checkpoint, ran src.evaluate on the full test split (500 images), saved the metrics to JSON, printed the per-class IoU, and checked that partial_resnet50_deeplabv3.py freezes the backbone and unfreezes only layer3 and layer4. Gave the evaluation and per-class IoU commands for the demo.
+- **Student verification:** Re-ran the command on an RTX 4050 Laptop GPU and got the same result: best checkpoint from epoch 59, mIoU 66.53%, mean Dice 78.48%, pixel accuracy 94.07%. These match the existing checkpoints/deeplabv3/resnet_layer3_4_finetune/metrics_test.json. Read the freezing code in src/models/partial_resnet50_deeplabv3.py to confirm that layer1 and layer2 stay frozen.
+- **Affected files/sections:** `assignment2/demo/*`
+- **Responsible member:** Dang Thanh Phu
 
+### Entry A2-11
+
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A2 M3 — Write visualization of the training results
+- **Prompt summary:** Asked to create visualize.py implementing comparison, curate 4 distinct groups
+- **AI contribution:** Provided the visualization script structure with cityscapes mapping, error map generation logic, matplotlib plotting
+- **Student verification:** Ran visualize.py on local, checked 4 figures, inspected color consistency against official Cityscapes labels
+- **Affected files/sections:** `assignment2/src/visualize.py`; `a2_qual_*.png`
+- **Responsible member:** Cao Duc Thanh
+
+### Entry A2-12
+
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A2 M3 — Error analysis
+- **Prompt summary:** Asked to create error_analysis.py implementing confusion matrix, boundary error density, scale-dependent recall curate 4 distinct groups, and a quantitative error taxonomy table
+- **AI contribution:** Provided the evaluation script, boundary extraction, and confusion matrix heatmap plotting
+- **Student verification:** Ran error_analysis.py on local, verified metrics, and checked the generated plots
+- **Affected files/sections:** `assignment2/src/error_analysis.py`; `a2_confusion_matrix.png`; `a2_boundary_error.png`
+- **Responsible member:** Cao Duc Thanh
+
+### Entry A2-13
+
+- **Tool:** Gemini 3.8 Flash
+- **Used by:** Cao Duc Thanh
+- **Task:** A2 M3 — Writing report
+- **Prompt summary:** Asked to help organize ideas, suggest content covering the handbook requirements, and check the report.
+- **AI contribution:** Organized ideas, suggested content, and reviewed the draft.
+- **Student verification:** Wrote the report based on the suggestions, then checked it against the Assignment 2 files.
+- **Affected files/sections:** Assignment 2 Report
+- **Responsible member:** Cao Duc Thanh
+
+### Entry A2-14
+
+- **Tool:** Claude (Claude Opus 5.5)
+- **Used by:** Cao Duc Thanh
+- **Task:** A2 M3 — Creating slides
+- **Prompt summary:** Asked to create slides based on our work for the video presentation.
+- **AI contribution:** Provided the pdf slide for our presentation.
+- **Student verification:** Read the slides and checked the details of slide.
+- **Affected files/sections:** Video and slide of assignment
+- **Responsible member:** Cao Duc Thanh
 
 ---
 
