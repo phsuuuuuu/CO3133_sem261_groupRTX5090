@@ -283,7 +283,7 @@
 
 ### Entry A2-13
 
-- **Tool:** Gemini 3.8 Flash
+- **Tool:** Claude Opus 5.5
 - **Used by:** Cao Duc Thanh
 - **Task:** A2 M3 — scripts for report data extraction and benchmarking
 - **Prompt summary:** Asked to write utility scripts (m3_training_summary.py, m3_error_qual.py, m3_eda_stats.py, benchmark_cost.py) to extract EDA statistics, summarize training runs, analyze error taxonomy, and benchmark model compute costs for the report
