@@ -123,7 +123,19 @@
 ---
 
 ## Assignment 2
+### Entry A2-0
 
+- **Tool:** GPT and Claude  sonet5.5
+- **Used by:** Dang Thanh Phu
+- **Task:** A2 M1 — Finding a model 
+- **Prompt summary:** asked to explain the deeplabv3 - resnet50
+- https://claude.ai/share/e811ee5a-03e9-4770-a434-d7b4ba05a441
+- https://chatgpt.com/share/6af400a0-25cc-83ec-b0b6-66ff7d3df1b5
+- **AI contribution:** Explained modelss
+- **Student verification:** Checked the explanation against the PyTorch (torchvision) documentation for deeplabv3_resnet50.
+- **Affected files/sections:** Assignment 2 model selection
+- **Responsible member:** Dang Thanh Phu
+- 
 ### Entry A2-1
 
 - **Tool:** Gemini 3.8 Flash
@@ -213,7 +225,47 @@
 - **Affected files/sections:** `docs/assignment2/m2.html`; `docs/assignment2/assignment2.html`; `docs/figures/a2_training_curves.png`; `assignment2/README.md`
 - **Responsible member:** Cao Duc Thanh
 
+
+### Entry A2-8
+Tool: Claude (Claude Opus 5.5)
+Used by: Dang Thanh Phu
+Task: A2 — Migrating training from local to colab by using single-file Google Colab training notebook (colab.ipynb)
+Prompt summary: Asked to write a Colab notebook based on the code in src/, in one .ipynb file. It had to ask whether to resume training from Google Drive after the dataset is prepared, ask at the end whether to download or save the checkpoints and logs to Google Drive.
+AI contribution: Wrote colab.ipynb as a new file based on src/, without changing any other file. Merged the code from src/ (common, cost, transforms, data, metrics, models, evaluate, train) and from scripts/prepare_data.py and scripts/create_splits.py into the notebook, so it no longer needs git clone or the YAML configs. Added a question after data preparation that mounts Google Drive from a folder link or path and copies last.pt, best.pt, log.csv and metrics_test.json for each model to resume training. Added a question at the end that downloads the results as a zip and/or copies them to Google Drive, overwriting older files. Changed resume so that EPOCHS is the total number of epochs instead of extra epochs. Also applied the EVAL_EVERY setting, made checkpoint saving atomic, saved the AMP scaler state, and added checkboxes to choose which models to train. Ran the train, resume and evaluate code locally on a small fake dataset; the Drive, download and dataset-download steps could not be tested outside Colab.
+Student verification:  ran colab.ipynb on Colab end to end, tested the resume question with a Drive folder link, confirmed training continued from the saved epoch, and checked that the export step saved the files to Drive and downloaded the zip.
+Affected files/sections: colab.ipynb (new file)
+Responsible member: Dang Thanh Phu
+
+
+### Entry A2-9
+Tool: Claude (Claude Opus 5.5)
+Used by: Dang Thanh Phu
+Task: A2 M3 — Integrate result scores into the report tables
+Prompt summary: Asked to fill in the results tables with the scores from the training logs and test files.
+AI contribution: Only integrated the result scores: read the best-epoch validation metrics from each run's log.csv and the test metrics from each metrics_test.json, and filled them into the LaTeX results tables (mIoU, Dice, pixel accuracy, loss, epoch, training time). Checked that every number matches its source file and noted that the test metrics for the WCE and CE+Dice runs could not be verified because their metrics_test.json files are missing.
+Student verification: manually compared each table value with the log.csv and metrics_test.json files in each directory of models.
+Affected files/sections: Report Section 3.2 (Quantitative Results tables)
+Responsible member: Dang Thanh Phu
+
+
+
+### Entry A2-10
+Tool: Claude (Claude Opus 5.5)
+Used by: Dang Thanh Phu
+Task: A2 M3 — Demo: evaluate the partial fine-tuned DeepLabV3 (layer3 + layer4 + head)
+Prompt summary: Asked to run the evaluation for the partial fine-tuning model and to provide the command used for the live demo.
+AI contribution: Located the config and best checkpoint, ran src.evaluate on the full test split (500 images), saved the metrics to JSON, printed the per-class IoU, and checked that partial_resnet50_deeplabv3.py freezes the backbone and unfreezes only layer3 and layer4. Gave the evaluation and per-class IoU commands for the demo.
+Student verification: Re-ran the command on an RTX 4050 Laptop GPU and got the same result: best checkpoint from epoch 59, mIoU 66.53%, mean Dice 78.48%, pixel accuracy 94.07%. These match the existing checkpoints/deeplabv3/resnet_layer3_4_finetune/metrics_test.json. Read the freezing code in src/models/partial_resnet50_deeplabv3.py to confirm that layer1 and layer2 stay frozen.
+Affected files/sections: assignment2/demo/*
+Responsible member: Dang Thanh Phu
+
+
+
 ---
+
+
+
+
 
 ## Assignment 3
 
