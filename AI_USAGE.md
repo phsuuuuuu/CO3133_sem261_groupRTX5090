@@ -324,4 +324,22 @@
 
 ### Entry A3-1
 
-- **Declaration:** The group declares that no generative AI tool was used in this assignment to date (Course Project Handbook Section 5.4).
+- **Tool:** Gemini 4 Hydrogen
+- **Used by:** Cao Duc Thanh
+- **Task:** A3 M1 — Understanding the requirements and finding a dataset
+- **Prompt summary:** Asked to explain the assignment 3 specification and suggest suitable datasets (especially for autonomous).
+- **AI contribution:** Explained the specification and suggested candidate datasets.
+- **Student verification:** Looked up suggested dataset online: https://www.cvlibs.net/datasets/kitti/index.php and https://www.kaggle.com/datasets/seaninggg/crisismmd-multimodal-crisis-dataset
+- **Affected files/sections:** Assignment 3 dataset selection
+- **Responsible member:** Cao Duc Thanh
+
+### Entry A3-2
+
+- **Tool:** Gemini 4 Hydrogen
+- **Used by:** Cao Duc Thanh
+- **Task:** A3 M1 — Checking the proposal of assignment 3
+- **Prompt summary:** Asked to check the proposal if it meets the requirement of handbook.
+- **AI contribution:** Check and report to me.
+- **Student verification:** Read the AI report and fix the errors
+- **Affected files/sections:** Assignment 3 proposal
+- **Responsible member:** Cao Duc Thanh
