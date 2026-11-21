@@ -343,3 +343,14 @@
 - **Student verification:** Read the AI report and fix the errors
 - **Affected files/sections:** Assignment 3 proposal
 - **Responsible member:** Cao Duc Thanh
+
+### Entry A3-3
+
+- **Tool:** Gemini 4 Hydrogen
+- **Used by:** Cao Duc Thanh
+- **Task:** A3 M2 — Set up the structure for assignment 3
+- **Prompt summary:** Asked to do the colab_setup.ipynb, requirements.txt and base.yaml
+- **AI contribution:** Generate those files in assignment 3
+- **Student verification:** Read AI files and run it successfully
+- **Affected files/sections:** requirements.txt, colab_setup.ipynb, base.yaml
+- **Responsible member:** Cao Duc Thanh

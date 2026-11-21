@@ -1,0 +1,51 @@
+# Base configuration for Assignment 3: Multimodal Depth Completion (KITTI)
+# Shared defaults per Workload_A3_M2_M3 Section 3 & 4.
+# Per-run configs override run_id, model, and any run-specific hyperparameters.
+
+run_id: base_352x1216_s42
+seed: 42
+
+data:
+  data_dir: data/processed          # local / Colab fast disk path (e.g. /content/kitti on Colab)
+  splits_dir: splits                # train_pairs.txt, val_pairs.txt, test_pairs.txt
+  height: 352
+  width: 1216
+  max_depth: 80.0
+  batch_size: 8                     # tuned per GPU in B2.4
+  num_workers: 4
+  pin_memory: true
+  cache_npy: false
+
+augmentation:
+  horizontal_flip: true             # applied consistently to RGB, LiDAR, GT (train only)
+  color_jitter: true                # RGB only (train only)
+
+model:
+  name: m1_rgb                      # m1_rgb | m2_lidar | m3_early | m4_conf
+  encoder: resnet34
+  pretrained: true                  # torchvision ResNet34_Weights.IMAGENET1K_V1
+  conv1_init: mean_rgb              # keep RGB weights, init extra/LiDAR channels from mean RGB filter
+  skip_channels: [64, 64, 128, 256, 512]
+  num_out: 1                        # 1 for Models 1-3; 2 per branch for Model 4
+
+loss:
+  name: masked_l2                   # masked_l2 | m4_multi
+  lambda_d1: 0.5                    # auxiliary weight for Model 4 D1 (to be finalized in B3.1)
+  lambda_d2: 0.5                    # auxiliary weight for Model 4 D2 (to be finalized in B3.1)
+
+train:
+  epochs: 20                        # short M2 schedule; M3 budget fixed after B2.4
+  optimizer: adamw
+  lr: 0.0002                        # decoder / head learning rate
+  encoder_lr_scale: 0.1             # encoder LR = 0.1 * lr
+  weight_decay: 0.0001
+  scheduler: cosine
+  warmup_epochs: 1
+  amp: true
+  early_stopping_patience: 5
+  save_best_by: val_rmse
+  max_batches: 0                    # >0 for debug smoke runs
+
+output:
+  checkpoints_dir: checkpoints
+  results_dir: results

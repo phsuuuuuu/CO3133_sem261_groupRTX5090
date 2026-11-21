@@ -1,0 +1,31 @@
+# Datasets, archives, and cached arrays
+data/
+dataset/
+processed/
+*.zip
+*.tar
+*.tar.gz
+*.npy
+*.npz
+
+# Checkpoints / Model weights (ignore heavy weights, preserve logs and metrics)
+checkpoints/**/*.pt
+checkpoints/**/*.pth
+*.pt
+*.pth
+!checkpoints/.gitkeep
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+venv/
+env/
+.venv/
+.pytest_cache/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
