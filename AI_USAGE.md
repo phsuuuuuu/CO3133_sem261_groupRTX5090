@@ -354,3 +354,14 @@
 - **Student verification:** Read AI files and run it successfully
 - **Affected files/sections:** requirements.txt, colab_setup.ipynb, base.yaml
 - **Responsible member:** Cao Duc Thanh
+
+### Entry A3-4
+
+- **Tool:** Gemini 4 Hydrogen
+- **Used by:** Cao Duc Thanh
+- **Task:** A3 M2 — Write encoder for 4 models and write lidar model
+- **Prompt summary:** Asked to instruct me how to write the encoder.py and m2_lidar.py in a way that I must write myself, and then explain the whole file for me 
+- **AI contribution:** instruct me how to write those files
+- **Student verification:** Read the instruction and try to write those files myself
+- **Affected files/sections:** m2_lidar.py, encoder.py
+- **Responsible member:** Cao Duc Thanh
