@@ -39,6 +39,11 @@ class Encoder(nn.Module):
 
     def forward(self, x):
         """return 5 feature maps: channels 64 64 128 256 512, strides 2 4 8 16 32"""
+        # f0 (B,  64, H/2,  W/2 )
+        # f1 (B,  64, H/4,  W/4 )
+        # f2 (B, 128, H/8,  W/8 )
+        # f3 (B, 256, H/16, W/16)
+        # f4 (B, 512, H/32, W/32)
         f0 = self.relu(self.bn1(self.conv1(x)))
         f1 = self.layer1(self.maxpool(f0))
         f2 = self.layer2(f1)
