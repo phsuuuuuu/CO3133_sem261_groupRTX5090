@@ -38,14 +38,14 @@ class Transform:
 class KittiDepthDataset:
     """Split folder input_dir/{rgb,lidar,gt}/<name>.png -> batches."""
 
-    def __init__(self,input_dir, output_dir, split, transform, batch_size=10):
+    def __init__(self,input_dir, output_dir, split, transform, batch_size=10, seed=666):
         """Store settings and list file names (nothing loaded)."""
         self.input_dir = Path(input_dir)
         self.output_dir = Path(output_dir)
         self.split = split
         self.transform = transform
         self.batch_size = batch_size
-        self.rng = np.random.default_rng(666)
+        self.rng = np.random.default_rng(seed)
         self.names = sorted(p.name for p in (self.input_dir/"rgb").glob("*.png"))
 
     def load(self, name):
@@ -65,7 +65,7 @@ class KittiDepthDataset:
     def __len__(self):
         return len(self.names)
 
-    def get_data(self):
+    def get_batch(self):
         """Yield batches until all samples are used (train is shuffled)."""
         order = np.arange(len(self.names))
         if self.split == "train": self.rng.shuffle(order)

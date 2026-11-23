@@ -7,6 +7,7 @@ processed/
 *.tar.gz
 *.npy
 *.npz
+*.pdf
 
 # Checkpoints / Model weights (ignore heavy weights, preserve logs and metrics)
 checkpoints/**/*.pt
@@ -29,4 +30,3 @@ env/
 # OS / editor noise
 .DS_Store
 Thumbs.db
-Workload_A3_M2_M3.pdf
