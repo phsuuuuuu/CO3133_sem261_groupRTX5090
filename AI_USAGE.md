@@ -365,3 +365,14 @@
 - **Student verification:** Read the instruction and try to write those files myself
 - **Affected files/sections:** m2_lidar.py, encoder.py
 - **Responsible member:** Cao Duc Thanh
+
+### Entry A3-5
+
+- **Tool:** Gemini 4 Hydrogen
+- **Used by:** Cao Duc Thanh
+- **Task:** A3 M2 — Write evaluation.py
+- **Prompt summary:** Asked to instruct me how to write the evaluation.py in a way that I must write myself, and then explain the whole file for me 
+- **AI contribution:** instruct me how to write those files
+- **Student verification:** Read the instruction and try to write those files myself
+- **Affected files/sections:** evaluate.py
+- **Responsible member:** Cao Duc Thanh
