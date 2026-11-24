@@ -1,0 +1,47 @@
+run_id: base_352x1216_s42
+seed: 666
+
+data:
+  data_dir: data/processed
+  splits_dir: splits
+  height: 352
+  width: 1216
+  max_depth: 80.0
+  batch_size: 8
+  num_workers: 4
+  pin_memory: true
+  cache_npy: false
+
+augmentation:
+  horizontal_flip: true
+  color_jitter: true
+
+model:
+  name: m2_lidar
+  encoder: resnet34
+  pretrained: true
+  conv1_init: mean_rgb
+  skip_channels: [64, 64, 128, 256, 512]
+  num_out: 1
+
+loss:
+  name: masked_l2
+  lambda_d1: 0.5
+  lambda_d2: 0.5
+
+train:
+  epochs: 20
+  optimizer: adamw
+  lr: 0.0002
+  encoder_lr_scale: 0.1
+  weight_decay: 0.0001
+  scheduler: cosine
+  warmup_epochs: 1
+  amp: true
+  early_stopping_patience: 5
+  save_best_by: val_rmse
+  max_batches: 0
+
+output:
+  checkpoints_dir: checkpoints
+  results_dir: results

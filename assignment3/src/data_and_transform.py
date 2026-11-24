@@ -1,4 +1,5 @@
 """Transform works on 1 sample; get_data stacks samples into batches."""
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 import numpy as np
 import torch
@@ -23,7 +24,7 @@ class Transform:
     def lidar_to_tensor(self, lid):
         """(H, W) metres -> (2, H, W): [depth / MAX_DEPTH, mask]."""
         depth = lid / MAX_DEPTH
-        mask =np.array([[1.0 if cell > 0 else 0.0 for cell  in row] for row in lid ], dtype=np.float32)
+        mask = (lid > 0).astype(np.float32)
         return torch.from_numpy(np.stack([depth, mask]).copy())
 
     def gt_to_tensor(self, gt):
@@ -65,23 +66,29 @@ class KittiDepthDataset:
     def __len__(self):
         return len(self.names)
 
+    def _load_one(self, name):
+        return self.process(*self.load(name))
+
     def get_batch(self):
         """Yield batches until all samples are used (train is shuffled)."""
         order = np.arange(len(self.names))
         if self.split == "train": self.rng.shuffle(order)
-        for start in range(0, len(order), self.batch_size):
-            end = len(order) if start+self.batch_size > len(order) else start+self.batch_size
-            batch_idx = order[start:end]
-            samples = []
-            for internal_idx in batch_idx:
-                rgb, lid, gt = self.load(self.names[internal_idx])
-                samples.append(self.process(rgb, lid, gt))
-            batch = {
-                "rgb" : torch.stack([s["rgb"] for s in samples]),
-                "lidar" : torch.stack([s["lidar"] for s in samples]),
-                "gt" : torch.stack([s["gt"] for s in samples])
-            }
-            yield batch
+        n, bs = len(order), self.batch_size
+        with ThreadPoolExecutor(max_workers=8) as ex:
+            pending = [ex.submit(self._load_one, self.names[i]) for i in order[:bs * 2]]
+            next_i = bs * 2
+            for start in range(0, n, bs):
+                take = min(bs, n - start)
+                samples = [f.result() for f in pending[:take]]
+                del pending[:take]
+                end_next = min(n, next_i + take)
+                pending.extend(ex.submit(self._load_one, self.names[i]) for i in order[next_i:end_next])
+                next_i = end_next
+                yield {
+                    "rgb" : torch.stack([s["rgb"] for s in samples]),
+                    "lidar" : torch.stack([s["lidar"] for s in samples]),
+                    "gt" : torch.stack([s["gt"] for s in samples])
+                }
 
 
 if __name__ == '__main__':
