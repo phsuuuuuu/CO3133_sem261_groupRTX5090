@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assignment 3 &mdash; M2 Draft &mdash; CO3133 Group RTX5090</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { max-width: 900px; margin: 28px auto; padding: 0 20px; font-family: Arial, sans-serif; line-height: 1.6; color: #222; }
+    h1 { line-height: 1.3; font-size: 30px; }
+    h2 { margin-top: 32px; border-bottom: 1px solid #ddd; padding-bottom: 6px; font-size: 22px; }
+    h3 { margin-top: 24px; font-size: 18px; }
+    a { color: #0969da; overflow-wrap: anywhere; }
+    a:focus-visible { outline: 2px solid #0969da; outline-offset: 3px; }
+    nav { display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 12px 0; border-bottom: 1px solid #ddd; }
+    nav a { text-decoration: none; }
+    nav a[aria-current="page"] { font-weight: bold; text-decoration: underline; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+    th { background: #f5f5f5; }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .table-wrap { overflow-x: auto; }
+    .placeholder { padding: 14px; border: 1px dashed #ccc; color: #666; background: #fafafa; }
+    .muted { color: #666; }
+    .note { font-size: 14px; color: #666; margin-top: -8px; }
+    .formula { padding: 10px 14px; background: #f7f7f7; border-left: 3px solid #ccc; font-family: Consolas, monospace; overflow-x: auto; }
+    pre.diagram { margin: 10px 0 16px 0; padding: 12px 14px; background: #f7f7f7; border-left: 3px solid #ccc; font-family: Consolas, monospace; font-size: 14px; line-height: 1.35; overflow-x: auto; }
+    li { margin: 8px 0; }
+    img { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; display: block; margin: 10px 0 20px 0; }
+    footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #ddd; font-size: 14px; color: #666; }
+    @media (max-width: 600px) {
+      body { margin: 16px auto; padding: 0 16px; }
+      h1 { font-size: 25px; }
+      th, td { padding: 8px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <strong>CO3133 · Group RTX5090</strong>
+    <nav aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../assignment1/assignment1.html">Assignment 1</a>
+      <a href="../assignment2/assignment2.html">Assignment 2</a>
+      <a href="assignment3.html" aria-current="page">Assignment 3</a>
+    </nav>
+  </header>
+
+  <main>
+    <p><a href="assignment3.html">&larr; Back to Assignment 3</a></p>
+    <p class="muted">Assignment 3 · Group RTX5090</p>
+
+    <h1>Multimodal Depth Completion on KITTI: Fusing RGB and Sparse LiDAR</h1>
+
+    <p>
+      <strong>Instructor:</strong> Dr. Le Thanh Sach<br>
+      <strong>Members:</strong> Dang Thanh Phu · Cao Duc Thanh
+    </p>
+
+    <p class="placeholder">
+      <strong>Status:</strong> Progress Report / Draft (M2)<br>
+      M2 scope: unimodal A (Model 1, RGB-only), unimodal B (Model 2, LiDAR-only) and a simple fusion (Model 3, early fusion), with quantitative results.
+      All three are trained with the same loss. Test-set numbers are available for Model 2; Model 1 and Model 3 test numbers are pending.
+    </p>
+
+    <section aria-labelledby="contents-heading">
+      <h2 id="contents-heading">Contents</h2>
+      <ul>
+        <li><a href="#problem">Problem statement</a></li>
+        <li><a href="#dataset">Dataset and preprocessing</a></li>
+        <li><a href="#models">Models</a></li>
+        <li><a href="#setup">Training setup</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#findings">Findings</a></li>
+        <li><a href="#next">Limitations and next steps</a></li>
+        <li><a href="#references">References</a></li>
+        <li><a href="#ai-usage">AI usage disclosure</a></li>
+        <li><a href="#links">Links</a></li>
+        <li><a href="#m3-report">M3 report</a></li>
+        <li><a href="#presentation">Presentation</a></li>
+      </ul>
+    </section>
+
+    <!-- ===================================================== PROBLEM -->
+    <section id="problem">
+      <h2>Problem statement</h2>
+      <p>
+        Depth completion for autonomous driving: given an RGB image and a sparse LiDAR depth map projected into the same camera view,
+        predict a dense depth map in metres for every pixel.
+      </p>
+      <ul>
+        <li><strong>RGB</strong> is dense (every pixel) and shows edges, objects and texture, but has no metric scale.</li>
+        <li><strong>LiDAR</strong> is metric and accurate, but only about 4.4% of the pixels have a point, and coverage drops with distance.</li>
+        <li><strong>Output:</strong> one depth value in [0, 80] m per pixel at 352&times;1216.</li>
+        <li><strong>Supervision and scoring:</strong> semi-dense ground truth (GT); loss and metrics use only pixels with GT &gt; 0.</li>
+      </ul>
+    </section>
+
+    <!-- ===================================================== DATASET -->
+    <section id="dataset">
+      <h2>Dataset and preprocessing</h2>
+
+      <h3>Source and splits</h3>
+      <p>
+        KITTI Depth Completion (sparse LiDAR <code>velodyne_raw</code> + semi-dense <code>groundtruth</code>) paired with KITTI raw RGB
+        (camera <code>image_02</code>) of the same drive and frame. Train and validation are split by drive, so no drive appears in two splits.
+        Test is the official <code>val_selection_cropped</code> set.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Split</th><th class="num">Pairs</th><th>Source</th><th class="num">Valid GT pixels</th><th class="num">GT density</th><th class="num">GT pixels / image</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Train</td><td class="num">8,237</td><td>KITTI DC train drives</td><td class="num">604,574,182</td><td class="num">17.1%</td><td class="num">&asymp; 73,400</td></tr>
+            <tr><td>Validation</td><td class="num">1,023</td><td>held-out KITTI DC drives</td><td class="num">61,330,652</td><td class="num">14.0%</td><td class="num">&asymp; 59,950</td></tr>
+            <tr><td>Test</td><td class="num">1,000</td><td><code>val_selection_cropped</code></td><td class="num">73,128,306</td><td class="num">17.1%</td><td class="num">&asymp; 73,130</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">GT density = valid GT pixels (GT &gt; 0) / (images &times; 352 &times; 1216). Every pair has all three files (RGB, LiDAR, GT); no pair is missing a modality.</p>
+
+      <h3>Ground-truth depth distribution</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>GT depth range</th><th class="num">Train share</th><th class="num">Validation share</th><th class="num">Test share</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0&ndash;20 m</td><td class="num">81.0%</td><td class="num">82.1%</td><td class="num">78.8%</td></tr>
+            <tr><td>20&ndash;40 m</td><td class="num">14.1%</td><td class="num">12.3%</td><td class="num">15.8%</td></tr>
+            <tr><td>40&ndash;80 m</td><td class="num">4.8%</td><td class="num">5.6%</td><td class="num">5.4%</td></tr>
+            <tr><td>above 80 m</td><td class="num">0.03%</td><td class="num">0.01%</td><td class="num">0.03%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Share of the valid GT pixels of each split. Ranges match the metric: [0, 20), [20, 40), [40, 80], above 80 m.</p>
+      <ul>
+        <li><strong>Near range dominates.</strong> About 80% of the labelled pixels in every split are closer than 20 m. Only 4.8% of the training pixels are beyond 40 m.
+          Pixels beyond 80 m (0.03%) can never be predicted exactly,
+          because the output is capped at 80 m.</li>
+        <li><strong>Validation is the sparser split.</strong> Train and test both have 17.1% GT density (about 73,000 labelled pixels per image),
+          validation only 14.0% (about 60,000). Validation also has the fewest 20&ndash;40 m pixels (12.3%, against 14.1% in train and 15.8% in test).</li>      </ul>
+
+      <h3>Preprocessing</h3>
+      <ol>
+        <li>Each sample is three PNGs (<code>rgb</code>, <code>lidar</code>, <code>gt</code>), cropped to 352&times;1216 once during data preparation.</li>
+        <li>RGB / 255, then ImageNet mean / std normalization &rarr; <code>rgb</code> (B, 3, 352, 1216).</li>
+        <li>LiDAR and GT are 16-bit PNGs: value / 256 &rarr; metres, 0 = no measurement.
+          LiDAR becomes 2 channels [depth / 80, valid mask] &rarr; <code>lidar</code> (B, 2, 352, 1216); GT stays in metres &rarr; <code>gt</code> (B, 1, 352, 1216).</li>
+        <li>No data augmentation in this draft. Training order is reshuffled every epoch with a fixed seed (666).</li>
+      </ol>
+    </section>
+
+    <!-- ===================================================== MODELS -->
+    <section id="models">
+      <h2>Models</h2>
+      <p>
+        All three models share one encoder&ndash;decoder: a ResNet-34 encoder from torchvision, pretrained on ImageNet-1K and fine-tuned,
+        and our own U-Net decoder migrated from Assignment 2. The output head is sigmoid &times; 80, so every prediction lies in [0, 80] m.
+        The models differ only in the <strong>stem</strong>, the first layer of the encoder (7&times;7 convolution + BatchNorm), which is the only part that sees the raw input.
+        Everything after the stem is identical, so differences in the results come from the input modality.
+      </p>
+
+      <h3>Adapting the stem to the input</h3>
+      <p>
+        The pretrained stem expects 3 input channels (R, G, B). For RGB it is used as it is. LiDAR has 2 channels (depth / 80 and the valid mask),
+        for which no pretrained filters exist, so we build a new 2-channel convolution and start each of its channels from the
+        <strong>average of the 3 pretrained RGB filters</strong>. The LiDAR stem therefore starts from edge-like filters that the rest of the pretrained network
+        already knows how to read, instead of random noise, and is then fine-tuned.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Model</th><th>Input</th><th>Stem</th><th class="num">Params</th></tr></thead>
+          <tbody>
+            <tr><td><strong>M1 RGB-only</strong></td><td>RGB (3 ch)</td><td>pretrained RGB stem, unchanged</td><td class="num">24.45 M</td></tr>
+            <tr><td><strong>M2 LiDAR-only</strong></td><td>LiDAR (2 ch)</td><td>new 2-channel LiDAR stem, each channel starts from the average RGB filter</td><td class="num">24.45 M</td></tr>
+            <tr><td><strong>M3 Early fusion</strong></td><td>RGB (3 ch) + LiDAR (2 ch)</td><td>two stems side by side: the RGB stem of M1 and the LiDAR stem of M2, outputs added</td><td class="num">24.46 M</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Architecture sketches</h3>
+      <p>Only the stem differs; the ResNet-34 body (layer1&ndash;4) and the U-Net decoder are the same in all three models.</p>
+      <pre class="diagram" aria-label="Model 1 RGB-only architecture">M1  RGB-only
+
+  RGB   ──►  [ RGB stem   ]  ──►  [ ResNet-34 layer1–4 ]  ──►  [ U-Net decoder ]  ──►  depth
+  3 ch       conv 3→64 + BN
+             (pretrained)</pre>
+      <pre class="diagram" aria-label="Model 2 LiDAR-only architecture">M2  LiDAR-only
+
+  LiDAR ──►  [ LiDAR stem ]  ──►  [ ResNet-34 layer1–4 ]  ──►  [ U-Net decoder ]  ──►  depth
+  2 ch       conv 2→64 + BN
+             (new, from the average RGB filter)</pre>
+      <pre class="diagram" aria-label="Model 3 early fusion architecture">M3  Early fusion
+
+  RGB   ──►  [ RGB stem   ]  ──┐
+  3 ch       conv 3→64 + BN    │
+                              (+)  ──►  [ ResNet-34 layer1–4 ]  ──►  [ U-Net decoder ]  ──►  depth
+                               │
+  LiDAR ──►  [ LiDAR stem ]  ──┘
+  2 ch       conv 2→64 + BN</pre>
+      <p class="note">
+        Stem = first 7&times;7 convolution + BatchNorm + ReLU. The decoder also receives the stem output and the output of each ResNet stage through skip connections (not drawn).
+      </p>
+
+      <h3>Model 3: early fusion</h3>
+      <p class="formula">
+        f0 = ReLU( BN<sub>rgb</sub>(conv<sub>rgb</sub>(RGB)) + BN<sub>lid</sub>(conv<sub>lid</sub>(LiDAR)) ) &rarr; shared ResNet-34 layer1&ndash;4 &rarr; shared decoder &rarr; depth
+      </p>
+      <p>
+        RGB and LiDAR each go through their own stem, and the two 64-channel outputs are added into one feature map before the first ResNet block.
+        From there on, one shared network processes both. The fusion happens at the very first layer, so it is early fusion.
+      </p>
+      <p>
+        <strong>Why each modality has its own BatchNorm.</strong> RGB has a value at every pixel, but LiDAR is mostly zeros,
+        so the RGB signal is about 10&times; stronger. If they shared one BatchNorm, the weak LiDAR signal would be drowned out.
+        With separate BatchNorms, both are scaled to the same size before they are added.
+      </p>
+
+      <h3>Loss and metrics</h3>
+      <pre class="diagram">valid = gt &gt; 0                      # only pixels that have ground truth
+e     = pred[valid] - gt[valid]     # error per valid pixel, in metres
+
+RMSE  = sqrt( mean(e²) )
+MAE   = mean( |e| )</pre>
+      <p>
+        All three models are trained with this masked RMSE as the loss, computed per batch.
+        Validation and test metrics sum errors over all valid pixels of the split and divide once (pixel-weighted), with predictions clamped to [0, 80] m,
+        also reported for GT in [0, 20), [20, 40) and [40, 80] m.
+      </p>
+    </section>
+
+    <!-- ===================================================== SETUP -->
+    <section id="setup">
+      <h2>Training setup</h2>
+      <ul>
+        <li><strong>Optimizer:</strong> AdamW, decoder lr 2&times;10<sup>-4</sup>, encoder lr 2&times;10<sup>-5</sup>, weight decay 10<sup>-4</sup>; cosine schedule over 20 epochs.</li>
+        <li><strong>Stopping and selection:</strong> max 20 epochs, early stopping after 5 epochs without a better validation RMSE; <code>best.pt</code> = lowest validation RMSE.</li>
+        <li><strong>Precision and seed:</strong> PyTorch AMP (fp16), seed 666.</li>
+        <li><strong>Batch size and hardware:</strong> Models 1 and 3 &mdash; batch 40 on a Colab A100 (&asymp; 2 min / epoch, about 40 min per run);
+          Model 2 &mdash; batch 8 on a separate local GPU.</li>
+      </ul>
+    </section>
+
+    <!-- ===================================================== RESULTS -->
+    <section id="results">
+      <h2>Results</h2>
+
+      <h3>Main results</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th><th class="num">Epochs run</th><th class="num">Best epoch</th>
+              <th class="num">Train loss (RMSE, m)</th><th class="num">Val RMSE (m)</th><th class="num">Val MAE (m)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>M1 RGB-only</strong></td><td class="num">20</td><td class="num">15</td><td class="num">1.123</td><td class="num">2.833</td><td class="num">1.152</td></tr>
+            <tr><td><strong>M2 LiDAR-only</strong></td><td class="num">16</td><td class="num">10</td><td class="num">0.845</td><td class="num"><strong>0.927</strong></td><td class="num"><strong>0.308</strong></td></tr>
+            <tr><td><strong>M3 Early fusion</strong></td><td class="num">20</td><td class="num">15</td><td class="num">0.879</td><td class="num">1.204</td><td class="num">0.447</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Epochs counted from 0. All values are from the best epoch (<code>best.pt</code>); train loss = mean masked RMSE over the training batches of that epoch.</p>
+
+      <h3>Validation error by depth range (RMSE / MAE, m)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Model</th><th class="num">0&ndash;20 m</th><th class="num">20&ndash;40 m</th><th class="num">40&ndash;80 m</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>M1 RGB-only</strong></td><td class="num">1.066 / 0.514</td><td class="num">4.572 / 2.949</td><td class="num">8.960 / 6.530</td></tr>
+            <tr><td><strong>M2 LiDAR-only</strong></td><td class="num"><strong>0.426 / 0.189</strong></td><td class="num"><strong>1.424 / 0.613</strong></td><td class="num"><strong>2.854 / 1.369</strong></td></tr>
+            <tr><td><strong>M3 Early fusion</strong></td><td class="num">0.568 / 0.270</td><td class="num">1.845 / 0.880</td><td class="num">3.676 / 2.071</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Training and validation curves</h3>
+      <img src="../figures/a3_training_curves.png" alt="Training loss and validation RMSE per epoch for Models 1, 2 and 3">
+      <p class="note">All three training losses are masked RMSE. Per-epoch numbers: <code>log.csv</code> of each run in <code>checkpoints/</code> (see Links).</p>
+    </section>
+
+    <!-- ===================================================== FINDINGS -->
+    <section id="findings">
+      <h2>Findings</h2>
+      <p>Ranking on validation RMSE: <strong>M2 LiDAR-only (0.927 m) &lt; M3 early fusion (1.204 m) &lt; M1 RGB-only (2.833 m)</strong>.</p>
+
+      <h3>1. LiDAR is the dominant modality</h3>
+      <p>Model 2 beats Model 1 in every range. Model 1's error grows from 1.07 m (0&ndash;20 m) to 8.96 m (40&ndash;80 m), as RGB alone has no metric scale.</p>
+      <pre class="diagram">RMSE  (0.927 - 2.833) / 2.833 = -67.3%
+MAE   (0.308 - 1.152) / 1.152 = -73.3%</pre>
+
+      <h3>2. Fusion strongly improves over RGB-only</h3>
+      <p>Model 3 beats Model 1 most beyond 20 m (about &minus;59% RMSE), where RGB alone is weakest.</p>
+      <pre class="diagram">RMSE  (1.204 - 2.833) / 2.833 = -57.5%
+MAE   (0.447 - 1.152) / 1.152 = -61.2%</pre>
+
+      <h3>3. Fusion is still behind LiDAR-only</h3>
+      <p>Likely causes, to be tested in M3: 5&times; fewer updates per epoch (batch 40 vs 8) and overfitting to RGB.</p>
+      <pre class="diagram">RMSE  (1.204 - 0.927) / 0.927 = +29.9%
+MAE   (0.447 - 0.308) / 0.308 = +45.2%</pre>
+      <p class="note">Validation, best epoch. Relative change = (new &minus; old) / old. Single run per model.</p>
+    </section>
+
+    <!-- ===================================================== NEXT -->
+    <section id="next">
+      <h2>Limitations and next steps</h2>
+      <ul>
+        <li><strong>Limitations:</strong> one run per model, a different batch size for Model 2, no test results yet, and no data augmentation.</li>
+        <li><strong>For M3 Final:</strong> test-set evaluation, the same batch size for all models, Model 4 (confidence-based fusion),
+          an ablation study and a full error analysis.</li>
+      </ul>
+    </section>
+
+    <section id="references">
+      <h2>References</h2>
+      <ul>
+        <li>A. Geiger, P. Lenz, R. Urtasun. Are we ready for autonomous driving? The KITTI vision benchmark suite. CVPR 2012.</li>
+        <li>J. Uhrig et al. Sparsity Invariant CNNs. 3DV 2017. <a href="https://www.cvlibs.net/datasets/kitti/eval_depth.php?benchmark=depth_completion">KITTI depth completion</a></li>
+        <li>K. He, X. Zhang, S. Ren, J. Sun. Deep Residual Learning for Image Recognition. CVPR 2016.</li>
+        <li>O. Ronneberger, P. Fischer, T. Brox. U-Net: Convolutional Networks for Biomedical Image Segmentation. MICCAI 2015.</li>
+        <li>torchvision <code>resnet34</code>: <a href="https://pytorch.org/vision/stable/models.html">pytorch.org/vision</a></li>
+      </ul>
+    </section>
+
+    <section id="ai-usage">
+      <h2>AI usage disclosure</h2>
+      <p>
+        Claude (Opus 5.5) was used to check the M2 requirements against the handbook and teaching plan, to discuss the Model 3 fusion design,
+        to compute summary statistics from our logged metrics (<code>log.csv</code>, <code>metrics_*.json</code>) and to draft this page;
+        all numbers were verified against our logs.
+      </p>
+      <p><a href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/blob/main/AI_USAGE.md">Open the AI usage log</a></p>
+    </section>
+
+    <section id="links">
+      <h2>Links</h2>
+      <ul>
+        <li><a href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/tree/main/assignment3">Assignment 3 source code</a></li>
+        <li><a href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/tree/main/assignment3/checkpoints">Training logs and configs (<code>checkpoints/</code>)</a></li>
+        <li><a href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/tree/main/assignment3/results">Evaluation results (<code>results/</code>)</a></li>
+        <li><a href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090/blob/main/assignment3/src/colab/eda.ipynb">EDA notebook</a> and its tables (<code>results/distribution/</code>)</li>
+        <li><a href="https://github.com/phsuuuuuu/CO3133_sem261_groupRTX5090">Group repository</a></li>
+      </ul>
+    </section>
+
+    <section id="m3-report">
+      <h2>M3 report</h2>
+      <p class="placeholder">M3 report will be available upon completion.</p>
+    </section>
+
+    <section id="presentation">
+      <h2>Presentation</h2>
+      <p><strong>YouTube presentation:</strong> required for M3 Final (02 Dec 2026), not for this draft.</p>
+    </section>
+
+    <p><a href="assignment3.html">&larr; Back to Assignment 3</a></p>
+  </main>
+
+  <footer>Group RTX5090 · CO3133 · Semester-261 · HCMUT — VNU-HCM</footer>
+</body>
+</html>

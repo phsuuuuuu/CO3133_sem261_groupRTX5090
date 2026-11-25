@@ -1,0 +1,4 @@
+Split,Pairs,Source,Valid GT pixels,GT density
+Train,8237,KITTI DC train drives,604574182,0.17147637443179276
+Validation,1023,held-out KITTI DC drives,61330652,0.14006373702392813
+Test,1000,val_selection_cropped,73128306,0.17084775437350477

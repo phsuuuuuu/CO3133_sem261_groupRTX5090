@@ -10,7 +10,7 @@ def  _valid(pred, gt):
 #rgb: mae
 def m1_loss(pred,  gt):
     p, g = _valid(pred,  gt)
-    return (p-g).abs().mean()
+    return ((p-g)**2).mean().sqrt()
 
 #depth: rmse
 def m2_loss(pred,  gt):
@@ -20,7 +20,7 @@ def m2_loss(pred,  gt):
 #early fusion: w1*mae + w2*rmse
 def m3_loss(pred, gt,w1=1,w2=1):
     p, g = _valid(pred,  gt)
-    return (w1*(p-g).abs().mean() + w2*((p-g)**2).mean().sqrt())/(w1+w2)
+    return ((p-g)**2).mean().sqrt()
 
 #custom fusion: #TODO Thanh does it bro
 
