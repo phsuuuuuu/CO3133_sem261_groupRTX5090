@@ -22,6 +22,7 @@ def load_cfg(path):
 #checkpoint:
 def save_checkpoint(path, model, optimizer, scheduler, scaler, epoch, best_rmse, bad_epochs):
     #TODO pls make it fit with ur local, im doing colab ver prob dont use it
+    tmp = Path(path).with_suffix(".tmp")
     torch.save({
         "model": model.state_dict(),
         "optimizer": optimizer.state_dict(),
@@ -30,7 +31,8 @@ def save_checkpoint(path, model, optimizer, scheduler, scaler, epoch, best_rmse,
         "epoch": epoch,
         "best_rmse": best_rmse,
         "bad_epochs": bad_epochs,
-    }, path)
+    }, tmp)
+    tmp.replace(path)
     
 def load_checkpoint(path, model, optimizer, scheduler, scaler, device):
     ckpt = torch.load(path, map_location=device, weights_only=False)
@@ -100,7 +102,7 @@ def train_one_epoch(model, data, loss_fn, optimizer, scaler, device, use_amp, ma
 @torch.no_grad()
 def validate(model, data, device, use_amp, max_depth, max_batches=0):
     model.eval()
-    metric = Metric(max_depth=max_depth, by_range=False)
+    metric = Metric(max_depth=max_depth, by_range=True)
     for i, batch in enumerate(data.get_batch()):
         if max_batches and i >= max_batches: break
         rgb = batch["rgb"].to(device)    # (B, 3, H, W)
@@ -133,13 +135,24 @@ def train_n_epochs(model, train_data, val_data, loss_fn, optimizer, scheduler, s
             val = validate(model, val_data, device, use_amp, max_depth, max_batches)
         scheduler.step()
         peak_mem = torch.cuda.max_memory_allocated(device) / 1024**3 if device.type == "cuda" else 0.0    # GB
-        
+        gpu_name = torch.cuda.get_device_name(device) if device.type == "cuda" else "cpu"
+        r0, r1, r2 = val["0-20"], val["20-40"], val[f"40-{max_depth}"]
+
         # log.csv
         new_file = not log_path.exists()
         with open(log_path, "a", newline="") as f:
             w = csv.writer(f)
-            if new_file: w.writerow(["epoch", "train_loss", "val_rmse", "val_mae", "lr", "time", "peak_mem"])
-            w.writerow([epoch, train_loss, val["rmse"], val["mae"], lr, timer.time, peak_mem])
+            if new_file:
+                w.writerow([
+                    "epoch", "gpu", "train_loss", "val_rmse", "val_mae", "val_valid_ratio",
+                    "rmse_0-20", "mae_0-20", "rmse_20-40", "mae_20-40",
+                    f"rmse_40-{max_depth}", f"mae_40-{max_depth}", "lr", "time", "peak_mem",
+                ])
+            w.writerow([
+                epoch, gpu_name, train_loss, val["rmse"], val["mae"], val["%valid/total_pixel"],
+                r0["rmse"], r0["mae"], r1["rmse"], r1["mae"], r2["rmse"], r2["mae"],
+                lr, timer.time, peak_mem,
+            ])
         print(f"epoch {epoch} | loss {train_loss:.4f} | val_rmse {val['rmse']:.4f} | val_mae {val['mae']:.4f} | {timer.time:.1f}s | {peak_mem:.2f}GB")
 
         # best.pt by val rmse + early stopping counter
