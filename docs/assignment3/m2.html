@@ -91,10 +91,62 @@
       <h2>Dataset description and EDA</h2>
       <ul>
         <li><strong>Dataset &amp; Modalities:</strong> KITTI Depth Completion + raw RGB (<code>image_02</code>): RGB (3 ch, ImageNet-normalized), sparse LiDAR (2 ch: <code>depth / 80</code> and validity mask), semi-dense GT depth (16-bit PNG / 256, in metres).</li>
-        <li><strong>Splits (drive-level, 0 overlap):</strong> 8,237 train (43 drives, 17.1% GT density), 1,023 validation (15 held-out drives, 14.0% GT density), 1,000 test (<code>val_selection_cropped</code>, 13 drives, 17.1% GT density); all pairs complete (0 missing modalities).</li>
-        <li><strong>Depth Distribution &amp; Quality:</strong> 0&ndash;20 m dominates (81.0% train, 82.1% val, 78.8% test), 12.3&ndash;15.8% in 20&ndash;40 m, 4.8&ndash;5.6% in 40&ndash;80 m, and 0.01&ndash;0.03% &gt; 80 m. Proposal check on 300 pairs/split showed ~1&ndash;2% LiDAR&ndash;GT differences &gt; 1 m (edge bleeding).</li>
+        <li><strong>Splits:</strong> drive-level, 0 overlap; all pairs complete (0 missing modalities). Per-split sizes and GT depth distribution are in the table below.</li>
+        <li><strong>Data Quality:</strong> Proposal check on 300 pairs/split showed ~1&ndash;2% LiDAR&ndash;GT differences &gt; 1 m (edge bleeding).</li>
         <li><strong>Preprocessing:</strong> Bottom-center cropped to 352&times;1216; no data augmentation applied in this M2 draft.</li>
       </ul>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Split</th>
+              <th>Source</th>
+              <th>Drives</th>
+              <th>Pairs</th>
+              <th>GT density</th>
+              <th>0&ndash;20 m</th>
+              <th>20&ndash;40 m</th>
+              <th>40&ndash;80 m</th>
+              <th>&gt; 80 m</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Train</strong></td>
+              <td>KITTI DC train drives</td>
+              <td>43</td>
+              <td>8,237</td>
+              <td>17.1%</td>
+              <td>81.0%</td>
+              <td>14.1%</td>
+              <td>4.8%</td>
+              <td>0.03%</td>
+            </tr>
+            <tr>
+              <td><strong>Validation</strong></td>
+              <td>Held-out KITTI DC drives</td>
+              <td>15</td>
+              <td>1,023</td>
+              <td>14.0%</td>
+              <td>82.1%</td>
+              <td>12.3%</td>
+              <td>5.6%</td>
+              <td>0.01%</td>
+            </tr>
+            <tr>
+              <td><strong>Test</strong></td>
+              <td><code>val_selection_cropped</code></td>
+              <td>13</td>
+              <td>1,000</td>
+              <td>17.1%</td>
+              <td>78.8%</td>
+              <td>15.8%</td>
+              <td>5.4%</td>
+              <td>0.03%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section id="method">
@@ -130,7 +182,6 @@
               <th>Train Loss (m)</th>
               <th>Val RMSE (m)</th>
               <th>Val MAE (m)</th>
-              <th>Test RMSE / MAE (m)</th>
             </tr>
           </thead>
           <tbody>
@@ -141,7 +192,6 @@
               <td>1.123</td>
               <td>2.833</td>
               <td>1.152</td>
-              <td>Pending</td>
             </tr>
             <tr>
               <td><strong>M2 LiDAR-only</strong></td>
@@ -150,7 +200,6 @@
               <td>0.845</td>
               <td><strong>0.927</strong></td>
               <td><strong>0.308</strong></td>
-              <td>1.982 / 0.494</td>
             </tr>
             <tr>
               <td><strong>M3 Early fusion (split stem)</strong></td>
@@ -159,7 +208,6 @@
               <td>0.879</td>
               <td>1.204</td>
               <td>0.447</td>
-              <td>Pending</td>
             </tr>
           </tbody>
         </table>
