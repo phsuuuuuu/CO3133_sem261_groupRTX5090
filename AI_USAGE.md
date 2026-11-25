@@ -392,9 +392,9 @@
 
 - **Tool:** Gemini 4 Hydrogen
 - **Used by:** Cao Duc Thanh
-- **Task:** A3 M2 — Final M2 audit against handbook and README
-- **Prompt summary:** Asked to check A3 M2 completion against handbook-ene, and create a concise README.md.
-- **AI contribution:** Audited repository files against requirements and drafted README.md.
-- **Student verification:** Cross-checked assignment3/README.md against handbook-ene and the github page.
-- **Affected files/sections:** index.html, README.md
+- **Task:** A3 M2 — Final M2 audit against handbook, README, and updating A3 M2 / proposal pages
+- **Prompt summary:** Asked to check A3 M2 completion against handbook-ene, create a concise README.md, update Proposal status to Approved, and reformat A3 M2 page to match A2 M2 style.
+- **AI contribution:** Audited repository files against requirements, drafted README.md, and updated assignment3.html and m2.html.
+- **Student verification:** Cross-checked assignment3/README.md, assignment3.html, and m2.html against handbook-ene, logged metrics, and A2 M2 page.
+- **Affected files/sections:** index.html, assignment3.html, m2.html, README.md
 - **Responsible member:** Cao Duc Thanh
