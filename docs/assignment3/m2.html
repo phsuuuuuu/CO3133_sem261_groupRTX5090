@@ -57,7 +57,7 @@
     <p class="placeholder">
       <strong>Status:</strong> Progress Report / Draft<br>
       Data pipeline, exploratory data analysis, unimodal baselines (RGB-only, LiDAR-only),
-      and simple early fusion (split-stem) with preliminary validation/test metrics are complete.
+      and simple early fusion (split-stem) with preliminary validation metrics are complete.
     </p>
 
     <section aria-labelledby="contents-heading">
@@ -221,22 +221,25 @@
       <p>
         On validation, <strong>M2 LiDAR-only (0.927 m RMSE)</strong> beats <strong>M1 RGB-only (2.833 m, &minus;67.3% RMSE)</strong> because sparse LiDAR provides direct metric scale whereas RGB alone is scale-ambiguous.
         <strong>M3 Early fusion</strong> strongly improves over RGB-only (&minus;57.5% RMSE, 1.204 m vs. 2.833 m) and outperforms a single 5-channel stem run (2.044 m), showing that separate stem BatchNorms preserve sparse LiDAR features.
-        However, M3 still trails M2 (+29.9% RMSE), likely due to 5&times; fewer gradient steps per epoch (batch 40 vs. 8) and partial overfitting to RGB textures. On the official test set (<code>val_selection_cropped</code>), M2 reaches 1.982 m RMSE / 0.494 m MAE across both cameras and unseen test drives.
+        However, M3 still trails M2 (+29.9% RMSE), likely due to 5&times; fewer gradient steps per epoch (batch 40 vs. 8) and partial overfitting to RGB textures.
       </p>
     </section>
 
     <section id="errors">
       <h2>Error analysis</h2>
       <p>
-        Validation error increases sharply with depth across all three models (0&ndash;20 / 20&ndash;40 / 40&ndash;80 m RMSE): M1 rises from 1.066 &rarr; 4.572 &rarr; 8.960 m, M2 from 0.426 &rarr; 1.424 &rarr; 2.854 m, and M3 from 0.568 &rarr; 1.845 &rarr; 3.676 m.
-        Primary error sources are extreme LiDAR sparsity beyond 40 m (only ~4.8&ndash;5.6% of GT pixels), lack of RGB metric scale on distant/textureless regions, and ~1&ndash;2% LiDAR&ndash;GT edge-bleeding conflicts. Detailed qualitative support/conflict cases and error taxonomy will be added in M3.
+        Validation error grows sharply with depth for all three models (RMSE at 0&ndash;20 / 20&ndash;40 / 40&ndash;80 m): M1 1.066 &rarr; 4.572 &rarr; 8.960 m, M2 0.426 &rarr; 1.424 &rarr; 2.854 m, and M3 0.568 &rarr; 1.845 &rarr; 3.676 m.
+        From the nearest to the farthest range, RMSE grows about 8.4&times; for M1, but only 6.7&times; for M2 and 6.5&times; for M3, so LiDAR input limits the far-range error. M3's gap to M2 also widens with distance (+0.14, +0.42, +0.82 m).
       </p>
+      <ul>
+        <li><strong>Few far-range training pixels:</strong> only 4.8&ndash;5.6% of GT pixels lie in 40&ndash;80 m, and LiDAR points get sparser with distance.</li>
+        <li><strong>No metric scale from RGB:</strong> RGB alone can't recover absolute depth, which hurts most in distant and textureless regions.</li>      </ul>
     </section>
 
     <section id="conclusion">
       <h2>Limitations and conclusion</h2>
       <p>
-        <strong>Limitations:</strong> unequal batch size (40 for M1/M3 vs. 8 for M2), single seed (666), no data augmentation, and M1/M3 test numbers pending.
+        <strong>Limitations:</strong> unequal batch size (40 for M1/M3 vs. 8 for M2), single seed (666), and no data augmentation.
         <strong>Current conclusion:</strong> metric LiDAR dominates RGB at this training budget, and modality-specific stem normalization is crucial for early fusion.
         <strong>Plan for M3:</strong> matched batch size across all models, Model 4 (PENet-style confidence fusion), fusion and LiDAR-sparsity ablations (E1, E2), support/conflict qualitative analysis, and compute cost (FPS, FLOPs, VRAM).
       </p>
