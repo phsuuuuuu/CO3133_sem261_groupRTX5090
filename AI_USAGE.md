@@ -398,3 +398,36 @@
 - **Student verification:** Cross-checked assignment3/README.md, assignment3.html, and m2.html against handbook-ene, logged metrics, and A2 M2 page.
 - **Affected files/sections:** index.html, assignment3.html, m2.html, README.md
 - **Responsible member:** Cao Duc Thanh
+
+### Entry A3-8
+
+- **Tool:** Claude Code (Anthropic, Claude Opus 5.5)
+- **Used by:** Dang Thanh Phu
+- **Task:** A3 M2 — Integrating the src/ .py modules into the Colab training notebook
+- **Prompt summary:** Asked to integrate the project .py files into the training Colab notebook so it runs in the Colab environment.
+- **AI contribution:** Merged the encoder, decoder, M1 RGB-only and M3 early fusion models, data/transform, loss/metric and training builders from src/ into self-contained cells in training.ipynb, adapted for Colab.
+- **Student verification:** Ran training.ipynb on Colab (A100) to train M1 and M3 and compared the notebook code against the original src/ files.
+- **Affected files/sections:** src/colab/training.ipynb (from encoder.py, decoder.py, m1_rgb.py, m3_early.py, data_and_transform.py, loss_and_metric.py, train.py)
+- **Responsible member:** Dang Thanh Phu
+
+### Entry A3-9
+
+- **Tool:** Claude Code (Anthropic, Claude Opus 5.5)
+- **Used by:** Dang Thanh Phu
+- **Task:** A3 M2 — Dataset split and GT depth distribution tables for EDA
+- **Prompt summary:** Asked to compute the per-split statistics and GT depth distribution of the dataset.
+- **AI contribution:** Wrote the EDA cells that count pairs, valid GT pixels and GT density per split, and the share of GT pixels in the 0–20, 20–40, 40–80 and > 80 m ranges, saved as CSV tables.
+- **Student verification:** Ran eda.ipynb and checked the pair counts against the split file lists and the training logs.
+- **Affected files/sections:** src/colab/eda.ipynb, results/distribution/table1_splits.csv, results/distribution/table2_gt_depth.csv
+- **Responsible member:** Dang Thanh Phu
+
+### Entry A3-10
+
+- **Tool:** Claude Code (Anthropic, Claude Opus 5.5)
+- **Used by:** Dang Thanh Phu
+- **Task:** A3 M2 — Building and updating the A3 M2 HTML page
+- **Prompt summary:** Asked to create the A3 M2 draft page, add a dataset split / GT depth table.
+- **AI contribution:** Drafted m2.html, added the split / GT depth table from the EDA CSV.
+- **Student verification:** Checked values against log.csv and the EDA CSVs, and viewed the page in the browser.
+- **Affected files/sections:** docs/assignment3/m2.html
+- **Responsible member:** Dang Thanh Phu
