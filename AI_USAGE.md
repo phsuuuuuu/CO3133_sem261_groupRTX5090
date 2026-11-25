@@ -376,3 +376,25 @@
 - **Student verification:** Read the instruction and try to write those files myself
 - **Affected files/sections:** evaluate.py
 - **Responsible member:** Cao Duc Thanh
+
+### Entry A3-6
+
+- **Tool:** Gemini 4 Hydrogen
+- **Used by:** Cao Duc Thanh
+- **Task:** A3 M2 — Write m4_conf.py
+- **Prompt summary:** Asked to instruct me how to write the m4_conf.py in a way that I must write myself, and then explain the whole file for me 
+- **AI contribution:** instruct me how to write those files
+- **Student verification:** Read the instruction and try to write those files myself
+- **Affected files/sections:** m4_conf.py
+- **Responsible member:** Cao Duc Thanh
+
+### Entry A3-7
+
+- **Tool:** Gemini 4 Hydrogen
+- **Used by:** Cao Duc Thanh
+- **Task:** A3 M2 — Final M2 audit against handbook and README
+- **Prompt summary:** Asked to check A3 M2 completion against handbook-ene, and create a concise README.md.
+- **AI contribution:** Audited repository files against requirements and drafted README.md.
+- **Student verification:** Cross-checked assignment3/README.md against handbook-ene and the github page.
+- **Affected files/sections:** index.html, README.md
+- **Responsible member:** Cao Duc Thanh
