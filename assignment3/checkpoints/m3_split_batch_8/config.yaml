@@ -1,0 +1,25 @@
+data:
+  batch_size: 8
+  cache: true
+  data_dir: /content/kitti
+  max_depth: 80.0
+model:
+  name: m3_split
+  pretrained: true
+  skip_channels:
+  - 64
+  - 64
+  - 128
+  - 256
+  - 512
+output:
+  checkpoints_dir: /content/drive/MyDrive/KITTI_DC/checkpoints
+seed: 666
+train:
+  amp: true
+  early_stopping_patience: 5
+  encoder_lr_scale: 0.1
+  epochs: 20
+  lr: 0.0002
+  max_batches: 0
+  weight_decay: 0.0001
